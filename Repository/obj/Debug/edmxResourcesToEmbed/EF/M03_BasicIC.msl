@@ -1,0 +1,398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="M03_BasicModelStoreContainer" CdmEntityContainer="M03_BasicEntities">
+    <EntitySetMapping Name="M03_Address">
+      <EntityTypeMapping TypeName="M03_BasicModel.M03_Address">
+        <MappingFragment StoreEntitySet="M03_Address">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="address_line1" ColumnName="address_line1" />
+          <ScalarProperty Name="address_line2" ColumnName="address_line2" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="zip_code" ColumnName="zip_code" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="modify_time" ColumnName="modify_time" />
+          <ScalarProperty Name="modify_by" ColumnName="modify_by" />
+          <ScalarProperty Name="tenant_id" ColumnName="tenant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="M03_Attribute">
+      <EntityTypeMapping TypeName="M03_BasicModel.M03_Attribute">
+        <MappingFragment StoreEntitySet="M03_Attribute">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="attribute_name" ColumnName="attribute_name" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="modify_time" ColumnName="modify_time" />
+          <ScalarProperty Name="modify_by" ColumnName="modify_by" />
+          <ScalarProperty Name="tenant_id" ColumnName="tenant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="M03_Cart">
+      <EntityTypeMapping TypeName="M03_BasicModel.M03_Cart">
+        <MappingFragment StoreEntitySet="M03_Cart">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="modify_time" ColumnName="modify_time" />
+          <ScalarProperty Name="modify_by" ColumnName="modify_by" />
+          <ScalarProperty Name="tenant_id" ColumnName="tenant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="M03_CartDetail">
+      <EntityTypeMapping TypeName="M03_BasicModel.M03_CartDetail">
+        <MappingFragment StoreEntitySet="M03_CartDetail">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="cart_id" ColumnName="cart_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="cart_total_price" ColumnName="cart_total_price" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="modify_time" ColumnName="modify_time" />
+          <ScalarProperty Name="modify_by" ColumnName="modify_by" />
+          <ScalarProperty Name="tenant_id" ColumnName="tenant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="M03_Coupon">
+      <EntityTypeMapping TypeName="M03_BasicModel.M03_Coupon">
+        <MappingFragment StoreEntitySet="M03_Coupon">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="coupon_name" ColumnName="coupon_name" />
+          <ScalarProperty Name="coupon_code" ColumnName="coupon_code" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="discount_type" ColumnName="discount_type" />
+          <ScalarProperty Name="discount_amount" ColumnName="discount_amount" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="modify_time" ColumnName="modify_time" />
+          <ScalarProperty Name="modify_by" ColumnName="modify_by" />
+          <ScalarProperty Name="tenant_id" ColumnName="tenant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="M03_CouponOrder">
+      <EntityTypeMapping TypeName="M03_BasicModel.M03_CouponOrder">
+        <MappingFragment StoreEntitySet="M03_CouponOrder">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="coupon_id" ColumnName="coupon_id" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="modify_time" ColumnName="modify_time" />
+          <ScalarProperty Name="modify_by" ColumnName="modify_by" />
+          <ScalarProperty Name="tenant_id" ColumnName="tenant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="M03_Customer">
+      <EntityTypeMapping TypeName="M03_BasicModel.M03_Customer">
+        <MappingFragment StoreEntitySet="M03_Customer">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="account_name" ColumnName="account_name" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="last_login" ColumnName="last_login" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="modify_time" ColumnName="modify_time" />
+          <ScalarProperty Name="modify_by" ColumnName="modify_by" />
+          <ScalarProperty Name="tenant_id" ColumnName="tenant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="M03_Employee">
+      <EntityTypeMapping TypeName="M03_BasicModel.M03_Employee">
+        <MappingFragment StoreEntitySet="M03_Employee">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="employee_name" ColumnName="employee_name" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="account_name" ColumnName="account_name" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="last_login" ColumnName="last_login" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="modify_time" ColumnName="modify_time" />
+          <ScalarProperty Name="modify_by" ColumnName="modify_by" />
+          <ScalarProperty Name="tenant_id" ColumnName="tenant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="M03_Image">
+      <EntityTypeMapping TypeName="M03_BasicModel.M03_Image">
+        <MappingFragment StoreEntitySet="M03_Image">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="image_url" ColumnName="image_url" />
+          <ScalarProperty Name="display_order" ColumnName="display_order" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="modify_time" ColumnName="modify_time" />
+          <ScalarProperty Name="modify_by" ColumnName="modify_by" />
+          <ScalarProperty Name="tenant_id" ColumnName="tenant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="M03_Import">
+      <EntityTypeMapping TypeName="M03_BasicModel.M03_Import">
+        <MappingFragment StoreEntitySet="M03_Import">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="supplier_id" ColumnName="supplier_id" />
+          <ScalarProperty Name="arrive_date" ColumnName="arrive_date" />
+          <ScalarProperty Name="total_price" ColumnName="total_price" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="modify_time" ColumnName="modify_time" />
+          <ScalarProperty Name="modify_by" ColumnName="modify_by" />
+          <ScalarProperty Name="tenant_id" ColumnName="tenant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="M03_ImportDetail">
+      <EntityTypeMapping TypeName="M03_BasicModel.M03_ImportDetail">
+        <MappingFragment StoreEntitySet="M03_ImportDetail">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="import_id" ColumnName="import_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="unit_price" ColumnName="unit_price" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="modify_time" ColumnName="modify_time" />
+          <ScalarProperty Name="modify_by" ColumnName="modify_by" />
+          <ScalarProperty Name="tenant_id" ColumnName="tenant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="M03_Menu">
+      <EntityTypeMapping TypeName="M03_BasicModel.M03_Menu">
+        <MappingFragment StoreEntitySet="M03_Menu">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="parent_menu_id" ColumnName="parent_menu_id" />
+          <ScalarProperty Name="menu_name" ColumnName="menu_name" />
+          <ScalarProperty Name="is_leaf" ColumnName="is_leaf" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="modify_time" ColumnName="modify_time" />
+          <ScalarProperty Name="modify_by" ColumnName="modify_by" />
+          <ScalarProperty Name="tenant_id" ColumnName="tenant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="M03_Order">
+      <EntityTypeMapping TypeName="M03_BasicModel.M03_Order">
+        <MappingFragment StoreEntitySet="M03_Order">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+          <ScalarProperty Name="addresses_id" ColumnName="addresses_id" />
+          <ScalarProperty Name="customer_phone_number" ColumnName="customer_phone_number" />
+          <ScalarProperty Name="total_price" ColumnName="total_price" />
+          <ScalarProperty Name="total_price_coupon" ColumnName="total_price_coupon" />
+          <ScalarProperty Name="payment_method" ColumnName="payment_method" />
+          <ScalarProperty Name="arrived_date" ColumnName="arrived_date" />
+          <ScalarProperty Name="shipping_address" ColumnName="shipping_address" />
+          <ScalarProperty Name="shipping_status" ColumnName="shipping_status" />
+          <ScalarProperty Name="shipping_fee" ColumnName="shipping_fee" />
+          <ScalarProperty Name="order_payment_collection" ColumnName="order_payment_collection" />
+          <ScalarProperty Name="note" ColumnName="note" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="modify_time" ColumnName="modify_time" />
+          <ScalarProperty Name="modify_by" ColumnName="modify_by" />
+          <ScalarProperty Name="tenant_id" ColumnName="tenant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="M03_OrderDetail">
+      <EntityTypeMapping TypeName="M03_BasicModel.M03_OrderDetail">
+        <MappingFragment StoreEntitySet="M03_OrderDetail">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="product_price" ColumnName="product_price" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="total_price" ColumnName="total_price" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="modify_time" ColumnName="modify_time" />
+          <ScalarProperty Name="modify_by" ColumnName="modify_by" />
+          <ScalarProperty Name="tenant_id" ColumnName="tenant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="M03_Product">
+      <EntityTypeMapping TypeName="M03_BasicModel.M03_Product">
+        <MappingFragment StoreEntitySet="M03_Product">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="product_name" ColumnName="product_name" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="inventory" ColumnName="inventory" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="modify_time" ColumnName="modify_time" />
+          <ScalarProperty Name="modify_by" ColumnName="modify_by" />
+          <ScalarProperty Name="tenant_id" ColumnName="tenant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="M03_ProductAttribute">
+      <EntityTypeMapping TypeName="M03_BasicModel.M03_ProductAttribute">
+        <MappingFragment StoreEntitySet="M03_ProductAttribute">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="attribute_id" ColumnName="attribute_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="attribute_value" ColumnName="attribute_value" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="modify_time" ColumnName="modify_time" />
+          <ScalarProperty Name="modify_by" ColumnName="modify_by" />
+          <ScalarProperty Name="tenant_id" ColumnName="tenant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="M03_ProductMenu">
+      <EntityTypeMapping TypeName="M03_BasicModel.M03_ProductMenu">
+        <MappingFragment StoreEntitySet="M03_ProductMenu">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="menu_id" ColumnName="menu_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="modify_time" ColumnName="modify_time" />
+          <ScalarProperty Name="modify_by" ColumnName="modify_by" />
+          <ScalarProperty Name="tenant_id" ColumnName="tenant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="M03_Rating">
+      <EntityTypeMapping TypeName="M03_BasicModel.M03_Rating">
+        <MappingFragment StoreEntitySet="M03_Rating">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="star" ColumnName="star" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="modify_time" ColumnName="modify_time" />
+          <ScalarProperty Name="modify_by" ColumnName="modify_by" />
+          <ScalarProperty Name="tenant_id" ColumnName="tenant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="M03_Role">
+      <EntityTypeMapping TypeName="M03_BasicModel.M03_Role">
+        <MappingFragment StoreEntitySet="M03_Role">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="role_name" ColumnName="role_name" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="modify_time" ColumnName="modify_time" />
+          <ScalarProperty Name="modify_by" ColumnName="modify_by" />
+          <ScalarProperty Name="tenant_id" ColumnName="tenant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="M03_RoleService">
+      <EntityTypeMapping TypeName="M03_BasicModel.M03_RoleService">
+        <MappingFragment StoreEntitySet="M03_RoleService">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="role_id" ColumnName="role_id" />
+          <ScalarProperty Name="service_id" ColumnName="service_id" />
+          <ScalarProperty Name="access_level" ColumnName="access_level" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="modify_time" ColumnName="modify_time" />
+          <ScalarProperty Name="modify_by" ColumnName="modify_by" />
+          <ScalarProperty Name="tenant_id" ColumnName="tenant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="M03_RoleServiceEmployee">
+      <EntityTypeMapping TypeName="M03_BasicModel.M03_RoleServiceEmployee">
+        <MappingFragment StoreEntitySet="M03_RoleServiceEmployee">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="roleservice_id" ColumnName="roleservice_id" />
+          <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="modify_time" ColumnName="modify_time" />
+          <ScalarProperty Name="modify_by" ColumnName="modify_by" />
+          <ScalarProperty Name="tenant_id" ColumnName="tenant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="M03_Service">
+      <EntityTypeMapping TypeName="M03_BasicModel.M03_Service">
+        <MappingFragment StoreEntitySet="M03_Service">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="service_name" ColumnName="service_name" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="modify_time" ColumnName="modify_time" />
+          <ScalarProperty Name="modify_by" ColumnName="modify_by" />
+          <ScalarProperty Name="tenant_id" ColumnName="tenant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="M03_Supplier">
+      <EntityTypeMapping TypeName="M03_BasicModel.M03_Supplier">
+        <MappingFragment StoreEntitySet="M03_Supplier">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="supplier_name" ColumnName="supplier_name" />
+          <ScalarProperty Name="supplier_email" ColumnName="supplier_email" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="modify_time" ColumnName="modify_time" />
+          <ScalarProperty Name="modify_by" ColumnName="modify_by" />
+          <ScalarProperty Name="tenant_id" ColumnName="tenant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="M03_UserLog">
+      <EntityTypeMapping TypeName="M03_BasicModel.M03_UserLog">
+        <MappingFragment StoreEntitySet="M03_UserLog">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="user_type" ColumnName="user_type" />
+          <ScalarProperty Name="activity_type" ColumnName="activity_type" />
+          <ScalarProperty Name="execute_date" ColumnName="execute_date" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="modify_time" ColumnName="modify_time" />
+          <ScalarProperty Name="modify_by" ColumnName="modify_by" />
+          <ScalarProperty Name="tenant_id" ColumnName="tenant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="M03_WishList">
+      <EntityTypeMapping TypeName="M03_BasicModel.M03_WishList">
+        <MappingFragment StoreEntitySet="M03_WishList">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="modify_time" ColumnName="modify_time" />
+          <ScalarProperty Name="modify_by" ColumnName="modify_by" />
+          <ScalarProperty Name="tenant_id" ColumnName="tenant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
