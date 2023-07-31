@@ -89,6 +89,11 @@ namespace BasicIC.App_Start
             kernel.Bind(typeof(IRepositorySql<>)).To(typeof(BasicICRepository<>));
 
             kernel.Bind<ICustomerService>().To<CustomerService>();
+
+            kernel.Bind<IProductService>().To<ProductService>();
+            kernel.Bind<IImageService>().To<ImageService>();
+            kernel.Bind<IProductAttributeService>().To<ProductAttributeService>();
+            kernel.Bind<IAttributeService>().To<AttributeService>();    
         }
     }
 }

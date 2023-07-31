@@ -239,8 +239,10 @@
     <Compile Include="Config\AuthorizationOperationFiltercs.cs" />
     <Compile Include="Config\AutoMapperConfig.cs" />
     <Compile Include="Config\ConfigManager.cs" />
+    <Compile Include="Controllers\AttributeController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="CustomAttributes\ValidateModelAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -274,13 +276,20 @@
     <Compile Include="Models\Main\M03\UserLogModel.cs" />
     <Compile Include="Models\Main\M03\WishListModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Implement\AttributeService.cs" />
     <Compile Include="Services\Implement\BaseService.cs" />
     <Compile Include="Services\Implement\CustomerService.cs" />
     <Compile Include="Services\Implement\GenericServices\BaseCRUDServices.cs" />
+    <Compile Include="Services\Implement\ImageService.cs" />
+    <Compile Include="Services\Implement\ProductAttributeService.cs" />
+    <Compile Include="Services\Implement\ProductService.cs" />
     <Compile Include="Services\Interfaces\GenericServices\IBaseCRUDServices.cs" />
-    <Compile Include="Services\Interfaces\ICart.cs" />
+    <Compile Include="Services\Interfaces\IAttributeService.cs" />
+    <Compile Include="Services\Interfaces\ICartService.cs" />
     <Compile Include="Services\Interfaces\ICustomerService.cs" />
     <Compile Include="Services\Interfaces\IEmployeeService.cs" />
+    <Compile Include="Services\Interfaces\IImageService.cs" />
+    <Compile Include="Services\Interfaces\IProductAttributeService.cs" />
     <Compile Include="Services\Interfaces\IProductService.cs" />
     <Compile Include="Services\Interfaces\IWishListService.cs" />
     <Compile Include="Services\Interfaces\SupplierService.cs" />

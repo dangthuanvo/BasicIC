@@ -30,7 +30,10 @@ namespace BasicIC.Config
 
             // Add as many of these lines as you need to map your objects
             CreateMap<CustomerModel, M03_Customer>().ReverseMap();
-
+            CreateMap<ProductModel, M03_Product>().ReverseMap();
+            CreateMap<ImageModel, M03_Image>().ReverseMap();
+            CreateMap<AttributeModel, M03_Attribute>().ReverseMap();
+            CreateMap<ProductAttributeModel, M03_ProductAttribute>().ReverseMap();
         }
 
         public class DateTimeToTimeSpanConverter : ITypeConverter<DateTime?, Nullable<System.TimeSpan>>

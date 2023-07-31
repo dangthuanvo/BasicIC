@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
 using System.Linq.Dynamic.Core;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Repository.Repositories
@@ -98,7 +99,10 @@ namespace Repository.Repositories
             }
             else
             {
-                datas = await dbContext.Database.SqlQuery<T>("global_search @isUnicode, @stringValue, @schema, @table, @tenant_id", parameters.ToArray()).ToListAsync();
+                {
+                    datas = await dbContext.Database.SqlQuery<T>("global_search @isUnicode, @stringValue, @schema, @table, @tenant_id", parameters.ToArray()).ToListAsync();
+                }
+    
             }
             total = datas.Count;
             return new ListResult<T>(datas, total);
@@ -112,6 +116,18 @@ namespace Repository.Repositories
             var t = await dbContext.Set<T>().FindAsync(obj);
 
             return t;
+        }
+
+        public async virtual Task<ListResult<T>> FindAsyncWithField(string fieldName, object value, DbContext dbContext = null)
+        {
+            if (dbContext == null)
+                dbContext = _db;
+
+            var query = dbContext.Set<T>().AsQueryable();
+            var filterExpression = $"{fieldName} == @0";
+            query = query.Where(filterExpression, value);
+            List<T> datas = await query.ToListAsync();
+            return new ListResult<T>(datas, datas.Count);
         }
 
         public async virtual Task<T> Update(T obj, DbContext dbContext = null)
@@ -167,6 +183,8 @@ namespace Repository.Repositories
             await dbContext.SaveChangesAsync();
             return itemDelete;
         }
+
+
 
         public async virtual Task<bool> Delete(T t, DbContext dbContext = null)
         {

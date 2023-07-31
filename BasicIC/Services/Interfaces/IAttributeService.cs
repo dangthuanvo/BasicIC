@@ -8,8 +8,7 @@ using System.Web;
 
 namespace BasicIC.Services.Interfaces
 {
-    public interface ICart : IBaseCRUDService<CartModel, M03_Cart>
+    public interface IAttributeService : IBaseCRUDService<AttributeModel, M03_Attribute>
     {
-
     }
 }

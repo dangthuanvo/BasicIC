@@ -245,6 +245,8 @@ namespace BasicIC.Services.Implement
                 }
                 V result = await _repo.Update(vData, dbContext);
 
+
+
                 // Push kafka log message
                 //if (autoLog)
                 //{

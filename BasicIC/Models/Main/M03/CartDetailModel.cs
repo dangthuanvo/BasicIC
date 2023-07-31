@@ -7,9 +7,9 @@ namespace BasicIC.Models.Main.M03
 {
     public class CartDetailModel : BaseModel
     {
-        public Nullable<System.Guid> cart_id { get; set; }
-        public Nullable<System.Guid> product_id { get; set; }
-        public Nullable<int> quantity { get; set; }
-        public Nullable<decimal> cart_total_price { get; set; }
+        public Guid cart_id { get; set; }
+        public Guid product_id { get; set; }
+        public int quantity { get; set; }
+        public decimal cart_total_price { get; set; }
     }
 }
