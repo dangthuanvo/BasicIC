@@ -93,7 +93,9 @@ namespace BasicIC.App_Start
             kernel.Bind<IProductService>().To<ProductService>();
             kernel.Bind<IImageService>().To<ImageService>();
             kernel.Bind<IProductAttributeService>().To<ProductAttributeService>();
-            kernel.Bind<IAttributeService>().To<AttributeService>();    
+            kernel.Bind<IAttributeService>().To<AttributeService>();
+            kernel.Bind<ISupplierService>().To<SupplierSerivce>();
+            kernel.Bind<IWishListService>().To<WishListService>();
         }
     }
 }

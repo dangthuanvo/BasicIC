@@ -8,7 +8,7 @@ using System.Web;
 
 namespace BasicIC.Services.Interfaces
 {
-    public interface ISupplier : IBaseCRUDService<SupplierModel, M03_Supplier>
+    public interface ISupplierService : IBaseCRUDService<SupplierModel, M03_Supplier>
     {
 
     }

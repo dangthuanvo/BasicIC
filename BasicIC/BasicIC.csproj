@@ -243,6 +243,8 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\SupplierController.cs" />
+    <Compile Include="Controllers\WishListController.cs" />
     <Compile Include="CustomAttributes\ValidateModelAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -283,6 +285,8 @@
     <Compile Include="Services\Implement\ImageService.cs" />
     <Compile Include="Services\Implement\ProductAttributeService.cs" />
     <Compile Include="Services\Implement\ProductService.cs" />
+    <Compile Include="Services\Implement\SupplierService.cs" />
+    <Compile Include="Services\Implement\WishListService.cs" />
     <Compile Include="Services\Interfaces\GenericServices\IBaseCRUDServices.cs" />
     <Compile Include="Services\Interfaces\IAttributeService.cs" />
     <Compile Include="Services\Interfaces\ICartService.cs" />
@@ -292,7 +296,7 @@
     <Compile Include="Services\Interfaces\IProductAttributeService.cs" />
     <Compile Include="Services\Interfaces\IProductService.cs" />
     <Compile Include="Services\Interfaces\IWishListService.cs" />
-    <Compile Include="Services\Interfaces\SupplierService.cs" />
+    <Compile Include="Services\Interfaces\ISupplierService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

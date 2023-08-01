@@ -183,18 +183,6 @@ namespace BasicIC.Services.Implement
 
                 if (result != null)
                 {
-                    // Push kafka log message
-                    //if (autoLog)
-                    //{
-                    //    T originalObject = _mapper.Map<V, T>(result);
-
-                    //    string createJson = Newtonsoft.Json.JsonConvert.SerializeObject(originalObject);
-                    //    await this.CreateKafkaLog(new Guid(obj.id), Constants.LOG_USER_DELETE, createJson);
-                    //    // create log action
-                    //    await _logActionService.CreateKafkaLog(LogType.DELETE, typeof(T).Name.Replace("Model", ""),
-                    //                                            $"Delete {typeof(T).Name.Replace("Model", "")}", entity, "");
-                    //}
-
                     return new ResponseService<bool>(true);
                 }
                 else

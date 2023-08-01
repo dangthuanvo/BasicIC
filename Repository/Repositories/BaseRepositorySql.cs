@@ -5,6 +5,7 @@ using Repository.CustomModel;
 using Repository.Interfaces;
 using Repository.Queries;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.SqlClient;
@@ -128,6 +129,26 @@ namespace Repository.Repositories
             query = query.Where(filterExpression, value);
             List<T> datas = await query.ToListAsync();
             return new ListResult<T>(datas, datas.Count);
+        }
+
+        public async virtual Task<List<T>> DeleteAsyncWithField(string fieldName, object value, DbContext dbContext = null)
+        {
+            if (dbContext == null)
+                dbContext = _db;
+
+            var query = dbContext.Set<T>().AsQueryable();
+            var filterExpression = $"{fieldName} == @0";
+            query = query.Where(filterExpression, value);
+            List<T> datas = query.ToList();
+            if (datas != null && datas.Count > 0)
+            {
+                foreach (T t in datas)
+                    dbContext.Set<T>().Attach(t);
+
+                dbContext.Set<T>().RemoveRange(datas);
+                await dbContext.SaveChangesAsync();
+            }
+            return datas;
         }
 
         public async virtual Task<T> Update(T obj, DbContext dbContext = null)

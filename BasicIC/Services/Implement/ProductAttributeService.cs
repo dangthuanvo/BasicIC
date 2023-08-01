@@ -101,7 +101,26 @@ namespace BasicIC.Services.Implement
                 return new ResponseService<ListResult<ProductAttributeModel>>(ex.Message).BadRequest(ErrorCodes.UNHANDLED_ERROR);
             }
         }
+        public async Task<ResponseService<bool>> DeleteByProduct(ProductModel param, M03_BasicEntities dbContext = null)
+        {
+            try
+            {
+                _logger.LogInfo(GetMethodName(new System.Diagnostics.StackTrace()));
+                List<M03_ProductAttribute> results = await _repo.DeleteAsyncWithField("product_id", param.id, dbContext);
 
+                if (results.Count > 0)
+                {
+                    return new ResponseService<bool>(true);
+                }
+                else
+                    return new ResponseService<bool>(false);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex);
+                return new ResponseService<bool>(ex.Message).BadRequest(ErrorCodes.UNHANDLED_ERROR);
+            }
+        }
         public async Task<ResponseService<ProductAttributeModel>> UpdateValueOnly(ProductAttributeModel param, M03_BasicEntities dbContext = null)
         {
             try

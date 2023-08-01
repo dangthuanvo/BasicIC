@@ -64,8 +64,28 @@ namespace BasicIC.Services.Implement
                 return new ResponseService<ImageModel>(ex.Message).BadRequest(ErrorCodes.UNHANDLED_ERROR);
             }
 
+        }
 
+        public async Task<ResponseService<bool>> DeleteByProduct(ProductModel param, M03_BasicEntities dbContext = null)
+        {
+            try
+            {
+                _logger.LogInfo(GetMethodName(new System.Diagnostics.StackTrace()));
+                List<M03_Image> results = await _repo.DeleteAsyncWithField("product_id", param.id, dbContext);
 
+                if (results.Count > 0)
+                {
+                    return new ResponseService<bool>(true);
+                }
+                else
+                    return new ResponseService<bool>(false);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex);
+                return new ResponseService<bool>(ex.Message).BadRequest(ErrorCodes.UNHANDLED_ERROR);
+         
+            }
         }
         public async Task<ResponseService<ListResult<ImageModel>>> GetByProductID(ImageModel param, M03_BasicEntities dbContext = null)
         {

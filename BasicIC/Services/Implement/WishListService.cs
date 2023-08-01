@@ -15,27 +15,21 @@ using System.Web;
 
 namespace BasicIC.Services.Implement
 {
-    public class CustomerService : BaseCRUDService<CustomerModel, M03_Customer>, ICustomerService
+    public class WishListService : BaseCRUDService<WishListModel, M03_WishList>, IWishListService
     {
-        protected IWishListService _wishListService;
-        public CustomerService(BasicICRepository<M03_Customer> repo,
-            IWishListService wishListService,
-          
+        public WishListService(BasicICRepository<M03_WishList> repo,
             ILogger logger, IConfigManager config, IMapper mapper) : base(repo, config, logger, mapper)
         {
-            _wishListService= wishListService;
         }
-        public async Task<ResponseService<bool>> DeleteRelatives(CustomerModel param, M03_BasicEntities dbContext = null)
+
+        public async Task<ResponseService<bool>> DeleteByCustomer(CustomerModel param, M03_BasicEntities dbContext = null)
         {
             try
             {
                 _logger.LogInfo(GetMethodName(new System.Diagnostics.StackTrace()));
-                //var entity = await _repo.GetById(param.id);
-                ResponseService<bool> a = await _wishListService.DeleteByCustomer(param, dbContext);
-                M03_Customer result = await _repo.Delete(param.id, dbContext);
+                List<M03_WishList> results = await _repo.DeleteAsyncWithField("customer_id", param.id, dbContext);
 
-
-                if (result != null)
+                if (results.Count > 0)
                 {
                     return new ResponseService<bool>(true);
                 }
@@ -46,6 +40,7 @@ namespace BasicIC.Services.Implement
             {
                 _logger.LogError(ex);
                 return new ResponseService<bool>(ex.Message).BadRequest(ErrorCodes.UNHANDLED_ERROR);
+
             }
         }
     }
