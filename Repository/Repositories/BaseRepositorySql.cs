@@ -131,6 +131,18 @@ namespace Repository.Repositories
             return new ListResult<T>(datas, datas.Count);
         }
 
+        public virtual List<T> FindWithField(string fieldName, object value, DbContext dbContext = null)
+        {
+            if (dbContext == null)
+                dbContext = _db;
+
+            var query = dbContext.Set<T>().AsQueryable();
+            var filterExpression = $"{fieldName} == @0";
+            query = query.Where(filterExpression, value);
+            List<T> datas = query.ToList();
+            return datas;
+        }
+
         public async virtual Task<List<T>> DeleteAsyncWithField(string fieldName, object value, DbContext dbContext = null)
         {
             if (dbContext == null)

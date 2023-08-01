@@ -87,14 +87,14 @@ namespace BasicIC.Services.Implement
          
             }
         }
-        public async Task<ResponseService<ListResult<ImageModel>>> GetByProductID(ImageModel param, M03_BasicEntities dbContext = null)
+        public async Task<ResponseService<ListResult<ImageModel>>> GetByProductID(ProductModel param, M03_BasicEntities dbContext = null)
         {
             try
             {
                 _logger.LogInfo(GetMethodName(new System.Diagnostics.StackTrace()));
 
                 // Get result from Entity
-                ListResult<M03_Image> resultEntity = await _repo.FindAsyncWithField("product_id", param.product_id, dbContext);
+                ListResult<M03_Image> resultEntity = await _repo.FindAsyncWithField("product_id", param.id, dbContext);
 
                 // Map result to View
                 List<ImageModel> items;

@@ -14,7 +14,7 @@ namespace BasicIC.Services.Interfaces
 {
     public interface IImageService : IBaseCRUDService<ImageModel, M03_Image>
     {
-        Task<ResponseService<ListResult<ImageModel>>> GetByProductID(ImageModel param, M03_BasicEntities dbContext = null);
-        Task<ResponseService<bool>> DeleteByProduct(ProductModel param, M03_BasicEntities dbContext = null);
+        Task<ResponseService<ListResult<ImageModel>>> GetByProductID(ProductModel param, M03_BasicEntities dbContext = null);
+        Task<ResponseService<bool>> DeleteByProduct( ProductModel param, M03_BasicEntities dbContext = null);
     }
 }

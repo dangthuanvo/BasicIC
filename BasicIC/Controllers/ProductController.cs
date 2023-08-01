@@ -126,7 +126,7 @@ namespace BasicIC.Controllers
         [Route("get-attribute-item")]
         [ValidateModel]
         [HttpPost]
-        public async Task<IHttpActionResult> GetAttributeById([FromBody] ProductAttributeModel param)
+        public async Task<IHttpActionResult> GetAttributeByProductId([FromBody] ProductModel param)
         {
             ResponseService<ListResult<ProductAttributeModel>> response = await _productattributeSerivce.GetByProductID(param);
             if (response.status)
@@ -138,7 +138,7 @@ namespace BasicIC.Controllers
         [Route("get-image-item")]
         [ValidateModel]
         [HttpPost]
-        public async Task<IHttpActionResult> GetImageById([FromBody] ImageModel param)
+        public async Task<IHttpActionResult> GetImageByProductId([FromBody] ProductModel param)
         {
             ResponseService<ListResult<ImageModel>> response = await _imageService.GetByProductID(param);
             if (response.status)

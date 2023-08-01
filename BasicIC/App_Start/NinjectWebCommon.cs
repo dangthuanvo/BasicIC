@@ -20,6 +20,8 @@ namespace BasicIC.App_Start
     using Settings.Config;
     using BasicIC.Services.Interfaces;
     using BasicIC.Services.Implement;
+    using BasicIC.Models.Main.M03;
+    using Settings.Services.Interfaces;
 
     public static class NinjectWebCommon 
     {
@@ -83,19 +85,22 @@ namespace BasicIC.App_Start
                     cfg.ConstructServicesUsing(t => kernel.Get(t));
                 });
                 return config.CreateMapper();
-            }).InSingletonScope();
-
+            }).InSingletonScope();;
             kernel.Bind(typeof(IRepositorySql<>)).To(typeof(BaseRepositorySql<>));
             kernel.Bind(typeof(IRepositorySql<>)).To(typeof(BasicICRepository<>));
-
             kernel.Bind<ICustomerService>().To<CustomerService>();
-
             kernel.Bind<IProductService>().To<ProductService>();
             kernel.Bind<IImageService>().To<ImageService>();
             kernel.Bind<IProductAttributeService>().To<ProductAttributeService>();
             kernel.Bind<IAttributeService>().To<AttributeService>();
-            kernel.Bind<ISupplierService>().To<SupplierSerivce>();
+            kernel.Bind<ISupplierService>().To<SupplierService>();
             kernel.Bind<IWishListService>().To<WishListService>();
+            kernel.Bind<ICartService>().To<CartService>();
+            kernel.Bind<ICartDetailService>().To<CartDetailService>();
+            kernel.Bind<IOrderService>().To<OrderService>();
+            kernel.Bind<IOrderDetailService>().To<OrderDetailService>();
+            kernel.Bind<IEmployeeService>().To<EmployeeService>();
+            kernel.Bind<IAddressService>().To<AddressService>();
         }
     }
 }

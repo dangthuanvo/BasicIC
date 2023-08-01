@@ -11,9 +11,8 @@ using System.Web;
 
 namespace BasicIC.Services.Interfaces
 {
-    public interface ICartService : IBaseCRUDService<CartModel, M03_Cart>
+    public interface ICartDetailService : IBaseCRUDService<CartDetailModel, M03_CartDetail>
     {
-        Task<ResponseService<CartDetailModel>> AddItemToCart(CartDetailModel param, M03_BasicEntities dbContext = null);
-        Task<ResponseService<CartModel>> GetByCustomerID(OrderModel param, M03_BasicEntities dbContext = null);
+        Task<ResponseService<ListResult<CartDetailModel>>> GetByCartID(CartModel param, M03_BasicEntities dbContext = null);
     }
 }

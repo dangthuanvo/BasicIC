@@ -12,15 +12,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using Common.Params.Base;
 
 namespace BasicIC.Services.Implement
 {
-    public class SupplierService : BaseCRUDService<SupplierModel, M03_Supplier>, ISupplierService
+    public class OrderDetailService : BaseCRUDService<OrderDetailModel, M03_OrderDetail>, IOrderDetailService
     {
-        public SupplierService(BasicICRepository<M03_Supplier> repo,
+        protected ICartService _cartService;
+        public OrderDetailService(BasicICRepository<M03_OrderDetail> repo,
+            ICartService cartService,
             ILogger logger, IConfigManager config, IMapper mapper) : base(repo, config, logger, mapper)
         {
+            _cartService = cartService;
         }
 
+      
     }
 }

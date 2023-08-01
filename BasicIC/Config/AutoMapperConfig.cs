@@ -36,6 +36,12 @@ namespace BasicIC.Config
             CreateMap<ProductAttributeModel, M03_ProductAttribute>().ReverseMap();
             CreateMap<SupplierModel, M03_Supplier>().ReverseMap();
             CreateMap<WishListModel, M03_WishList>().ReverseMap();
+            CreateMap<CartModel, M03_Cart>().ReverseMap();
+            CreateMap<CartDetailModel, M03_CartDetail>().ReverseMap();
+            CreateMap<OrderModel, M03_Order>().ReverseMap();
+            CreateMap<OrderDetailModel, M03_OrderDetail>().ReverseMap();
+            CreateMap<EmployeeModel, M03_Employee>().ReverseMap();
+            CreateMap<AddressModel, M03_Address>().ReverseMap();
         }
 
         public class DateTimeToTimeSpanConverter : ITypeConverter<DateTime?, Nullable<System.TimeSpan>>

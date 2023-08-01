@@ -12,15 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using Common.Params.Base;
 
 namespace BasicIC.Services.Implement
 {
-    public class SupplierService : BaseCRUDService<SupplierModel, M03_Supplier>, ISupplierService
+    public class EmployeeService : BaseCRUDService<EmployeeModel, M03_Employee>, IEmployeeService
     {
-        public SupplierService(BasicICRepository<M03_Supplier> repo,
+        public EmployeeService(BasicICRepository<M03_Employee> repo,
             ILogger logger, IConfigManager config, IMapper mapper) : base(repo, config, logger, mapper)
         {
         }
+
 
     }
 }

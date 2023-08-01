@@ -30,7 +30,6 @@ namespace BasicIC.Services.Implement
             try
             {
                 _logger.LogInfo(GetMethodName(new System.Diagnostics.StackTrace()));
-                //var entity = await _repo.GetById(param.id);
                 ResponseService<bool> a = await _wishListService.DeleteByCustomer(param, dbContext);
                 M03_Customer result = await _repo.Delete(param.id, dbContext);
 

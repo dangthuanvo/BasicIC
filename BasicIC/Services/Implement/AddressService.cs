@@ -15,12 +15,12 @@ using System.Web;
 
 namespace BasicIC.Services.Implement
 {
-    public class SupplierService : BaseCRUDService<SupplierModel, M03_Supplier>, ISupplierService
+    public class AddressService : BaseCRUDService<AddressModel, M03_Address>, IAddressService
     {
-        public SupplierService(BasicICRepository<M03_Supplier> repo,
-            ILogger logger, IConfigManager config, IMapper mapper) : base(repo, config, logger, mapper)
+        public AddressService(BasicICRepository<M03_Address> repo,
+             ILogger logger, IConfigManager config, IMapper mapper) : base(repo, config, logger, mapper)
         {
-        }
 
+        }
     }
 }
