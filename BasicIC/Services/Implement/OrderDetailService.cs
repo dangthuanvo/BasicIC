@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using Common.Params.Base;
+using Repository.CustomModel;
 
 namespace BasicIC.Services.Implement
 {
@@ -25,7 +26,36 @@ namespace BasicIC.Services.Implement
         {
             _cartService = cartService;
         }
+        public async Task<ResponseService<ListResult<OrderDetailModel>>> GetByOrderID(OrderModel param, M03_BasicEntities dbContext = null)
+        {
+            try
+            {
+                _logger.LogInfo(GetMethodName(new System.Diagnostics.StackTrace()));
 
-      
+                // Get result from Entity
+                ListResult<M03_OrderDetail> resultEntity = await _repo.FindAsyncWithField("order_id", param.id, dbContext);
+
+                // Map result to View
+                List<OrderDetailModel> items;
+                try
+                {
+                    items = _mapper.Map<List<M03_OrderDetail>, List<OrderDetailModel>>(resultEntity.items);
+                }
+                catch
+                {
+                    return new ResponseService<ListResult<OrderDetailModel>>("Error mapping models").BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
+                }
+
+                ListResult<OrderDetailModel> result = new ListResult<OrderDetailModel>(items, resultEntity.total);
+
+                return new ResponseService<ListResult<OrderDetailModel>>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex);
+                return new ResponseService<ListResult<OrderDetailModel>>(ex.Message).BadRequest(ErrorCodes.UNHANDLED_ERROR);
+            }
+        }
+
     }
 }

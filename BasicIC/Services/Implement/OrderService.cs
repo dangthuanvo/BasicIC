@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Web;
 using Common.Params.Base;
 using Repository.CustomModel;
+using System.Data.Entity;
 
 namespace BasicIC.Services.Implement
 {
@@ -32,6 +33,21 @@ namespace BasicIC.Services.Implement
             _orderDetailService = orderDetailService;
             _cartDetailService= cartDetailService;
             _cartService= cartService;
+        }
+
+        public virtual async Task<ResponseService<OrderMasterModel>> UpdateMaster(OrderMasterModel obj, DbContext dbContext = null)
+        {
+            try
+            {
+                _logger.LogInfo(GetMethodName(new System.Diagnostics.StackTrace()));
+
+                return new ResponseService<OrderMasterModel>();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex);
+                return new ResponseService<OrderMasterModel>(ex.Message).BadRequest(ErrorCodes.UNHANDLED_ERROR);
+            }
         }
 
         public async Task<ResponseService<OrderModel>> CreateFromCart(OrderModel param1, M03_BasicEntities dbContext = null)

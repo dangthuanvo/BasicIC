@@ -89,5 +89,17 @@ namespace BasicIC.Controllers
             return new ResponseFail<OrderModel>().Error(response);
         }
 
+        [Route("update")]
+        [ValidateModel]
+        [HttpPost]
+        public async Task<IHttpActionResult> Update([FromBody] OrderMasterModel param1)
+        {
+            ResponseService<OrderMasterModel> response = await _orderService.UpdateMaster(param1);
+            if (response.status)    
+                return Ok(response);
+
+            return new ResponseFail<OrderMasterModel>().Error(response);
+        }
+
     }
 }
