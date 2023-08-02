@@ -26,6 +26,28 @@ namespace BasicIC.Services.Implement
         {
             _cartService = cartService;
         }
+
+        public async Task<ResponseService<bool>> DeleteByOrder(OrderModel param, M03_BasicEntities dbContext = null)
+        {
+            try
+            {
+                _logger.LogInfo(GetMethodName(new System.Diagnostics.StackTrace()));
+                List<M03_OrderDetail> results = await _repo.DeleteAsyncWithField("order_id", param.id, dbContext);
+
+                if (results.Count > 0)
+                {
+                    return new ResponseService<bool>(true);
+                }
+                else
+                    return new ResponseService<bool>(false);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex);
+                return new ResponseService<bool>(ex.Message).BadRequest(ErrorCodes.UNHANDLED_ERROR);
+
+            }
+        }
         public async Task<ResponseService<ListResult<OrderDetailModel>>> GetByOrderID(OrderModel param, M03_BasicEntities dbContext = null)
         {
             try

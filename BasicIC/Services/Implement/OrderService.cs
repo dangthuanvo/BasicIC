@@ -15,6 +15,7 @@ using System.Web;
 using Common.Params.Base;
 using Repository.CustomModel;
 using System.Data.Entity;
+using System.Xml.Linq;
 
 namespace BasicIC.Services.Implement
 {
@@ -23,8 +24,10 @@ namespace BasicIC.Services.Implement
         protected ICartService _cartService;
         protected IOrderDetailService _orderDetailService;
         protected ICartDetailService _cartDetailService;
+        protected BasicICRepository<M03_OrderDetail> _repoOrderDetail;
         public OrderService(BasicICRepository<M03_Order> repo,
             ICartService cartService,
+            BasicICRepository<M03_OrderDetail> repoOrderDetail,
             IOrderDetailService orderDetailService,
             ICartDetailService cartDetailService,
             ILogger logger, IConfigManager config, IMapper mapper) : base(repo, config, logger, mapper)
@@ -33,15 +36,125 @@ namespace BasicIC.Services.Implement
             _orderDetailService = orderDetailService;
             _cartDetailService= cartDetailService;
             _cartService= cartService;
+            _repoOrderDetail = repoOrderDetail;
         }
 
-        public virtual async Task<ResponseService<OrderMasterModel>> UpdateMaster(OrderMasterModel obj, DbContext dbContext = null)
+        public async Task<ResponseService<ListResult<OrderMasterModel>>> GetAllByCustomer(CustomerModel param, M03_BasicEntities dbContext = null)
+        {
+            try
+            {
+                _logger.LogInfo(GetMethodName(new System.Diagnostics.StackTrace()));
+                List<OrderMasterModel> res = new List<OrderMasterModel>();
+                List<OrderModel> listOrderModel = (await this.GetByCustomerID(param)).data.items;
+                foreach(OrderModel orderModel in listOrderModel)
+                {
+                    OrderMasterModel orderMasterModel = new OrderMasterModel();
+                    orderMasterModel.Create(orderModel,(await _orderDetailService.GetByOrderID(orderModel)).data.items);
+                    res.Add(orderMasterModel);
+                }
+                return new ResponseService<ListResult<OrderMasterModel>>(new ListResult<OrderMasterModel>(res, res.Count));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex);
+                return new ResponseService<ListResult<OrderMasterModel>>(ex.Message).BadRequest(ErrorCodes.UNHANDLED_ERROR);
+            }
+        }
+
+        public async Task<ResponseService<OrderMasterModel>> GetMaster(OrderModel obj, M03_BasicEntities dbContext = null)
+        {
+            try
+            {
+                _logger.LogInfo(GetMethodName(new System.Diagnostics.StackTrace()));
+                OrderModel orderModel = _mapper.Map<M03_Order, OrderModel>((await _repo.GetById(obj.id)));
+                List<OrderDetailModel> listOrderDetailModel = (await _orderDetailService.GetByOrderID(orderModel)).data.items;
+                OrderMasterModel res = new OrderMasterModel();
+                res.Create(orderModel, listOrderDetailModel);
+                return new ResponseService<OrderMasterModel>(res);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex);
+                return new ResponseService<OrderMasterModel>(ex.Message).BadRequest(ErrorCodes.UNHANDLED_ERROR);
+            }
+        }
+        public async Task<ResponseService<bool>> DeleteRelatives(OrderModel param, M03_BasicEntities dbContext = null)
+        {
+            try
+            {
+                _logger.LogInfo(GetMethodName(new System.Diagnostics.StackTrace()));
+                //var entity = await _repo.GetById(param.id);
+                ResponseService<bool> a = await _orderDetailService.DeleteByOrder(param, dbContext);
+                M03_Order result = await _repo.Delete(param.id, dbContext);
+
+
+                if (result != null)
+                {
+                    return new ResponseService<bool>(true);
+                }
+                else
+                    return new ResponseService<bool>(false);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex);
+                return new ResponseService<bool>(ex.Message).BadRequest(ErrorCodes.UNHANDLED_ERROR);
+            }
+        }
+        public async Task<ResponseService<OrderMasterModel>> UpdateMaster(OrderMasterModel obj, M03_BasicEntities dbContext = null)
         {
             try
             {
                 _logger.LogInfo(GetMethodName(new System.Diagnostics.StackTrace()));
 
-                return new ResponseService<OrderMasterModel>();
+                M03_Order orderDb = await _repo.GetById(obj.id, dbContext);
+                var listOrderDetailRaw = await _orderDetailService.GetByOrderID(_mapper.Map<M03_Order, OrderModel>(orderDb));
+                List<OrderDetailModel> listOrderDetail = listOrderDetailRaw.data.items;
+                OrderModel TResultDb;
+                try
+                {
+                    TResultDb = _mapper.Map<M03_Order, OrderModel>(orderDb);
+                }
+                catch
+                {
+                    return new ResponseService<OrderMasterModel>("Error mapping models").BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
+                }
+                obj.UpdateInfo(TResultDb);
+
+                M03_Order VResultDb;
+                try
+                {
+                    VResultDb = _mapper.Map(obj.CreateOrderModel() , orderDb);
+                }
+                catch
+                {
+                    return new ResponseService<OrderMasterModel>("Error mapping models").BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
+                }
+                // update master
+
+                List<string> fieldsformaster = new List<string>
+                {
+                    "addresses_id", "customer_phone_number", "total_price", "total_price_coupon", "payment_method", "arrived_date", "shipping_address", "shipping_status", "shipping_fee", "order_payment_collection", "note"
+                };
+
+                M03_Order result = await _repo.UpdateFields(VResultDb, fieldsformaster, dbContext);
+
+                // update detail
+                List<string> fieldsfordetail = new List<string>
+                {
+                    "quantity", "total_price"
+                };
+                List<M03_OrderDetail> listresult = new List<M03_OrderDetail>();
+                foreach (var orderDetail in obj.orderDetailModel)
+                {
+                    var resulttmp = await _repoOrderDetail.UpdateFields(_mapper.Map<OrderDetailModel, M03_OrderDetail>(orderDetail), fieldsfordetail, dbContext);
+                    listresult.Add(resulttmp);
+                }
+
+                OrderMasterModel res = new OrderMasterModel();
+
+                res.Create(_mapper.Map<M03_Order, OrderModel>(result), obj.orderDetailModel);
+                return new ResponseService<OrderMasterModel>(res);
             }
             catch (Exception ex)
             {
@@ -91,6 +204,37 @@ namespace BasicIC.Services.Implement
             {
                 _logger.LogError(ex);
                 return new ResponseService<OrderModel>(ex.Message).BadRequest(ErrorCodes.UNHANDLED_ERROR);
+            }
+        }
+
+        public async Task<ResponseService<ListResult<OrderModel>>> GetByCustomerID(CustomerModel param, M03_BasicEntities dbContext = null)
+        {
+            try
+            {
+                _logger.LogInfo(GetMethodName(new System.Diagnostics.StackTrace()));
+
+                // Get result from Entity
+                ListResult<M03_Order> resultEntity = await _repo.FindAsyncWithField("customer_id", param.id, dbContext);
+
+                // Map result to View
+                List<OrderModel> items;
+                try
+                {
+                    items = _mapper.Map<List<M03_Order>, List<OrderModel>>(resultEntity.items);
+                }
+                catch
+                {
+                    return new ResponseService<ListResult<OrderModel>>("Error mapping models").BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
+                }
+
+                ListResult<OrderModel> result = new ListResult<OrderModel>(items, resultEntity.total);
+
+                return new ResponseService<ListResult<OrderModel>>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex);
+                return new ResponseService<ListResult<OrderModel>>(ex.Message).BadRequest(ErrorCodes.UNHANDLED_ERROR);
             }
         }
     }

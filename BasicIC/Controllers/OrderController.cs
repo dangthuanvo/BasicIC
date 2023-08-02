@@ -11,6 +11,7 @@ using System.Web.Http;
 using Settings.Common;
 using System.Web.Http.Results;
 using System.Net;
+using BasicIC.Services.Implement;
 
 namespace BasicIC.Controllers
 {
@@ -101,5 +102,52 @@ namespace BasicIC.Controllers
             return new ResponseFail<OrderMasterModel>().Error(response);
         }
 
+        [Route("get-order-detail-by-order-id")]
+        [ValidateModel]
+        [HttpPost]
+        public async Task<IHttpActionResult> GetMaster([FromBody] OrderModel param)
+        {
+            ResponseService<OrderMasterModel> response = await _orderService.GetMaster(param);
+            if (response.status)
+                return Ok(response);
+
+            return new ResponseFail<OrderMasterModel>().Error(response);
+        }
+
+        [Route("get-add-order-detail-by-customer-id")]
+        [ValidateModel]
+        [HttpPost]
+        public async Task<IHttpActionResult> GetAllByCustomer([FromBody] CustomerModel param)
+        {
+            ResponseService<ListResult<OrderMasterModel>> response = await _orderService.GetAllByCustomer(param);
+            if (response.status)
+                return Ok(response);
+
+            return new ResponseFail<ListResult<OrderMasterModel>>().Error(response);
+        }
+
+        [Route("delete")]
+        [ValidateModel]
+        [HttpPost]
+        public async Task<IHttpActionResult> Remove([FromBody] ItemModel param)
+        {
+            ResponseService<bool> response = await _orderService.Delete(param);
+            if (response.status)
+                return Ok(response);
+
+            return new ResponseFail<bool>().Error(response);
+        }
+
+        [Route("delete_relatives")]
+        [ValidateModel]
+        [HttpPost]
+        public async Task<IHttpActionResult> RemoveRelatives([FromBody] OrderModel param)
+        {
+            ResponseService<bool> response = await _orderService.DeleteRelatives(param);
+            if (response.status)
+                return Ok(response);
+
+            return new ResponseFail<bool>().Error(response);
+        }
     }
 }

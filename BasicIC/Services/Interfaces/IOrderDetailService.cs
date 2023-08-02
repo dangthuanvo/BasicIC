@@ -1,4 +1,5 @@
 ﻿using BasicIC.Models.Main.M03;
+using BasicIC.Services.Implement;
 using Common.Commons;
 using Repository.CustomModel;
 using Repository.EF;
@@ -13,6 +14,7 @@ namespace BasicIC.Services.Interfaces
 {
     public interface IOrderDetailService : IBaseCRUDService<OrderDetailModel, M03_OrderDetail>
     {
+        Task<ResponseService<bool>> DeleteByOrder(OrderModel param, M03_BasicEntities dbContext);
         Task<ResponseService<ListResult<OrderDetailModel>>> GetByOrderID(OrderModel param, M03_BasicEntities dbContext = null);
 
     }
