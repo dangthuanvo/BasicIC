@@ -15,7 +15,7 @@ namespace BasicIC.Common
             }
             return null;
         }
-        public static void Set(string key, string value)
+        public static void Set(string key, object value)
         {
             if (HttpContext.Current != null && HttpContext.Current.Session != null)
             {

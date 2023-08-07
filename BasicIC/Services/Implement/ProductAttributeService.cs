@@ -71,7 +71,9 @@ namespace BasicIC.Services.Implement
 
         }
 
-        public async Task<ResponseService<ListResult<ProductAttributeModel>>> GetByProductID(ProductModel param, M03_BasicEntities dbContext = null)
+
+
+                public async Task<ResponseService<ListResult<ProductAttributeModel>>> GetByProductID(ProductModel param, M03_BasicEntities dbContext = null)
         {
             try
             {

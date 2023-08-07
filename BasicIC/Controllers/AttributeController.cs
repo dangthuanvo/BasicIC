@@ -1,13 +1,10 @@
 ﻿using BasicIC.CustomAttributes;
-using BasicIC.Models.Common;
+using BasicIC.Models.Main.M03;
+using BasicIC.Services.Interfaces;
 using Common.Commons;
 using Common.Params.Base;
 using Repository.CustomModel;
-using BasicIC.Common;
-using BasicIC.CustomAttributes;
-using BasicIC.Models.Common;
-using BasicIC.Models.Main.M03;
-using BasicIC.Services.Interfaces;
+using Settings.Common;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Settings.Common;
@@ -15,7 +12,7 @@ using System.Web.Http.Results;
 
 namespace BasicIC.Controllers
 {
-    //[Authorized]
+    //[Authorize] 
     [RoutePrefix("api/attribute")]
     public class AttributeController : ApiController
     {

@@ -74,17 +74,6 @@ namespace BasicIC.Controllers
             return new ResponseFail<bool>().Error(response);
         }
 
-        [Route("delete-relatives")]
-        [ValidateModel]
-        [HttpPost]
-        public async Task<IHttpActionResult> RemoveRelatives([FromBody] CustomerModel param)
-        {
-            ResponseService<bool> response = await _customerService.DeleteRelatives(param);
-            if (response.status)
-                return Ok(response);
-
-            return new ResponseFail<bool>().Error(response);
-        }
 
         [Route("get-item")]
         [ValidateModel]

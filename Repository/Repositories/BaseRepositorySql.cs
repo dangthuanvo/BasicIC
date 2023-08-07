@@ -131,6 +131,26 @@ namespace Repository.Repositories
             return new ListResult<T>(datas, datas.Count);
         }
 
+        public async virtual Task<ListResult<T>> FindAsyncWithFields(Dictionary<string, object> fieldValues, DbContext dbContext = null)
+        {
+            if (dbContext == null)
+                dbContext = _db;
+
+            var query = dbContext.Set<T>().AsQueryable();
+
+            foreach (var fieldValue in fieldValues)
+            {
+                var fieldName = fieldValue.Key;
+                var value = fieldValue.Value;
+                var filterExpression = $"{fieldName} == @0";
+                query = query.Where(filterExpression, value);
+            }
+
+            List<T> datas = await query.ToListAsync();
+            return new ListResult<T>(datas, datas.Count);
+        }
+
+
         public virtual List<T> FindWithField(string fieldName, object value, DbContext dbContext = null)
         {
             if (dbContext == null)

@@ -20,6 +20,7 @@ namespace Common
         public static readonly string LOG_USER_CREATE = "Log User Create";
         public static readonly string CONF_STATE_SOURCE = "STATE_SOURCE";
         public static readonly string STATE_SOURCE_DEV = "dev";
+        public static readonly string KEY_SESSION_IS_SECRET_KEY = "KEY_SESSION_IS_SECRET_KEY";
         public static ModuleBuilder MODULE_BUILDER = AppDomain.CurrentDomain.DefineDynamicAssembly(new AssemblyName("Dynamic Assembly"), AssemblyBuilderAccess.Run).DefineDynamicModule("MainModule");
     }
 }
