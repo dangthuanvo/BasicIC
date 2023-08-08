@@ -77,7 +77,7 @@ namespace BasicIC.Controllers
         [Route("get-item")]
         [ValidateModel]
         [HttpPost]
-        public async Task<IHttpActionResult> GetById([FromBody] ItemModel param)
+        public async Task<IHttpActionResult> GetById(ItemModel param)
         {
             ResponseService<WishListModel> response = await _wishListService.GetById(param);
             if (response.status)

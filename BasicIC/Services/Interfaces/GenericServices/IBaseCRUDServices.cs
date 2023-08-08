@@ -23,8 +23,6 @@ namespace Settings.Services.Interfaces
         // Returns:
         //     Response Service with result from query
         Task<ResponseService<ListResult<T>>> GetAll(PagingParam param, DbContext dbContext = null);
-       
-
         //
         // Summary:
         //     Create record on db with type T
@@ -40,7 +38,6 @@ namespace Settings.Services.Interfaces
         // Returns:
         //     Response Service with item of type T created on db
         Task<ResponseService<T>> Create(T param, DbContext dbContext = null, bool autoLog = true);
-
         //
         // Summary:
         //     Get record from id passed in
@@ -54,7 +51,6 @@ namespace Settings.Services.Interfaces
         // Returns:
         //     Response Service with an item of type T with passed in id.
         Task<ResponseService<T>> GetById(ItemModel param, DbContext dbContext = null);
-
         //
         // Summary:
         //     Update a record on db
@@ -72,7 +68,6 @@ namespace Settings.Services.Interfaces
         //          Item 1 is Response Service with an item of type T with passed in id.
         //          Item 2 is object type T that is the original record from db before update.
         Task<(ResponseService<T>, T)> Update(T param, DbContext dbContext = null, bool autoLog = true);
-
         //
         // Summary:
         //     Delete a record from id passed in

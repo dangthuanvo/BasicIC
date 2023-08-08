@@ -17,8 +17,9 @@ namespace BasicIC.Services.Implement
 {
     public class ProductService : BaseCRUDService<ProductModel, M03_Product>, IProductService
     {
-        protected IProductAttributeService _productAttributeService;
-        protected IImageService _imageService;
+        private readonly IProductAttributeService _productAttributeService;
+        private readonly IImageService _imageService;
+
         public ProductService(BasicICRepository<M03_Product> repo,
             IProductAttributeService productAttributeService,
             IImageService imageService,
@@ -27,7 +28,6 @@ namespace BasicIC.Services.Implement
             _productAttributeService= productAttributeService;
             _imageService= imageService;
         }
-
 
         public async Task<ResponseService<bool>> DeleteRelatives(ProductModel param, M03_BasicEntities dbContext = null)
         {
@@ -68,7 +68,7 @@ namespace BasicIC.Services.Implement
                 }
                 catch (Exception)
                 {
-                    return new ResponseService<ProductModel>("Error mapping models").BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
+                    return new ResponseService<ProductModel>(Constants.ERROR_MAPPING_MODEL).BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
                 }
                 M03_Product result = await _repo.Create(vData, dbContext);
 
@@ -80,7 +80,7 @@ namespace BasicIC.Services.Implement
                 }
                 catch (Exception)
                 {
-                    return new ResponseService<ProductModel>("Error mapping models").BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
+                    return new ResponseService<ProductModel>(Constants.ERROR_MAPPING_MODEL).BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
                 }
 
                 return new ResponseService<ProductModel>(productModel);

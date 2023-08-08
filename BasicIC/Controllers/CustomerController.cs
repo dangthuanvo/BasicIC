@@ -61,11 +61,10 @@ namespace BasicIC.Controllers
             return new ResponseFail<CustomerModel>().Error(response);
         }
 
-
         [Route("delete")]
         [ValidateModel]
         [HttpPost]
-        public async Task<IHttpActionResult> Remove([FromBody] ItemModel param)
+        public async Task<IHttpActionResult> Remove(ItemModel param)
         {
             ResponseService<bool> response = await _customerService.Delete(param);
             if (response.status)
@@ -74,11 +73,10 @@ namespace BasicIC.Controllers
             return new ResponseFail<bool>().Error(response);
         }
 
-
         [Route("get-item")]
         [ValidateModel]
         [HttpPost]
-        public async Task<IHttpActionResult> GetById([FromBody] ItemModel param)
+        public async Task<IHttpActionResult> GetById(ItemModel param)
         {
             ResponseService<CustomerModel> response = await _customerService.GetById(param);
             if (response.status)

@@ -22,6 +22,7 @@ namespace BasicIC.Services.Implement
             ILogger logger, IConfigManager config, IMapper mapper) : base(repo, config, logger, mapper)
         {
         }
+
         public async Task<ResponseService<ImageModel>> Create(ImageModel param, M03_BasicEntities dbContext = null)
         {
             try
@@ -36,12 +37,12 @@ namespace BasicIC.Services.Implement
                 }
                 catch (Exception)
                 {
-                    return new ResponseService<ImageModel>("Error mapping models").BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
+                    return new ResponseService<ImageModel>(Constants.ERROR_MAPPING_MODEL).BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
                 }
 
                 if(vData.M03_Product == null)
                 {
-                    return new ResponseService<ImageModel>("Record not found").BadRequest(ErrorCodes.RECORD_NOT_FOUND);
+                    return new ResponseService<ImageModel>(Constants.RECORD_NOT_FOUND).BadRequest(ErrorCodes.RECORD_NOT_FOUND);
                 }
                 M03_Image result = await _repo.Create(vData, dbContext);
 
@@ -53,7 +54,7 @@ namespace BasicIC.Services.Implement
                 }
                 catch (Exception)
                 {
-                    return new ResponseService<ImageModel>("Error mapping models").BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
+                    return new ResponseService<ImageModel>(Constants.ERROR_MAPPING_MODEL).BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
                 }
 
                 return new ResponseService<ImageModel>(imageModel);
@@ -71,7 +72,7 @@ namespace BasicIC.Services.Implement
             try
             {
                 _logger.LogInfo(GetMethodName(new System.Diagnostics.StackTrace()));
-                List<M03_Image> results = await _repo.DeleteAsyncWithField("product_id", param.id, dbContext);
+                List<M03_Image> results = await _repo.DeleteAsyncWithField(nameof(ImageModel.product_id), param.id, dbContext);
 
                 if (results.Count > 0)
                 {
@@ -87,6 +88,7 @@ namespace BasicIC.Services.Implement
          
             }
         }
+
         public async Task<ResponseService<ListResult<ImageModel>>> GetByProductID(ProductModel param, M03_BasicEntities dbContext = null)
         {
             try
@@ -94,7 +96,7 @@ namespace BasicIC.Services.Implement
                 _logger.LogInfo(GetMethodName(new System.Diagnostics.StackTrace()));
 
                 // Get result from Entity
-                ListResult<M03_Image> resultEntity = await _repo.FindAsyncWithField("product_id", param.id, dbContext);
+                ListResult<M03_Image> resultEntity = await _repo.FindAsyncWithField(nameof(ImageModel.product_id), param.id, dbContext);
 
                 // Map result to View
                 List<ImageModel> items;
@@ -104,7 +106,7 @@ namespace BasicIC.Services.Implement
                 }
                 catch
                 {
-                    return new ResponseService<ListResult<ImageModel>>("Error mapping models").BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
+                    return new ResponseService<ListResult<ImageModel>>(Constants.ERROR_MAPPING_MODEL).BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
                 }
 
                 ListResult<ImageModel> result = new ListResult<ImageModel>(items, resultEntity.total);

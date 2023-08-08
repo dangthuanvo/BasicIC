@@ -24,6 +24,7 @@ namespace BasicIC.Controllers
         private readonly IProductService _productService;
         private readonly IImageService _imageService;
         private readonly IProductAttributeService _productattributeSerivce;
+
         public ProductController(IProductService productService, IImageService imageService, IProductAttributeService productattributeService)
         {
             _productService = productService;
@@ -114,7 +115,7 @@ namespace BasicIC.Controllers
         [Route("get-product-item")]
         [ValidateModel]
         [HttpPost]
-        public async Task<IHttpActionResult> GetProductById([FromBody] ItemModel param)
+        public async Task<IHttpActionResult> GetProductById(ItemModel param)
         {
             ResponseService<ProductModel> response = await _productService.GetById(param);
             if (response.status)
@@ -126,7 +127,7 @@ namespace BasicIC.Controllers
         [Route("get-attribute-item")]
         [ValidateModel]
         [HttpPost]
-        public async Task<IHttpActionResult> GetAttributeByProductId([FromBody] ProductModel param)
+        public async Task<IHttpActionResult> GetAttributeByProductId(ProductModel param)
         {
             ResponseService<ListResult<ProductAttributeModel>> response = await _productattributeSerivce.GetByProductID(param);
             if (response.status)
@@ -138,7 +139,7 @@ namespace BasicIC.Controllers
         [Route("get-image-item")]
         [ValidateModel]
         [HttpPost]
-        public async Task<IHttpActionResult> GetImageByProductId([FromBody] ProductModel param)
+        public async Task<IHttpActionResult> GetImageByProductId(ProductModel param)
         {
             ResponseService<ListResult<ImageModel>> response = await _imageService.GetByProductID(param);
             if (response.status)
@@ -150,7 +151,7 @@ namespace BasicIC.Controllers
         [Route("delete")]
         [ValidateModel]
         [HttpPost]
-        public async Task<IHttpActionResult> Remove([FromBody] ItemModel param)
+        public async Task<IHttpActionResult> Remove(ItemModel param)
         {
             ResponseService<bool> response = await _productService.Delete(param);
             if (response.status)
@@ -162,7 +163,7 @@ namespace BasicIC.Controllers
         [Route("delete_relatives")]
         [ValidateModel]
         [HttpPost]
-        public async Task<IHttpActionResult> RemoveRelatives([FromBody] ProductModel param)
+        public async Task<IHttpActionResult> RemoveRelatives(ProductModel param)
         {
             ResponseService<bool> response = await _productService.DeleteRelatives(param);
             if (response.status)

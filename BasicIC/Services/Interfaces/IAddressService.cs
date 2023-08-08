@@ -10,6 +10,5 @@ namespace BasicIC.Services.Interfaces
 {
     public interface IAddressService : IBaseCRUDService<AddressModel, M03_Address>
     {
-
     }
 }

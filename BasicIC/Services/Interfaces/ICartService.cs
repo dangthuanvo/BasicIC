@@ -15,7 +15,5 @@ namespace BasicIC.Services.Interfaces
     {
         Task<ResponseService<CartDetailModel>> AddItemToCart(CartDetailModel param, M03_BasicEntities dbContext = null);
         Task<ResponseService<CartModel>> GetByCustomerID(OrderModel param, M03_BasicEntities dbContext = null);
-        Task<ResponseService<CartModel>> GetByProductID(ProductModel param, M03_BasicEntities dbContext = null);
-        Task<ResponseService<CartModel>> GetByCartID(CartModel param, M03_BasicEntities dbContext = null);
     }
 }

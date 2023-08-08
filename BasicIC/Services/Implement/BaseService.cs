@@ -37,7 +37,6 @@ namespace BasicIC.Services.Implement
             {
                 _methodName = method.Name;
             }
-
             return _methodName;
         }
     }

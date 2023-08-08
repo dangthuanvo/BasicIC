@@ -22,6 +22,7 @@ namespace BasicIC.Services.Implement
             ILogger logger, IConfigManager config, IMapper mapper) : base(repo, config, logger, mapper)
         {
         }
+
         public async Task<ResponseService<ProductAttributeModel>> Create(ProductAttributeModel param, M03_BasicEntities dbContext = null)
         {
             try
@@ -36,16 +37,16 @@ namespace BasicIC.Services.Implement
                 }
                 catch (Exception)
                 {
-                    return new ResponseService<ProductAttributeModel>("Error mapping models").BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
+                    return new ResponseService<ProductAttributeModel>(Constants.ERROR_MAPPING_MODEL).BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
                 }
 
                 if (vData.M03_Product == null)
                 {
-                    return new ResponseService<ProductAttributeModel>("Record not found").BadRequest(ErrorCodes.RECORD_NOT_FOUND);
+                    return new ResponseService<ProductAttributeModel>(Constants.RECORD_NOT_FOUND).BadRequest(ErrorCodes.RECORD_NOT_FOUND);
                 }
                 if (vData.M03_Attribute == null)
                 {
-                    return new ResponseService<ProductAttributeModel>("Record not found").BadRequest(ErrorCodes.RECORD_NOT_FOUND);
+                    return new ResponseService<ProductAttributeModel>(Constants.RECORD_NOT_FOUND).BadRequest(ErrorCodes.RECORD_NOT_FOUND);
                 }
                 M03_ProductAttribute result = await _repo.Create(vData, dbContext);
 
@@ -57,7 +58,7 @@ namespace BasicIC.Services.Implement
                 }
                 catch (Exception)
                 {
-                    return new ResponseService<ProductAttributeModel>("Error mapping models").BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
+                    return new ResponseService<ProductAttributeModel>(Constants.ERROR_MAPPING_MODEL).BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
                 }
 
                 return new ResponseService<ProductAttributeModel>(productAttributeModel);
@@ -67,20 +68,16 @@ namespace BasicIC.Services.Implement
                 _logger.LogError(ex);
                 return new ResponseService<ProductAttributeModel>(ex.Message).BadRequest(ErrorCodes.UNHANDLED_ERROR);
             }
-
-
         }
 
-
-
-                public async Task<ResponseService<ListResult<ProductAttributeModel>>> GetByProductID(ProductModel param, M03_BasicEntities dbContext = null)
+        public async Task<ResponseService<ListResult<ProductAttributeModel>>> GetByProductID(ProductModel param, M03_BasicEntities dbContext = null)
         {
             try
             {
                 _logger.LogInfo(GetMethodName(new System.Diagnostics.StackTrace()));
 
                 // Get result from Entity
-                ListResult<M03_ProductAttribute> resultEntity = await _repo.FindAsyncWithField("product_id", param.id, dbContext);
+                ListResult<M03_ProductAttribute> resultEntity = await _repo.FindAsyncWithField(nameof(ProductAttributeModel.product_id), param.id, dbContext);
 
                 // Map result to View
                 List<ProductAttributeModel> items;
@@ -90,7 +87,7 @@ namespace BasicIC.Services.Implement
                 }
                 catch
                 {
-                    return new ResponseService<ListResult<ProductAttributeModel>>("Error mapping models").BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
+                    return new ResponseService<ListResult<ProductAttributeModel>>(Constants.ERROR_MAPPING_MODEL).BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
                 }
 
                 ListResult<ProductAttributeModel> result = new ListResult<ProductAttributeModel>(items, resultEntity.total);
@@ -103,12 +100,13 @@ namespace BasicIC.Services.Implement
                 return new ResponseService<ListResult<ProductAttributeModel>>(ex.Message).BadRequest(ErrorCodes.UNHANDLED_ERROR);
             }
         }
+
         public async Task<ResponseService<bool>> DeleteByProduct(ProductModel param, M03_BasicEntities dbContext = null)
         {
             try
             {
                 _logger.LogInfo(GetMethodName(new System.Diagnostics.StackTrace()));
-                List<M03_ProductAttribute> results = await _repo.DeleteAsyncWithField("product_id", param.id, dbContext);
+                List<M03_ProductAttribute> results = await _repo.DeleteAsyncWithField(nameof(ProductAttributeModel.product_id), param.id, dbContext);
 
                 if (results.Count > 0)
                 {
@@ -123,6 +121,7 @@ namespace BasicIC.Services.Implement
                 return new ResponseService<bool>(ex.Message).BadRequest(ErrorCodes.UNHANDLED_ERROR);
             }
         }
+
         public async Task<ResponseService<ProductAttributeModel>> UpdateValueOnly(ProductAttributeModel param, M03_BasicEntities dbContext = null)
         {
             try
@@ -133,7 +132,7 @@ namespace BasicIC.Services.Implement
 
                 if (resultDb == null)
                 {
-                    return new ResponseService<ProductAttributeModel>("Record not found").BadRequest(ErrorCodes.RECORD_NOT_FOUND);
+                    return new ResponseService<ProductAttributeModel>(Constants.ERROR_MAPPING_MODEL).BadRequest(ErrorCodes.RECORD_NOT_FOUND);
                 }
 
                 ProductAttributeModel TResultDb;
@@ -143,7 +142,7 @@ namespace BasicIC.Services.Implement
                 }
                 catch
                 {
-                    return new ResponseService<ProductAttributeModel>("Error mapping models").BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
+                    return new ResponseService<ProductAttributeModel>(Constants.ERROR_MAPPING_MODEL).BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
                 }
                 param.UpdateInfo(TResultDb);
 
@@ -155,11 +154,11 @@ namespace BasicIC.Services.Implement
                 }
                 catch
                 {
-                    return new ResponseService<ProductAttributeModel>("Error mapping models").BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
+                    return new ResponseService<ProductAttributeModel>(Constants.ERROR_MAPPING_MODEL).BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
                 }
                 List<string> fields = new List<string>
                 {
-                    "attribute_value"
+                    nameof(ProductAttributeModel.attribute_value)
                 };
 
                 M03_ProductAttribute result = await _repo.UpdateFields(vData, fields, dbContext);

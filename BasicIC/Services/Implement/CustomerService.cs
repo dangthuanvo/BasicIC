@@ -17,7 +17,8 @@ namespace BasicIC.Services.Implement
 {
     public class CustomerService : BaseCRUDService<CustomerModel, M03_Customer>, ICustomerService
     {
-        protected IWishListService _wishListService;
+        private readonly IWishListService _wishListService;
+
         public CustomerService(BasicICRepository<M03_Customer> repo,
             IWishListService wishListService,
           
@@ -25,6 +26,7 @@ namespace BasicIC.Services.Implement
         {
             _wishListService= wishListService;
         }
+
         public async Task<ResponseService<bool>> DeleteRelatives(CustomerModel param, M03_BasicEntities dbContext = null)
         {
             try

@@ -22,7 +22,5 @@ namespace BasicIC.Services.Implement
             ILogger logger, IConfigManager config, IMapper mapper) : base(repo, config, logger, mapper)
         {
         }
-
-
     }
 }

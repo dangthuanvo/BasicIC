@@ -69,7 +69,7 @@ namespace BasicIC.Controllers
         [Route("create")]
         [ValidateModel]
         [HttpPost]
-        public async Task<IHttpActionResult> Add([FromBody] OrderModel param)
+        public async Task<IHttpActionResult> Add(OrderModel param)
         {
             ResponseService<OrderModel> response = await _orderService.Create(param);
             if (response.status)
@@ -81,7 +81,7 @@ namespace BasicIC.Controllers
         [Route("create-from-cart")]
         [ValidateModel]
         [HttpPost]
-        public async Task<IHttpActionResult> AddFromCart([FromBody] OrderModel param1)
+        public async Task<IHttpActionResult> AddFromCart(OrderModel param1)
         {
             ResponseService<OrderModel> response = await _orderService.CreateFromCart(param1);
             if (response.status)
@@ -93,7 +93,7 @@ namespace BasicIC.Controllers
         [Route("update")]
         [ValidateModel]
         [HttpPost]
-        public async Task<IHttpActionResult> Update([FromBody] OrderMasterModel param1)
+        public async Task<IHttpActionResult> Update(OrderMasterModel param1)
         {
             ResponseService<OrderMasterModel> response = await _orderService.UpdateMaster(param1);
             if (response.status)    
@@ -105,7 +105,7 @@ namespace BasicIC.Controllers
         [Route("get-order-detail-by-order-id")]
         [ValidateModel]
         [HttpPost]
-        public async Task<IHttpActionResult> GetMaster([FromBody] OrderModel param)
+        public async Task<IHttpActionResult> GetMaster(OrderModel param)
         {
             ResponseService<OrderMasterModel> response = await _orderService.GetMaster(param);
             if (response.status)
@@ -117,7 +117,7 @@ namespace BasicIC.Controllers
         [Route("get-add-order-detail-by-customer-id")]
         [ValidateModel]
         [HttpPost]
-        public async Task<IHttpActionResult> GetAllByCustomer([FromBody] CustomerModel param)
+        public async Task<IHttpActionResult> GetAllByCustomer(CustomerModel param)
         {
             ResponseService<ListResult<OrderMasterModel>> response = await _orderService.GetAllByCustomer(param);
             if (response.status)
@@ -129,7 +129,7 @@ namespace BasicIC.Controllers
         [Route("delete")]
         [ValidateModel]
         [HttpPost]
-        public async Task<IHttpActionResult> Remove([FromBody] ItemModel param)
+        public async Task<IHttpActionResult> Remove(ItemModel param)
         {
             ResponseService<bool> response = await _orderService.Delete(param);
             if (response.status)
@@ -141,7 +141,7 @@ namespace BasicIC.Controllers
         [Route("delete_relatives")]
         [ValidateModel]
         [HttpPost]
-        public async Task<IHttpActionResult> RemoveRelatives([FromBody] OrderModel param)
+        public async Task<IHttpActionResult> RemoveRelatives(OrderModel param)
         {
             ResponseService<bool> response = await _orderService.DeleteRelatives(param);
             if (response.status)

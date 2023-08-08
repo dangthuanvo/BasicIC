@@ -15,11 +15,13 @@ using System.Web;
 using Common.Params.Base;
 using Repository.CustomModel;
 
+
 namespace BasicIC.Services.Implement
 {
     public class OrderDetailService : BaseCRUDService<OrderDetailModel, M03_OrderDetail>, IOrderDetailService
     {
-        protected ICartService _cartService;
+        private readonly ICartService _cartService;
+
         public OrderDetailService(BasicICRepository<M03_OrderDetail> repo,
             ICartService cartService,
             ILogger logger, IConfigManager config, IMapper mapper) : base(repo, config, logger, mapper)
@@ -32,7 +34,7 @@ namespace BasicIC.Services.Implement
             try
             {
                 _logger.LogInfo(GetMethodName(new System.Diagnostics.StackTrace()));
-                List<M03_OrderDetail> results = await _repo.DeleteAsyncWithField("order_id", param.id, dbContext);
+                List<M03_OrderDetail> results = await _repo.DeleteAsyncWithField(nameof(OrderDetailModel.order_id), param.id, dbContext);
 
                 if (results.Count > 0)
                 {
@@ -48,6 +50,7 @@ namespace BasicIC.Services.Implement
 
             }
         }
+
         public async Task<ResponseService<ListResult<OrderDetailModel>>> GetByOrderID(OrderModel param, M03_BasicEntities dbContext = null)
         {
             try
@@ -55,7 +58,7 @@ namespace BasicIC.Services.Implement
                 _logger.LogInfo(GetMethodName(new System.Diagnostics.StackTrace()));
 
                 // Get result from Entity
-                ListResult<M03_OrderDetail> resultEntity = await _repo.FindAsyncWithField("order_id", param.id, dbContext);
+                ListResult<M03_OrderDetail> resultEntity = await _repo.FindAsyncWithField(nameof(OrderDetailModel.order_id), param.id, dbContext);
 
                 // Map result to View
                 List<OrderDetailModel> items;
@@ -65,7 +68,7 @@ namespace BasicIC.Services.Implement
                 }
                 catch
                 {
-                    return new ResponseService<ListResult<OrderDetailModel>>("Error mapping models").BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
+                    return new ResponseService<ListResult<OrderDetailModel>>(Constants.ERROR_MAPPING_MODEL).BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
                 }
 
                 ListResult<OrderDetailModel> result = new ListResult<OrderDetailModel>(items, resultEntity.total);

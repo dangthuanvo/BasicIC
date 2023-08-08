@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,8 +8,11 @@ namespace BasicIC.Models.Main.M03
 {
     public class OrderMasterModel : BaseModel
     {
+        [Required]
         public Guid customer_id { get; set; }
+        [Required]
         public Guid employee_id { get; set; }
+        [Required]
         public Guid addresses_id { get; set; }
         public string customer_phone_number { get; set; }
         public decimal total_price { get; set; }
@@ -22,24 +26,27 @@ namespace BasicIC.Models.Main.M03
         public string note { get; set; }
         public List<OrderDetailModel> orderDetailModel { get; set; } = new List<OrderDetailModel>();
 
-        public void Create(OrderModel orderModel = null , List<OrderDetailModel> listOrderDetailModel = null)
+        public OrderMasterModel(OrderModel orderModel = null, List<OrderDetailModel> listOrderDetailModel = null)
         {
-            id = orderModel.id;
-            customer_id = orderModel.customer_id;
-            employee_id = orderModel.employee_id;
-            addresses_id = orderModel.addresses_id;
-            customer_phone_number = orderModel.customer_phone_number;
-            total_price = orderModel.total_price;
-            total_price_coupon = orderModel.total_price_coupon;
-            payment_method = orderModel.payment_method;
-            arrived_date = orderModel.arrived_date;
-            shipping_address = orderModel.shipping_address;
-            shipping_status = orderModel.shipping_status;
-            shipping_fee = orderModel.shipping_fee;
-            order_payment_collection = orderModel.order_payment_collection;
-            note = orderModel.note;
-            orderDetailModel = listOrderDetailModel;
-            this.UpdateInfo(orderModel);
+            if (orderModel != null)
+            {
+                id = orderModel.id;
+                customer_id = orderModel.customer_id;
+                employee_id = orderModel.employee_id;
+                addresses_id = orderModel.addresses_id;
+                customer_phone_number = orderModel.customer_phone_number;
+                total_price = orderModel.total_price;
+                total_price_coupon = orderModel.total_price_coupon;
+                payment_method = orderModel.payment_method;
+                arrived_date = orderModel.arrived_date;
+                shipping_address = orderModel.shipping_address;
+                shipping_status = orderModel.shipping_status;
+                shipping_fee = orderModel.shipping_fee;
+                order_payment_collection = orderModel.order_payment_collection;
+                note = orderModel.note;
+                orderDetailModel = listOrderDetailModel;
+                UpdateInfo(orderModel);
+            }
         }
         public OrderModel CreateOrderModel()
         {

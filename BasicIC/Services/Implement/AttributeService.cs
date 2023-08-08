@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
+
 namespace BasicIC.Services.Implement
 {
     public class AttributeService : BaseCRUDService<AttributeModel, M03_Attribute>, IAttributeService
@@ -36,7 +37,7 @@ namespace BasicIC.Services.Implement
                 }
                 catch (Exception)
                 {
-                    return new ResponseService<AttributeModel>("Error mapping models").BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
+                    return new ResponseService<AttributeModel>(Constants.ERROR_MAPPING_MODEL).BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
                 }
                 M03_Attribute result = await _repo.Create(vData, dbContext);
 
@@ -48,7 +49,7 @@ namespace BasicIC.Services.Implement
                 }
                 catch (Exception)
                 {
-                    return new ResponseService<AttributeModel>("Error mapping models").BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
+                    return new ResponseService<AttributeModel>(Constants.ERROR_MAPPING_MODEL).BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
                 }
 
                 return new ResponseService<AttributeModel>(attributeModel);

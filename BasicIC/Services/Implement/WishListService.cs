@@ -27,7 +27,7 @@ namespace BasicIC.Services.Implement
             try
             {
                 _logger.LogInfo(GetMethodName(new System.Diagnostics.StackTrace()));
-                List<M03_WishList> results = await _repo.DeleteAsyncWithField("customer_id", param.id, dbContext);
+                List<M03_WishList> results = await _repo.DeleteAsyncWithField(nameof(WishListModel.customer_id), param.id, dbContext);
 
                 if (results.Count > 0)
                 {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,8 +8,11 @@ namespace BasicIC.Models.Main.M03
 {
     public class OrderModel : BaseModel
     {
+        [Required]
         public Guid customer_id { get; set; }
+        [Required]
         public Guid employee_id { get; set; }
+        [Required]
         public Guid addresses_id { get; set; }
         public string customer_phone_number { get; set; }
         public decimal total_price { get; set; }

@@ -19,8 +19,8 @@ namespace BasicIC.Services.Implement
 {
     public class CartService : BaseCRUDService<CartModel, M03_Cart>, ICartService
     {
-        ICartDetailService _cartDetailService;
-        BasicICRepository<M03_CartDetail> _repoCartDetail;
+        private readonly ICartDetailService _cartDetailService;
+        private readonly BasicICRepository<M03_CartDetail> _repoCartDetail;
 
         public CartService(BasicICRepository<M03_Cart> repo,
             ICartDetailService cartDetailService,
@@ -38,7 +38,8 @@ namespace BasicIC.Services.Implement
                 _logger.LogInfo(GetMethodName(new System.Diagnostics.StackTrace()));
 
                 // Get result from Entity
-                var resultEntity = await _repo.FindAsyncWithField("customer_id", param.customer_id, dbContext);
+
+                var resultEntity = await _repo.FindAsyncWithField(nameof(CartModel.customer_id), param.customer_id, dbContext);
                 var data = resultEntity.items[0];
 
                 // Map result to View
@@ -49,7 +50,7 @@ namespace BasicIC.Services.Implement
                 }
                 catch
                 {
-                    return new ResponseService<CartModel>("Error mapping models").BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
+                    return new ResponseService<CartModel>(Constants.ERROR_MAPPING_MODEL).BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
                 }
 
 
@@ -62,67 +63,6 @@ namespace BasicIC.Services.Implement
             }
         }
 
-        public async Task<ResponseService<CartModel>> GetByProductID(ProductModel param, M03_BasicEntities dbContext = null)
-        {
-            try
-            {
-                _logger.LogInfo(GetMethodName(new System.Diagnostics.StackTrace()));
-
-                // Get result from Entity
-                var resultEntity = await _repo.FindAsyncWithField("product_id", param.id, dbContext);
-                var data = resultEntity.items[0];
-
-                // Map result to View
-                CartModel item;
-                try
-                {
-                    item = _mapper.Map<M03_Cart, CartModel>(data);
-                }
-                catch
-                {
-                    return new ResponseService<CartModel>("Error mapping models").BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
-                }
-
-
-                return new ResponseService<CartModel>(item);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex);
-                return new ResponseService<CartModel>(ex.Message).BadRequest(ErrorCodes.UNHANDLED_ERROR);
-            }
-        }
-
-        public async Task<ResponseService<CartModel>> GetByCartID(CartModel param, M03_BasicEntities dbContext = null)
-        {
-            try
-            {
-                _logger.LogInfo(GetMethodName(new System.Diagnostics.StackTrace()));
-
-                // Get result from Entity
-                var resultEntity = await _repo.FindAsyncWithField("cart_id", param.id, dbContext);
-                var data = resultEntity.items[0];
-
-                // Map result to View
-                CartModel item;
-                try
-                {
-                    item = _mapper.Map<M03_Cart, CartModel>(data);
-                }
-                catch
-                {
-                    return new ResponseService<CartModel>("Error mapping models").BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
-                }
-
-
-                return new ResponseService<CartModel>(item);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex);
-                return new ResponseService<CartModel>(ex.Message).BadRequest(ErrorCodes.UNHANDLED_ERROR);
-            }
-        }
 
         public async Task<ResponseService<CartDetailModel>> AddItemToCart(CartDetailModel param, M03_BasicEntities dbContext = null)
         {
@@ -153,7 +93,7 @@ namespace BasicIC.Services.Implement
                 }
                 else
                 {
-                    List<string> fields = new List<string> { "quantity" };
+                    List<string> fields = new List<string> { nameof(CartDetailModel.quantity) };
                     var result = await _repoCartDetail.UpdateFields(_mapper.Map<CartDetailModel, M03_CartDetail>(param), fields, dbContext);
                     return new ResponseService<CartDetailModel>(_mapper.Map<M03_CartDetail, CartDetailModel>(result));
                 }

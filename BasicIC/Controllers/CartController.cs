@@ -43,7 +43,7 @@ namespace BasicIC.Controllers
         [Route("get-by-cart")]
         [ValidateModel]
         [HttpPost]
-        public async Task<IHttpActionResult> GetByCart([FromBody]CartModel param)
+        public async Task<IHttpActionResult> GetByCart(CartModel param)
         {
             ResponseService<ListResult<CartDetailModel>> response = await _cartDetailService.GetByCartID(param);
             if (response.status)
@@ -55,7 +55,7 @@ namespace BasicIC.Controllers
         [Route("create")]
         [ValidateModel]
         [HttpPost]
-        public async Task<IHttpActionResult> Add([FromBody] CartModel param)
+        public async Task<IHttpActionResult> Add(CartModel param)
         {
             ResponseService<CartModel> response = await _cartService.Create(param);
             if (response.status)
@@ -67,7 +67,7 @@ namespace BasicIC.Controllers
         [Route("add-item-to-cart")]
         [ValidateModel]
         [HttpPost]
-        public async Task<IHttpActionResult> AddItemToCart([FromBody] CartDetailModel param)
+        public async Task<IHttpActionResult> AddItemToCart(CartDetailModel param)
         {
             ResponseService<CartDetailModel> response = await _cartService.AddItemToCart(param);
             if (response.status)

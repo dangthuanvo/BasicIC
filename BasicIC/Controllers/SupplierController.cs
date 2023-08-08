@@ -65,7 +65,7 @@ namespace BasicIC.Controllers
         [Route("delete")]
         [ValidateModel]
         [HttpPost]
-        public async Task<IHttpActionResult> Remove([FromBody] ItemModel param)
+        public async Task<IHttpActionResult> Remove(ItemModel param)
         {
             ResponseService<bool> response = await _supplierService.Delete(param);
             if (response.status)
@@ -77,7 +77,7 @@ namespace BasicIC.Controllers
         [Route("get-item")]
         [ValidateModel]
         [HttpPost]
-        public async Task<IHttpActionResult> GetById([FromBody] ItemModel param)
+        public async Task<IHttpActionResult> GetById(ItemModel param)
         {
             ResponseService<SupplierModel> response = await _supplierService.GetById(param);
             if (response.status)
