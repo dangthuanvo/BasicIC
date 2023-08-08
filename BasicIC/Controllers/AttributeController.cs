@@ -7,8 +7,6 @@ using Repository.CustomModel;
 using Settings.Common;
 using System.Threading.Tasks;
 using System.Web.Http;
-using Settings.Common;
-using System.Web.Http.Results;
 
 namespace BasicIC.Controllers
 {
@@ -46,41 +44,5 @@ namespace BasicIC.Controllers
 
             return new ResponseFail<AttributeModel>().Error(response);
         }
-
-        //[Route("update")]
-        //[ValidateModel]
-        //[HttpPost]
-        //public async Task<IHttpActionResult> Update(CustomerModel param)
-        //{
-        //    ResponseService<CustomerModel> response = (await _customerService.Update(param)).Item1;
-        //    if (response.status)
-        //        return Ok(response);
-        //    return new ResponseFail<CustomerModel>().Error(response);
-        //}
-
-
-        //[Route("delete")]
-        //[ValidateModel]
-        //[HttpPost]
-        //public async Task<IHttpActionResult> Remove([FromBody] ItemModel param)
-        //{
-        //    ResponseService<bool> response = await _customerService.Delete(param);
-        //    if (response.status)
-        //        return Ok(response);
-
-        //    return new ResponseFail<bool>().Error(response);
-        //}
-
-        //[Route("get-item")]
-        //[ValidateModel]
-        //[HttpPost]
-        //public async Task<IHttpActionResult> GetById([FromBody] ItemModel param)
-        //{
-        //    ResponseService<CustomerModel> response = await _customerService.GetById(param);
-        //    if (response.status)
-        //        return Ok(response);
-
-        //    return new ResponseFail<CustomerModel>().Error(response);
-        //}
     }
 }

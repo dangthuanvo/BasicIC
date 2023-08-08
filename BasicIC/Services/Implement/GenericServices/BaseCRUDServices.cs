@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BasicIC.Common;
+using BasicIC.Interfaces;
 using BasicIC.Models.Common;
 using BasicIC.Models.Main;
 using Common;
@@ -8,20 +9,12 @@ using Common.Interfaces;
 using Common.Params.Base;
 using Repository.CustomModel;
 using Repository.Repositories;
-using BasicIC.Common;
-
-
-using BasicIC.Models.Common;
-
-using BasicIC.Models.Main;
 using Settings.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
 using System.Threading.Tasks;
-using BasicIC.Interfaces;
 
 
 namespace BasicIC.Services.Implement
@@ -30,7 +23,7 @@ namespace BasicIC.Services.Implement
     public class BaseCRUDService<T, V> : BaseService, IBaseCRUDService<T, V> where T : BaseModel where V : class
     {
         protected BaseRepositorySql<V> _repo;
-        
+
         public BaseCRUDService(BaseRepositorySql<V> repo,
             IConfigManager config, ILogger logger, IMapper mapper) : base(config, logger, mapper)
         {

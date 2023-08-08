@@ -5,14 +5,12 @@ using Repository.CustomModel;
 using Repository.Interfaces;
 using Repository.Queries;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
 using System.Linq.Dynamic.Core;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Repository.Repositories
@@ -103,7 +101,7 @@ namespace Repository.Repositories
                 {
                     datas = await dbContext.Database.SqlQuery<T>("global_search @isUnicode, @stringValue, @schema, @table, @tenant_id", parameters.ToArray()).ToListAsync();
                 }
-    
+
             }
             total = datas.Count;
             return new ListResult<T>(datas, total);

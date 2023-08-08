@@ -1,11 +1,6 @@
 ﻿using AutoMapper;
-using BasicIC.Common;
-using Common;
-using Common.Interfaces;
-using Common.Models;
-using BasicIC.Common;
 using BasicIC.Interfaces;
-using System;
+using Common.Interfaces;
 using System.Diagnostics;
 
 namespace BasicIC.Services.Implement

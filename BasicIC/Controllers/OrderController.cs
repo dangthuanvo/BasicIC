@@ -1,17 +1,13 @@
 ﻿using BasicIC.CustomAttributes;
 using BasicIC.Models.Common;
+using BasicIC.Models.Main.M03;
+using BasicIC.Services.Interfaces;
 using Common.Commons;
 using Common.Params.Base;
 using Repository.CustomModel;
-using BasicIC.Common;
-using BasicIC.Models.Main.M03;
-using BasicIC.Services.Interfaces;
+using Settings.Common;
 using System.Threading.Tasks;
 using System.Web.Http;
-using Settings.Common;
-using System.Web.Http.Results;
-using System.Net;
-using BasicIC.Services.Implement;
 
 namespace BasicIC.Controllers
 {
@@ -96,7 +92,7 @@ namespace BasicIC.Controllers
         public async Task<IHttpActionResult> Update(OrderMasterModel param1)
         {
             ResponseService<OrderMasterModel> response = await _orderService.UpdateMaster(param1);
-            if (response.status)    
+            if (response.status)
                 return Ok(response);
 
             return new ResponseFail<OrderMasterModel>().Error(response);

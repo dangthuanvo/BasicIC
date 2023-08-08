@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
 using BasicIC.Models.Main.M03;
 using Ninject;
-using Repository.CustomModel;
 using Repository.EF;
-using BasicIC.Models.Main.M03;
 using System;
-using System.Linq;
 
 namespace BasicIC.Config
 {
@@ -25,8 +22,8 @@ namespace BasicIC.Config
     {
         public MappingProfile()
         {
-            CreateMap<DateTime?, Nullable<TimeSpan>>().ConvertUsing(new DateTimeToTimeSpanConverter());
-            CreateMap<Nullable<TimeSpan>, Nullable<DateTime>>().ConvertUsing(new TimeSpanToDateTimeConverter());
+            CreateMap<DateTime?, TimeSpan?>().ConvertUsing(new DateTimeToTimeSpanConverter());
+            CreateMap<TimeSpan?, DateTime?>().ConvertUsing(new TimeSpanToDateTimeConverter());
 
             // Add as many of these lines as you need to map your objects
             CreateMap<CustomerModel, M03_Customer>().ReverseMap();
@@ -44,9 +41,9 @@ namespace BasicIC.Config
             CreateMap<AddressModel, M03_Address>().ReverseMap();
         }
 
-        public class DateTimeToTimeSpanConverter : ITypeConverter<DateTime?, Nullable<System.TimeSpan>>
+        public class DateTimeToTimeSpanConverter : ITypeConverter<DateTime?, TimeSpan?>
         {
-            public Nullable<System.TimeSpan> Convert(DateTime? source, Nullable<System.TimeSpan> destination, ResolutionContext context)
+            public TimeSpan? Convert(DateTime? source, TimeSpan? destination, ResolutionContext context)
             {
                 if (source != null)
                     return source.Value.TimeOfDay;
@@ -55,9 +52,9 @@ namespace BasicIC.Config
             }
         }
 
-        public class TimeSpanToDateTimeConverter : ITypeConverter<Nullable<System.TimeSpan>, Nullable<DateTime>>
+        public class TimeSpanToDateTimeConverter : ITypeConverter<TimeSpan?, DateTime?>
         {
-            public DateTime? Convert(Nullable<System.TimeSpan> source, DateTime? destination, ResolutionContext context)
+            public DateTime? Convert(TimeSpan? source, DateTime? destination, ResolutionContext context)
             {
                 if (source != null)
                     return new DateTime() + source.Value;

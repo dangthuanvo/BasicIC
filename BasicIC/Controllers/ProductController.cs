@@ -1,19 +1,13 @@
 ﻿using BasicIC.CustomAttributes;
 using BasicIC.Models.Common;
+using BasicIC.Models.Main.M03;
+using BasicIC.Services.Interfaces;
 using Common.Commons;
 using Common.Params.Base;
 using Repository.CustomModel;
-using BasicIC.Common;
-using BasicIC.CustomAttributes;
-using BasicIC.Models.Common;
-using BasicIC.Models.Main.M03;
-using BasicIC.Services.Interfaces;
+using Settings.Common;
 using System.Threading.Tasks;
 using System.Web.Http;
-using Settings.Common;
-using System.Web.Http.Results;
-using BasicIC.Services.Implement;
-using System;
 
 namespace BasicIC.Controllers
 {
@@ -28,8 +22,8 @@ namespace BasicIC.Controllers
         public ProductController(IProductService productService, IImageService imageService, IProductAttributeService productattributeService)
         {
             _productService = productService;
-            _imageService = imageService; 
-            _productattributeSerivce = productattributeService; 
+            _imageService = imageService;
+            _productattributeSerivce = productattributeService;
         }
 
         [Route("get-all")]

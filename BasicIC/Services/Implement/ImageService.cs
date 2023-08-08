@@ -2,17 +2,15 @@
 using BasicIC.Interfaces;
 using BasicIC.Models.Main.M03;
 using BasicIC.Services.Interfaces;
-using Common.Commons;
 using Common;
+using Common.Commons;
 using Common.Interfaces;
+using Repository.CustomModel;
 using Repository.EF;
 using Repository.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
-using Repository.CustomModel;
 
 namespace BasicIC.Services.Implement
 {
@@ -40,7 +38,7 @@ namespace BasicIC.Services.Implement
                     return new ResponseService<ImageModel>(Constants.ERROR_MAPPING_MODEL).BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
                 }
 
-                if(vData.M03_Product == null)
+                if (vData.M03_Product == null)
                 {
                     return new ResponseService<ImageModel>(Constants.RECORD_NOT_FOUND).BadRequest(ErrorCodes.RECORD_NOT_FOUND);
                 }
@@ -85,7 +83,7 @@ namespace BasicIC.Services.Implement
             {
                 _logger.LogError(ex);
                 return new ResponseService<bool>(ex.Message).BadRequest(ErrorCodes.UNHANDLED_ERROR);
-         
+
             }
         }
 

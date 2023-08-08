@@ -1,7 +1,6 @@
 ﻿using Common;
 using Common.Commons;
 using Common.Params.Base;
-using Repository.EF;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -79,9 +78,9 @@ namespace Repository.Queries
 
         public Query(PagingParam param, DbContext dbContext, bool isPrivate)
         {
-            
+
             this.dbContext = dbContext;
-            
+
             //baseQueryString = $"SELECT * FROM [{"dbo"}].[{typeof(T).Name}] ";
             this.SelectBuilder(typeof(T), typeof(T).GetProperties().Where(m => m.GetAccessors()[0].IsFinal ||
                                                                         !m.GetAccessors()[0].IsVirtual).ToArray());

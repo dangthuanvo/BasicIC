@@ -2,18 +2,14 @@
 using BasicIC.Interfaces;
 using BasicIC.Models.Main.M03;
 using BasicIC.Services.Interfaces;
-using Common.Commons;
 using Common;
+using Common.Commons;
 using Common.Interfaces;
 using Repository.EF;
 using Repository.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
-using Repository.CustomModel;
-using Microsoft.Ajax.Utilities;
 
 namespace BasicIC.Services.Implement
 {
@@ -71,16 +67,16 @@ namespace BasicIC.Services.Implement
                 _logger.LogInfo(GetMethodName(new System.Diagnostics.StackTrace()));
                 param.AddInfo();
                 CartModel cartModel = _mapper.Map<M03_Cart, CartModel>((await _repo.GetById(param.cart_id)));
-                
+
                 List<CartDetailModel> listCartDetailModel = (await _cartDetailService.GetByCartID(cartModel)).data.items;
                 bool flag = true;
                 foreach (CartDetailModel item in listCartDetailModel)
                 {
                     if (item.product_id == param.product_id)
                     {
-                        param.quantity+= item.quantity;
+                        param.quantity += item.quantity;
                         param.id = item.id;
-                        param.cart_total_price+= item.cart_total_price;
+                        param.cart_total_price += item.cart_total_price;
                         flag = false;
                         break;
                     }

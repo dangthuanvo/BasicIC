@@ -2,20 +2,16 @@
 using BasicIC.Interfaces;
 using BasicIC.Models.Main.M03;
 using BasicIC.Services.Interfaces;
-using Common.Commons;
 using Common;
+using Common.Commons;
 using Common.Interfaces;
+using Common.Params.Base;
+using Repository.CustomModel;
 using Repository.EF;
 using Repository.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
-using Common.Params.Base;
-using Repository.CustomModel;
-using System.Data.Entity;
-using System.Xml.Linq;
 
 namespace BasicIC.Services.Implement
 {
@@ -35,8 +31,8 @@ namespace BasicIC.Services.Implement
         {
             _cartService = cartService;
             _orderDetailService = orderDetailService;
-            _cartDetailService= cartDetailService;
-            _cartService= cartService;
+            _cartDetailService = cartDetailService;
+            _cartService = cartService;
             _repoOrderDetail = repoOrderDetail;
         }
 
@@ -47,7 +43,7 @@ namespace BasicIC.Services.Implement
                 _logger.LogInfo(GetMethodName(new System.Diagnostics.StackTrace()));
                 List<OrderMasterModel> res = new List<OrderMasterModel>();
                 List<OrderModel> listOrderModel = (await this.GetByCustomerID(param)).data.items;
-                foreach(OrderModel orderModel in listOrderModel)
+                foreach (OrderModel orderModel in listOrderModel)
                 {
                     OrderMasterModel orderMasterModel = new OrderMasterModel(orderModel, (await _orderDetailService.GetByOrderID(orderModel)).data.items);
                     //orderMasterModel.Create(orderModel,(await _orderDetailService.GetByOrderID(orderModel)).data.items);
@@ -127,7 +123,7 @@ namespace BasicIC.Services.Implement
                 M03_Order VResultDb;
                 try
                 {
-                    VResultDb = _mapper.Map(obj.CreateOrderModel() , orderDb);
+                    VResultDb = _mapper.Map(obj.CreateOrderModel(), orderDb);
                 }
                 catch
                 {
@@ -186,7 +182,7 @@ namespace BasicIC.Services.Implement
                 M03_Order result = await _repo.Create(vData, dbContext);
 
                 OrderDetailModel itemorder;
-                
+
                 PagingParam a = new PagingParam();
 
                 ResponseService<ListResult<CartDetailModel>> listCartDetailModel = await _cartDetailService.GetByCartID(cartModel.data);
@@ -223,7 +219,7 @@ namespace BasicIC.Services.Implement
                 try
                 {
                     items = _mapper.Map<List<M03_Order>, List<OrderModel>>(resultEntity.items);
-                    
+
                 }
                 catch
                 {

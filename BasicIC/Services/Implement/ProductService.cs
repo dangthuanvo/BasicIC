@@ -2,16 +2,13 @@
 using BasicIC.Interfaces;
 using BasicIC.Models.Main.M03;
 using BasicIC.Services.Interfaces;
-using Common.Commons;
 using Common;
+using Common.Commons;
 using Common.Interfaces;
 using Repository.EF;
 using Repository.Repositories;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace BasicIC.Services.Implement
 {
@@ -25,8 +22,8 @@ namespace BasicIC.Services.Implement
             IImageService imageService,
             ILogger logger, IConfigManager config, IMapper mapper) : base(repo, config, logger, mapper)
         {
-            _productAttributeService= productAttributeService;
-            _imageService= imageService;
+            _productAttributeService = productAttributeService;
+            _imageService = imageService;
         }
 
         public async Task<ResponseService<bool>> DeleteRelatives(ProductModel param, M03_BasicEntities dbContext = null)

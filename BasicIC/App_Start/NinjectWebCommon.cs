@@ -10,7 +10,6 @@ namespace BasicIC.App_Start
     using Ninject;
     using Ninject.Web.Common;
     using Ninject.Web.Common.WebHost;
-    using Repository.EF;
     using Repository.Interfaces;
     using Repository.Repositories;
     using BasicIC.Config;
@@ -20,8 +19,6 @@ namespace BasicIC.App_Start
     using Settings.Config;
     using BasicIC.Services.Interfaces;
     using BasicIC.Services.Implement;
-    using BasicIC.Models.Main.M03;
-    using Settings.Services.Interfaces;
 
     public static class NinjectWebCommon 
     {
