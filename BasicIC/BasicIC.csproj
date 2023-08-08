@@ -267,7 +267,7 @@
     <Compile Include="Models\Main\M03\ImportModel.cs" />
     <Compile Include="Models\Main\M03\MenuModel.cs" />
     <Compile Include="Models\Main\M03\OrderDetailModel.cs" />
-    <Compile Include="Models\Main\M03\OrderMasterModel.cs" />
+    <Compile Include="Models\Main\M03\OrderOrderDetailModel.cs" />
     <Compile Include="Models\Main\M03\OrderModel.cs" />
     <Compile Include="Models\Main\M03\ProductAttributeModel.cs" />
     <Compile Include="Models\Main\M03\ProductMenuModel.cs" />

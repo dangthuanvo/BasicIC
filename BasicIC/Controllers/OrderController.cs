@@ -89,13 +89,13 @@ namespace BasicIC.Controllers
         [Route("update")]
         [ValidateModel]
         [HttpPost]
-        public async Task<IHttpActionResult> Update(OrderMasterModel param1)
+        public async Task<IHttpActionResult> Update(OrderOrderDetailModel param1)
         {
-            ResponseService<OrderMasterModel> response = await _orderService.UpdateMaster(param1);
+            ResponseService<OrderOrderDetailModel> response = await _orderService.UpdateMaster(param1);
             if (response.status)
                 return Ok(response);
 
-            return new ResponseFail<OrderMasterModel>().Error(response);
+            return new ResponseFail<OrderOrderDetailModel>().Error(response);
         }
 
         [Route("get-order-detail-by-order-id")]
@@ -103,11 +103,11 @@ namespace BasicIC.Controllers
         [HttpPost]
         public async Task<IHttpActionResult> GetMaster(OrderModel param)
         {
-            ResponseService<OrderMasterModel> response = await _orderService.GetMaster(param);
+            ResponseService<OrderOrderDetailModel> response = await _orderService.GetMaster(param);
             if (response.status)
                 return Ok(response);
 
-            return new ResponseFail<OrderMasterModel>().Error(response);
+            return new ResponseFail<OrderOrderDetailModel>().Error(response);
         }
 
         [Route("get-add-order-detail-by-customer-id")]
@@ -115,11 +115,11 @@ namespace BasicIC.Controllers
         [HttpPost]
         public async Task<IHttpActionResult> GetAllByCustomer(CustomerModel param)
         {
-            ResponseService<ListResult<OrderMasterModel>> response = await _orderService.GetAllByCustomer(param);
+            ResponseService<ListResult<OrderOrderDetailModel>> response = await _orderService.GetAllByCustomer(param);
             if (response.status)
                 return Ok(response);
 
-            return new ResponseFail<ListResult<OrderMasterModel>>().Error(response);
+            return new ResponseFail<ListResult<OrderOrderDetailModel>>().Error(response);
         }
 
         [Route("delete")]

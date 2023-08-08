@@ -48,16 +48,6 @@ namespace BasicIC.Services.Implement
                 }
                 V result = await _repo.Create(vData, dbContext);
 
-                // Push kafka log message
-                //if (autoLog)
-                //{
-                //    string createJson = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
-                //    await this.CreateKafkaLog(obj.id, Constants.LOG_USER_CREATE, createJson);
-                //    // create log action
-                //    await _logActionService.CreateKafkaLog(LogType.CREATE, typeof(T).Name.Replace("Model", ""),
-                //                                            $"Create {typeof(T).Name.Replace("Model", "")}", obj, "");
-                //}
-
                 return new ResponseService<T>(_mapper.Map<V, T>(result));
             }
             catch (Exception ex)
@@ -214,7 +204,7 @@ namespace BasicIC.Services.Implement
                 }
                 obj.UpdateInfo(TResultDb);
 
-                // Map new updated T to V then update V on db
+
                 V vData;
                 try
                 {
@@ -226,18 +216,6 @@ namespace BasicIC.Services.Implement
                 }
                 V result = await _repo.Update(vData, dbContext);
 
-
-
-                // Push kafka log message
-                //if (autoLog)
-                //{
-                //    string originalData = Newtonsoft.Json.JsonConvert.SerializeObject(TResultDb);
-                //    string updateData = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
-                //    await this.CreateKafkaLog(obj.id, Constants.LOG_USER_UPDATE, originalData, updateData);
-                //    // create log action
-                //    await _logActionService.CreateKafkaLog(LogType.UPDATE, typeof(T).Name.Replace("Model", ""),
-                //                                            $"Update {typeof(T).Name.Replace("Model", "")}", TResultDb, vData);
-                //}
 
                 return (new ResponseService<T>(_mapper.Map<V, T>(result)), TResultDb);
             }
@@ -278,39 +256,6 @@ namespace BasicIC.Services.Implement
             }
         }
 
-        #region helper function
-        // Send kafka message for changes
-        //protected async Task CreateKafkaLog(Guid idReference, string logType, string originalDataJson, string updateData = null)
-        //{
-        //    // Don't log if using secret key
-        //    bool isSecretKey = SessionStore.Get(Constants.KEY_SESSION_IS_SECRET_KEY);
-        //    if (isSecretKey)
-        //        return;
-
-        //    // Create new model
-        //    KafkaUserLogModel kafkaUserLog = new KafkaUserLogModel();
-        //    kafkaUserLog.AddInfo();
-        //    kafkaUserLog.message = "";
-
-        //    // Set updateData to empty if null
-        //    if (updateData == null)
-        //        updateData = "";
-
-        //    // Map data to model
-        //    kafkaUserLog.status = true;
-        //    kafkaUserLog.log_type = logType;
-        //    kafkaUserLog.object_name = typeof(T).Name;
-        //    kafkaUserLog.service = "Settings";
-        //    kafkaUserLog.reference_id = idReference;
-        //    kafkaUserLog.original_data = originalDataJson;
-        //    kafkaUserLog.update_data = updateData;
-
-        //    // create producer
-        //    ProducerWrapper<object> _producer = new ProducerWrapper<object>();
-        //    await _producer.CreateMess(Topic.LOG_CRUD_SETTINGS, kafkaUserLog);
-        //}
-
-        // True when duplicate is found
         protected async Task<bool> CheckDuplicate(T obj, string[] fields, DbContext dbContext)
         {
             try
@@ -361,6 +306,5 @@ namespace BasicIC.Services.Implement
             }
 
         }
-        #endregion
     }
 }

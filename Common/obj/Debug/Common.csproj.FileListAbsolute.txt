@@ -1,0 +1,16 @@
+D:\Intern Basebs\IC\BasicIC\Common\bin\Debug\Common.dll.config
+D:\Intern Basebs\IC\BasicIC\Common\bin\Debug\Common.dll
+D:\Intern Basebs\IC\BasicIC\Common\bin\Debug\Common.pdb
+D:\Intern Basebs\IC\BasicIC\Common\bin\Debug\EntityFramework.dll
+D:\Intern Basebs\IC\BasicIC\Common\bin\Debug\EntityFramework.SqlServer.dll
+D:\Intern Basebs\IC\BasicIC\Common\bin\Debug\log4net.dll
+D:\Intern Basebs\IC\BasicIC\Common\bin\Debug\Newtonsoft.Json.dll
+D:\Intern Basebs\IC\BasicIC\Common\bin\Debug\EntityFramework.xml
+D:\Intern Basebs\IC\BasicIC\Common\bin\Debug\EntityFramework.SqlServer.xml
+D:\Intern Basebs\IC\BasicIC\Common\bin\Debug\log4net.xml
+D:\Intern Basebs\IC\BasicIC\Common\bin\Debug\Newtonsoft.Json.xml
+D:\Intern Basebs\IC\BasicIC\Common\obj\Debug\Common.csproj.AssemblyReference.cache
+D:\Intern Basebs\IC\BasicIC\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+D:\Intern Basebs\IC\BasicIC\Common\obj\Debug\Common.csproj.CopyComplete
+D:\Intern Basebs\IC\BasicIC\Common\obj\Debug\Common.dll
+D:\Intern Basebs\IC\BasicIC\Common\obj\Debug\Common.pdb

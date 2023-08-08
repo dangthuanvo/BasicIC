@@ -38,7 +38,6 @@ namespace BasicIC.Services.Implement
                 }
                 M03_Attribute result = await _repo.Create(vData, dbContext);
 
-                // Map back to CustomerModel
                 AttributeModel attributeModel;
                 try
                 {

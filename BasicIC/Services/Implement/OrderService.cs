@@ -36,43 +36,43 @@ namespace BasicIC.Services.Implement
             _repoOrderDetail = repoOrderDetail;
         }
 
-        public async Task<ResponseService<ListResult<OrderMasterModel>>> GetAllByCustomer(CustomerModel param, M03_BasicEntities dbContext = null)
+        public async Task<ResponseService<ListResult<OrderOrderDetailModel>>> GetAllByCustomer(CustomerModel param, M03_BasicEntities dbContext = null)
         {
             try
             {
                 _logger.LogInfo(GetMethodName(new System.Diagnostics.StackTrace()));
-                List<OrderMasterModel> res = new List<OrderMasterModel>();
+                List<OrderOrderDetailModel> res = new List<OrderOrderDetailModel>();
                 List<OrderModel> listOrderModel = (await this.GetByCustomerID(param)).data.items;
                 foreach (OrderModel orderModel in listOrderModel)
                 {
-                    OrderMasterModel orderMasterModel = new OrderMasterModel(orderModel, (await _orderDetailService.GetByOrderID(orderModel)).data.items);
-                    //orderMasterModel.Create(orderModel,(await _orderDetailService.GetByOrderID(orderModel)).data.items);
-                    res.Add(orderMasterModel);
+                    OrderOrderDetailModel orderOrderDetailModel = new OrderOrderDetailModel(orderModel, (await _orderDetailService.GetByOrderID(orderModel)).data.items);
+                    //orderOrderDetailModel.Create(orderModel,(await _orderDetailService.GetByOrderID(orderModel)).data.items);
+                    res.Add(orderOrderDetailModel);
                 }
-                return new ResponseService<ListResult<OrderMasterModel>>(new ListResult<OrderMasterModel>(res, res.Count));
+                return new ResponseService<ListResult<OrderOrderDetailModel>>(new ListResult<OrderOrderDetailModel>(res, res.Count));
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex);
-                return new ResponseService<ListResult<OrderMasterModel>>(ex.Message).BadRequest(ErrorCodes.UNHANDLED_ERROR);
+                return new ResponseService<ListResult<OrderOrderDetailModel>>(ex.Message).BadRequest(ErrorCodes.UNHANDLED_ERROR);
             }
         }
 
-        public async Task<ResponseService<OrderMasterModel>> GetMaster(OrderModel obj, M03_BasicEntities dbContext = null)
+        public async Task<ResponseService<OrderOrderDetailModel>> GetMaster(OrderModel obj, M03_BasicEntities dbContext = null)
         {
             try
             {
                 _logger.LogInfo(GetMethodName(new System.Diagnostics.StackTrace()));
                 OrderModel orderModel = _mapper.Map<M03_Order, OrderModel>((await _repo.GetById(obj.id)));
                 List<OrderDetailModel> listOrderDetailModel = (await _orderDetailService.GetByOrderID(orderModel)).data.items;
-                OrderMasterModel res = new OrderMasterModel(orderModel, listOrderDetailModel);
+                OrderOrderDetailModel res = new OrderOrderDetailModel(orderModel, listOrderDetailModel);
                 //res.Create(orderModel, listOrderDetailModel);
-                return new ResponseService<OrderMasterModel>(res);
+                return new ResponseService<OrderOrderDetailModel>(res);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex);
-                return new ResponseService<OrderMasterModel>(ex.Message).BadRequest(ErrorCodes.UNHANDLED_ERROR);
+                return new ResponseService<OrderOrderDetailModel>(ex.Message).BadRequest(ErrorCodes.UNHANDLED_ERROR);
             }
         }
 
@@ -100,7 +100,7 @@ namespace BasicIC.Services.Implement
             }
         }
 
-        public async Task<ResponseService<OrderMasterModel>> UpdateMaster(OrderMasterModel obj, M03_BasicEntities dbContext = null)
+        public async Task<ResponseService<OrderOrderDetailModel>> UpdateMaster(OrderOrderDetailModel obj, M03_BasicEntities dbContext = null)
         {
             try
             {
@@ -116,7 +116,7 @@ namespace BasicIC.Services.Implement
                 }
                 catch
                 {
-                    return new ResponseService<OrderMasterModel>(Constants.ERROR_MAPPING_MODEL).BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
+                    return new ResponseService<OrderOrderDetailModel>(Constants.ERROR_MAPPING_MODEL).BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
                 }
                 obj.UpdateInfo(TResultDb);
 
@@ -127,7 +127,7 @@ namespace BasicIC.Services.Implement
                 }
                 catch
                 {
-                    return new ResponseService<OrderMasterModel>(Constants.ERROR_MAPPING_MODEL).BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
+                    return new ResponseService<OrderOrderDetailModel>(Constants.ERROR_MAPPING_MODEL).BadRequest(ErrorCodes.ERROR_MAPPING_MODELS);
                 }
                 // update master
 
@@ -150,15 +150,14 @@ namespace BasicIC.Services.Implement
                     listresult.Add(resulttmp);
                 }
 
-                OrderMasterModel res = new OrderMasterModel(_mapper.Map<M03_Order, OrderModel>(result), obj.orderDetailModel);
+                OrderOrderDetailModel res = new OrderOrderDetailModel(_mapper.Map<M03_Order, OrderModel>(result), obj.orderDetailModel);
 
-                //res.Create(_mapper.Map<M03_Order, OrderModel>(result), obj.orderDetailModel);
-                return new ResponseService<OrderMasterModel>(res);
+                return new ResponseService<OrderOrderDetailModel>(res);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex);
-                return new ResponseService<OrderMasterModel>(ex.Message).BadRequest(ErrorCodes.UNHANDLED_ERROR);
+                return new ResponseService<OrderOrderDetailModel>(ex.Message).BadRequest(ErrorCodes.UNHANDLED_ERROR);
             }
         }
 
