@@ -67,7 +67,7 @@ namespace BasicIC.Controllers
         [HttpPost]
         public async Task<IHttpActionResult> Update(OrderOrderDetailModel param1)
         {
-            ResponseService<OrderOrderDetailModel> response = await _orderService.UpdateMaster(param1);
+            ResponseService<OrderOrderDetailModel> response = await _orderService.UpdateOrderOrderDetail(param1);
             if (response.status)
                 return Ok(response);
 
