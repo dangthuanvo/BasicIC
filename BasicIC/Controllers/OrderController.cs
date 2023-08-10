@@ -26,30 +26,6 @@ namespace BasicIC.Controllers
             _addressService = addressService;
         }
 
-        //[Route("create-emp")]
-        //[ValidateModel]
-        //[HttpPost]
-        //public async Task<IHttpActionResult> AddEmp([FromBody] EmployeeModel param)
-        //{
-        //    ResponseService<EmployeeModel> response = await _employeeService.Create(param);
-        //    if (response.status)
-        //        return Ok(response);
-
-        //    return new ResponseFail<EmployeeModel>().Error(response);
-        //}
-
-        //[Route("create-add")]
-        //[ValidateModel]
-        //[HttpPost]
-        //public async Task<IHttpActionResult> AddAdd([FromBody] AddressModel param)
-        //{
-        //    ResponseService<AddressModel> response = await _addressService.Create(param);
-        //    if (response.status)
-        //        return Ok(response);
-
-        //    return new ResponseFail<AddressModel>().Error(response);
-        //}
-
         [Route("get-all")]
         [ValidateModel]
         [HttpPost]
@@ -101,9 +77,9 @@ namespace BasicIC.Controllers
         [Route("get-order-detail-by-order-id")]
         [ValidateModel]
         [HttpPost]
-        public async Task<IHttpActionResult> GetMaster(OrderModel param)
+        public async Task<IHttpActionResult> GetOrderOrderDetail(OrderModel param)
         {
-            ResponseService<OrderOrderDetailModel> response = await _orderService.GetMaster(param);
+            ResponseService<OrderOrderDetailModel> response = await _orderService.GetOrderOrderDetail(param);
             if (response.status)
                 return Ok(response);
 

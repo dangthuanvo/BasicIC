@@ -46,7 +46,6 @@ namespace BasicIC.Services.Implement
                 foreach (OrderModel orderModel in listOrderModel)
                 {
                     OrderOrderDetailModel orderOrderDetailModel = new OrderOrderDetailModel(orderModel, (await _orderDetailService.GetByOrderID(orderModel)).data.items);
-                    //orderOrderDetailModel.Create(orderModel,(await _orderDetailService.GetByOrderID(orderModel)).data.items);
                     res.Add(orderOrderDetailModel);
                 }
                 return new ResponseService<ListResult<OrderOrderDetailModel>>(new ListResult<OrderOrderDetailModel>(res, res.Count));
@@ -58,7 +57,7 @@ namespace BasicIC.Services.Implement
             }
         }
 
-        public async Task<ResponseService<OrderOrderDetailModel>> GetMaster(OrderModel obj, M03_BasicEntities dbContext = null)
+        public async Task<ResponseService<OrderOrderDetailModel>> GetOrderOrderDetail(OrderModel obj, M03_BasicEntities dbContext = null)
         {
             try
             {
@@ -66,7 +65,6 @@ namespace BasicIC.Services.Implement
                 OrderModel orderModel = _mapper.Map<M03_Order, OrderModel>((await _repo.GetById(obj.id)));
                 List<OrderDetailModel> listOrderDetailModel = (await _orderDetailService.GetByOrderID(orderModel)).data.items;
                 OrderOrderDetailModel res = new OrderOrderDetailModel(orderModel, listOrderDetailModel);
-                //res.Create(orderModel, listOrderDetailModel);
                 return new ResponseService<OrderOrderDetailModel>(res);
             }
             catch (Exception ex)
@@ -100,7 +98,7 @@ namespace BasicIC.Services.Implement
             }
         }
 
-        public async Task<ResponseService<OrderOrderDetailModel>> UpdateMaster(OrderOrderDetailModel obj, M03_BasicEntities dbContext = null)
+        public async Task<ResponseService<OrderOrderDetailModel>> UpdateOrderOrderDetail(OrderOrderDetailModel obj, M03_BasicEntities dbContext = null)
         {
             try
             {
