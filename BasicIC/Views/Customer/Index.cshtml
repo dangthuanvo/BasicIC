@@ -1,5 +1,8 @@
 ﻿@inherits System.Web.Mvc.WebViewPage
 @using BasicIC.Models.Main.M03
+@using System.Web.Mvc.Html
+
+
 @{
     List<CustomerModel> customers = (List<CustomerModel>)ViewData["customers"];
 }
@@ -14,8 +17,8 @@
 </div>
 
 <div class="form">
-    <h2>Create New Customer</h2>
-    <form action="@Url.Action("Create", "Customer")" method="post">
+    <h2 id="label">Create New Customer</h2>
+    <form id="customerForm" action="@Url.Action("Create", "Customer")" method="post">
         <div>
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
@@ -39,38 +42,90 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
         </div>
+        <input type="hidden" id="selectedCustomerData" name="selectedCustomerData">
         <div>
-            <button type="submit">Create Customer</button>
+            <button id="updateButton" type="submit">Create Customer</button>
+        </div>
+
+        <div>
+            <button id="clearButton" type="submit" hidden="hidden" action="@Url.Action("Index", "Customer")" method="post">Clear</button>
         </div>
     </form>
 </div>
 
+
+
+
+<div>
+    <h2>Search Customers</h2>
+    <form id="searchForm" action="@Url.Action("Index", "Customer")" method="post">
+        <input type="text" id="searchString" name="searchString" placeholder="Search by name">
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var searchInput = $("#searchString");
+        var listContainer = $(".list");
+
+        searchInput.on("keyup", function () {
+            updateCustomerList();
+        });
+
+        function updateCustomerList() {
+            var searchString = searchInput.val();
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Index", "Customer")",
+                data: { searchString: searchString },
+                success: function (result) {
+                    listContainer.html(result);
+                },
+                error: function () {
+                    alert("An error occurred while updating the customer list.");
+                }
+            });
+        }
+    });
+</script>
+
+
 <div class="list">
     <h2>Customer List</h2>
-    <table cellpadding="10">
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Gender</th>
-            <th>Phone Number</th>
-        </tr>
-        @foreach (var customer in customers)
-        {
-            <tr>
-                <td>@customer.id</td>
-                <td>@customer.customer_name</td>
-                @{
-                    if (customer.gender == 0)
-                    {
-                        <td>Female</td>
-                    }
-                    else
-                    {
-                        <td>Male</td>
-                    }
-                }
-                <td>@customer.phone_number</td>
-            </tr>
-        }
-    </table>
+    <div class="search-results">
+        @Html.Partial("_SearchResults", customers)
+    </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var selectedCustomerDataInput = $("#selectedCustomerData");
+        var formFields = {
+            id: $("#id"),
+            name: $("#name"),
+            gender: $("#gender"),
+            phone: $("#phone"),
+            account: $("#account"),
+            password: $("#password")
+        };
+        var labelElement = $("#label");
+        var labelUpdateButtonElement = $("#updateButton");
+        var labelClearButtonElement = $("#clearButton");
+        $(".modify-button").on("click", function () {
+            var customerData = $(this).data("customer");
+            formFields.name.val(customerData.customer_name);
+            formFields.gender.val(customerData.gender);
+            formFields.phone.val(customerData.phone_number);
+            formFields.account.val(customerData.account_name);
+            formFields.password.val(customerData.password);
+            labelElement.text("Customer Info");
+            labelUpdateButtonElement.text("Update Customer");
+            labelClearButtonElement.show();
+            customerForm.attr("action", "@Url.Action("Update", "Customer")");
+        });
+    });
+</script>

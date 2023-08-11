@@ -32,15 +32,33 @@ body, h1, h2, h3, p, ul, li {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 20px;
     height: 0; /* Adjust as needed */
 }
 
-.form{
-    margin : 50px 0 10px 0;
+.form {
+    margin: 20px 0 50px 0;
 }
 
+.search-form {
+    margin: 0px 0 0px 0;
+}
+
+
+
 .list {
-    margin: 50px 0 10px 0;
+    margin: 0px 0 10px 0;
+}
+
+/* Add borders to table cells */
+.table-bordered {
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+}
+
+.table-bordered th, .table-bordered td {
+    border: 1px solid #ccc;
+    padding: 8px;
 }
 
 

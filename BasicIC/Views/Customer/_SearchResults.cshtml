@@ -1,0 +1,51 @@
+﻿@using BasicIC.Models.Main.M03
+@inherits System.Web.Mvc.WebViewPage
+@{
+    List<CustomerModel> customers = (List<CustomerModel>)ViewData["customers"];
+}
+
+<table cellpadding="10" class="table-bordered" width="100%">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Phone Number</th>
+        <th>Account</th>
+        <th>Password</th>
+        <th></th>
+        <th></th>
+    </tr>
+    @foreach (var customer in customers)
+    {
+        <tr>
+            <td>@customer.id</td>
+            <td>@customer.customer_name</td>
+            @{
+                if (customer.gender == 0)
+                {
+                    <td>Female</td>
+                }
+                else
+                {
+                    <td>Male</td>
+                }
+            }
+            <td align="center">@customer.phone_number</td>
+            <td>@customer.account_name</td>
+            <td>@customer.password</td>
+            <td>
+                <div>
+                    <button type="button" class="modify-button" data-customer="@Json.Encode(customer)">Modify</button>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <form action="@Url.Action("Delete", "Customer")" method="post">
+                        <input type="hidden" name="id" value="@customer.id" />
+                        <button type="submit">Delete</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+    }
+</table>
