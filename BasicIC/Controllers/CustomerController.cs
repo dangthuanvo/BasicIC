@@ -1,84 +1,44 @@
-﻿using BasicIC.CustomAttributes;
-using BasicIC.Models.Common;
-using BasicIC.Models.Main.M03;
-using BasicIC.Services.Interfaces;
+﻿using BasicIC.Models.Main.M03;
 using Common.Commons;
 using Common.Params.Base;
 using Repository.CustomModel;
-using Settings.Common;
+using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web.Http;
+using System.Web.Mvc;
 
 namespace BasicIC.Controllers
 {
-    //[Authorized]
-    [RoutePrefix("api/customer")]
-    public class CustomerController : ApiController
+    public class CustomerController : Controller
     {
-        private readonly ICustomerService _customerService;
-
-        public CustomerController(ICustomerService customerService)
+        public async Task<ActionResult> Index()
         {
-            _customerService = customerService;
+            List<CustomerModel> customers = new List<CustomerModel>();
+
+            using (HttpClient client = new HttpClient())
+            {
+                HttpResponseMessage response = await client.PostAsJsonAsync("https://localhost:44332/api/customer/get-all", new PagingParam());
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var apiResponse = await response.Content.ReadAsAsync<ResponseService<ListResult<CustomerModel>>>();
+                    if (apiResponse.status)
+                    {
+                        customers = apiResponse.data.items; // Assuming Items is the property containing the list of customers
+                    }
+                    else
+                    {
+                        // Handle error response from the API
+                    }
+                }
+                else
+                {
+                    // Handle error response from the API
+                }
+            }
+            ViewData["customers"] = customers;
+            return View();
         }
 
-        [Route("get-all")]
-        [ValidateModel]
-        [HttpPost]
-        public async Task<IHttpActionResult> GetAll(PagingParam param)
-        {
-            ResponseService<ListResult<CustomerModel>> response = await _customerService.GetAll(param);
-            if (response.status)
-                return Ok(response);
-
-            return new ResponseFail<ListResult<CustomerModel>>().Error(response);
-        }
-
-        [Route("create")]
-        [ValidateModel]
-        [HttpPost]
-        public async Task<IHttpActionResult> Add(CustomerModel param)
-        {
-            ResponseService<CustomerModel> response = await _customerService.Create(param);
-            if (response.status)
-                return Ok(response);
-
-            return new ResponseFail<CustomerModel>().Error(response);
-        }
-
-        [Route("update")]
-        [ValidateModel]
-        [HttpPost]
-        public async Task<IHttpActionResult> Update(CustomerModel param)
-        {
-            ResponseService<CustomerModel> response = (await _customerService.Update(param)).Item1;
-            if (response.status)
-                return Ok(response);
-            return new ResponseFail<CustomerModel>().Error(response);
-        }
-
-        [Route("delete")]
-        [ValidateModel]
-        [HttpPost]
-        public async Task<IHttpActionResult> Remove(ItemModel param)
-        {
-            ResponseService<bool> response = await _customerService.Delete(param);
-            if (response.status)
-                return Ok(response);
-
-            return new ResponseFail<bool>().Error(response);
-        }
-
-        [Route("get-item")]
-        [ValidateModel]
-        [HttpPost]
-        public async Task<IHttpActionResult> GetById(ItemModel param)
-        {
-            ResponseService<CustomerModel> response = await _customerService.GetById(param);
-            if (response.status)
-                return Ok(response);
-
-            return new ResponseFail<CustomerModel>().Error(response);
-        }
     }
 }

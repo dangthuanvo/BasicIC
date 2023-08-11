@@ -1,0 +1,27 @@
+﻿@inherits System.Web.Mvc.WebViewPage
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="@Url.Content("~/Content/styles.css")">
+</head>
+<body>
+
+    <div class="content">
+        @RenderSection("Selection", required: false)
+    </div>
+
+    <div class="sidebar">
+        <ul class="horizontal-menu">
+            <li><a href="@Url.Action("Index", "Customer")">Customer</a></li>
+            <li><a href="@Url.Action("Index", "Product")">Product</a></li>
+            <li><a href="@Url.Action("Index", "Order")">Order</a></li>
+            <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+        </ul>
+    </div>
+    <div class="view-content">
+        @RenderBody()
+    </div>
+</body>
+</html>

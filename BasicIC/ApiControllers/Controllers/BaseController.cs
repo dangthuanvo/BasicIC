@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace BasicIC.Controllers
+namespace BasicIC.ApiControllers.Controllers
 {
     public class BaseController : ApiController
     {

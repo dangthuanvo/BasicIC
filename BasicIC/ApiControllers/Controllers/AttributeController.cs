@@ -8,7 +8,7 @@ using Settings.Common;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace BasicIC.Controllers
+namespace BasicIC.ApiControllers.Controllers
 {
     //[Authorize] 
     [RoutePrefix("api/attribute")]

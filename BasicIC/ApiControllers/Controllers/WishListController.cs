@@ -9,7 +9,7 @@ using Settings.Common;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace BasicIC.Controllers
+namespace BasicIC.ApiControllers.Controllers
 {
     //[Authorized]
     [RoutePrefix("api/wishlist")]

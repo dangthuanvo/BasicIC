@@ -1,0 +1,76 @@
+﻿@inherits System.Web.Mvc.WebViewPage
+@using BasicIC.Models.Main.M03
+@{
+    List<CustomerModel> customers = (List<CustomerModel>)ViewData["customers"];
+}
+
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="center-content">
+    <h1>Customer</h1>
+</div>
+
+<div class="form">
+    <h2>Create New Customer</h2>
+    <form action="@Url.Action("Create", "Customer")" method="post">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="0">Female</option>
+                <option value="1">Male</option>
+            </select>
+        </div>
+        <div>
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div>
+            <label for="account">Account Name:</label>
+            <input type="text" id="account" name="account" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <button type="submit">Create Customer</button>
+        </div>
+    </form>
+</div>
+
+<div class="list">
+    <h2>Customer List</h2>
+    <table cellpadding="10">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Phone Number</th>
+        </tr>
+        @foreach (var customer in customers)
+        {
+            <tr>
+                <td>@customer.id</td>
+                <td>@customer.customer_name</td>
+                @{
+                    if (customer.gender == 0)
+                    {
+                        <td>Female</td>
+                    }
+                    else
+                    {
+                        <td>Male</td>
+                    }
+                }
+                <td>@customer.phone_number</td>
+            </tr>
+        }
+    </table>
+</div>
