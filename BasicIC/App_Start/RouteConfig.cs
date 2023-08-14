@@ -13,7 +13,11 @@ namespace BasicIC
 
 
 
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.MapRoute(
+            name: "Default",
+            url: "{controller}/{action}/{id}",
+            defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional });
+
             routes.MapHttpRoute(
             name: "swagger_root",
             routeTemplate: "",
@@ -22,10 +26,7 @@ namespace BasicIC
             handler: new RedirectHandler((message => message.RequestUri.ToString()), "swagger"));
 
 
-            //routes.MapRoute(
-            //name: "Default",
-            //url: "{controller}/{action}/{id}",
-            //defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional });
+
 
 
 

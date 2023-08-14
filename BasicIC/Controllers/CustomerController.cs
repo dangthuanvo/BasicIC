@@ -67,7 +67,8 @@ namespace BasicIC.Controllers
                 gender = int.Parse(form["gender"]),
                 phone_number = form["phone"],
                 account_name = form["account"],
-                password = form["password"]
+                password = form["password"],
+                email = form["email"]
             };
             //newCustomer.AddInfo();
             using (HttpClient client = new HttpClient())
@@ -111,6 +112,7 @@ namespace BasicIC.Controllers
                 customer_name = form["name"],
                 gender = int.Parse(form["gender"]),
                 phone_number = form["phone"],
+                email = form["email"],
                 account_name = form["account"],
                 password = form["password"]
             };

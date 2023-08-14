@@ -34,6 +34,10 @@
             </select>
         </div>
         <div>
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required>
+        </div>
+        <div>
             <label for="phone">Phone Number:</label>
             <input type="tel" id="phone" name="phone" required>
         </div>
@@ -111,6 +115,7 @@
         var formFields = {
             id: $("#id"),
             name: $("#name"),
+            email: $("#email"),
             gender: $("#gender"),
             phone: $("#phone"),
             account: $("#account"),
@@ -126,6 +131,7 @@
             formFields.id.val(customerData.id);
             formFields.name.val(customerData.customer_name);
             formFields.gender.val(customerData.gender);
+            formFields.email.val(customerData.email);
             formFields.phone.val(customerData.phone_number);
             formFields.account.val(customerData.account_name);
             formFields.password.val(customerData.password);
