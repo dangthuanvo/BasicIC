@@ -31,8 +31,8 @@ namespace Repository.EF
         public Nullable<System.Guid> tenant_id { get; set; }
     
         public virtual M03_Role M03_Role { get; set; }
+        public virtual M03_Service M03_Service { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<M03_RoleServiceEmployee> M03_RoleServiceEmployee { get; set; }
-        public virtual M03_Service M03_Service { get; set; }
     }
 }

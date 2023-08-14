@@ -21,8 +21,8 @@ namespace Repository.EF
             this.M03_Image = new HashSet<M03_Image>();
             this.M03_ImportDetail = new HashSet<M03_ImportDetail>();
             this.M03_OrderDetail = new HashSet<M03_OrderDetail>();
-            this.M03_ProductMenu = new HashSet<M03_ProductMenu>();
             this.M03_ProductAttribute = new HashSet<M03_ProductAttribute>();
+            this.M03_ProductMenu = new HashSet<M03_ProductMenu>();
             this.M03_Rating = new HashSet<M03_Rating>();
             this.M03_WishList = new HashSet<M03_WishList>();
         }
@@ -46,9 +46,9 @@ namespace Repository.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<M03_OrderDetail> M03_OrderDetail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<M03_ProductMenu> M03_ProductMenu { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<M03_ProductAttribute> M03_ProductAttribute { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<M03_ProductMenu> M03_ProductMenu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<M03_Rating> M03_Rating { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

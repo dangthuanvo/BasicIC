@@ -42,6 +42,7 @@ namespace Repository.EF
         public Nullable<System.Guid> tenant_id { get; set; }
     
         public virtual M03_Address M03_Address { get; set; }
+        public virtual M03_Address M03_Address1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<M03_CouponOrder> M03_CouponOrder { get; set; }
         public virtual M03_Customer M03_Customer { get; set; }

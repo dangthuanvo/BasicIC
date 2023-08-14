@@ -18,6 +18,7 @@ namespace Repository.EF
         public M03_Address()
         {
             this.M03_Order = new HashSet<M03_Order>();
+            this.M03_Order1 = new HashSet<M03_Order>();
         }
     
         public System.Guid id { get; set; }
@@ -34,8 +35,10 @@ namespace Repository.EF
         public string modify_by { get; set; }
         public Nullable<System.Guid> tenant_id { get; set; }
     
-        public virtual M03_Customer M03_Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<M03_Order> M03_Order { get; set; }
+        public virtual M03_Customer M03_Customer { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<M03_Order> M03_Order1 { get; set; }
     }
 }

@@ -30,8 +30,8 @@ namespace Repository.EF
         public string modify_by { get; set; }
         public Nullable<System.Guid> tenant_id { get; set; }
     
+        public virtual M03_Supplier M03_Supplier { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<M03_ImportDetail> M03_ImportDetail { get; set; }
-        public virtual M03_Supplier M03_Supplier { get; set; }
     }
 }

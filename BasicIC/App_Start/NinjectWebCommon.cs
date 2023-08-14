@@ -4,6 +4,10 @@
 namespace BasicIC.App_Start
 {
     using AutoMapper;
+    using BasicIC.Config;
+    using BasicIC.Interfaces;
+    using BasicIC.Services.Implement;
+    using BasicIC.Services.Interfaces;
     using global::Common.Commons;
     using global::Common.Interfaces;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
@@ -12,22 +16,18 @@ namespace BasicIC.App_Start
     using Ninject.Web.Common.WebHost;
     using Repository.Interfaces;
     using Repository.Repositories;
-    using BasicIC.Config;
+    using Settings.Config;
     using System;
     using System.Web;
-    using BasicIC.Interfaces;
-    using Settings.Config;
-    using BasicIC.Services.Interfaces;
-    using BasicIC.Services.Implement;
 
-    public static class NinjectWebCommon 
+    public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application.
         /// </summary>
-        public static void Start() 
+        public static void Start()
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
@@ -82,7 +82,7 @@ namespace BasicIC.App_Start
                     cfg.ConstructServicesUsing(t => kernel.Get(t));
                 });
                 return config.CreateMapper();
-            }).InSingletonScope();;
+            }).InSingletonScope(); ;
             kernel.Bind(typeof(IRepositorySql<>)).To(typeof(BaseRepositorySql<>));
             kernel.Bind(typeof(IRepositorySql<>)).To(typeof(BasicICRepository<>));
             kernel.Bind<ICustomerService>().To<CustomerService>();
@@ -98,6 +98,7 @@ namespace BasicIC.App_Start
             kernel.Bind<IOrderDetailService>().To<OrderDetailService>();
             kernel.Bind<IEmployeeService>().To<EmployeeService>();
             kernel.Bind<IAddressService>().To<AddressService>();
+            kernel.Bind<ISendEmailService>().To<SendEmailService>();
         }
     }
 }

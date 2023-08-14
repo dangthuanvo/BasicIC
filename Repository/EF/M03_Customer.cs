@@ -36,6 +36,7 @@ namespace Repository.EF
         public Nullable<System.DateTime> modify_time { get; set; }
         public string modify_by { get; set; }
         public Nullable<System.Guid> tenant_id { get; set; }
+        public string email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<M03_Address> M03_Address { get; set; }

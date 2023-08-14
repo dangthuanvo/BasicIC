@@ -20,6 +20,7 @@ namespace BasicIC.Services.Implement
         private readonly ICartService _cartService;
         private readonly IOrderDetailService _orderDetailService;
         private readonly ICartDetailService _cartDetailService;
+        private readonly ISendEmailService _sendEmailService;
         private readonly BasicICRepository<M03_OrderDetail> _repoOrderDetail;
 
         public OrderService(BasicICRepository<M03_Order> repo,
@@ -27,13 +28,14 @@ namespace BasicIC.Services.Implement
             BasicICRepository<M03_OrderDetail> repoOrderDetail,
             IOrderDetailService orderDetailService,
             ICartDetailService cartDetailService,
+            ISendEmailService sendEmailService,
             ILogger logger, IConfigManager config, IMapper mapper) : base(repo, config, logger, mapper)
         {
             _cartService = cartService;
             _orderDetailService = orderDetailService;
             _cartDetailService = cartDetailService;
-            _cartService = cartService;
             _repoOrderDetail = repoOrderDetail;
+            _sendEmailService = sendEmailService;
         }
 
         public async Task<ResponseService<ListResult<OrderOrderDetailModel>>> GetAllByCustomer(CustomerModel param, M03_BasicEntities dbContext = null)
@@ -194,6 +196,7 @@ namespace BasicIC.Services.Implement
                     itemorder.total_price = itemcartdetail.cart_total_price;
                     await _orderDetailService.Create(itemorder);
                 }
+                await _sendEmailService.SendEmailAsync("20520314@gm.uit.edu.vn", "Xác nhận đơn hàng", "Tạo đơn hàng thành công");
                 return new ResponseService<OrderModel>(_mapper.Map<M03_Order, OrderModel>(result));
             }
             catch (Exception ex)

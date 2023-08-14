@@ -107,6 +107,7 @@
           <Property Name="modify_time" Type="datetime" />
           <Property Name="modify_by" Type="varchar" MaxLength="50" />
           <Property Name="tenant_id" Type="uniqueidentifier" />
+          <Property Name="email" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="M03_Employee">
           <Key>
@@ -373,138 +374,6 @@
           <Property Name="modify_by" Type="varchar" MaxLength="50" />
           <Property Name="tenant_id" Type="uniqueidentifier" />
         </EntityType>
-        <Association Name="FK__M03_Addre__custo__286302EC">
-          <End Role="M03_Customer" Type="Self.M03_Customer" Multiplicity="0..1" />
-          <End Role="M03_Address" Type="Self.M03_Address" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="M03_Customer">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="M03_Address">
-              <PropertyRef Name="customer_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__M03_Cart__custom__6A30C649">
-          <End Role="M03_Customer" Type="Self.M03_Customer" Multiplicity="0..1" />
-          <End Role="M03_Cart" Type="Self.M03_Cart" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="M03_Customer">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="M03_Cart">
-              <PropertyRef Name="customer_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__M03_CartD__cart___6D0D32F4">
-          <End Role="M03_Cart" Type="Self.M03_Cart" Multiplicity="0..1" />
-          <End Role="M03_CartDetail" Type="Self.M03_CartDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="M03_Cart">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="M03_CartDetail">
-              <PropertyRef Name="cart_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__M03_CartD__produ__6E01572D">
-          <End Role="M03_Product" Type="Self.M03_Product" Multiplicity="0..1" />
-          <End Role="M03_CartDetail" Type="Self.M03_CartDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="M03_Product">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="M03_CartDetail">
-              <PropertyRef Name="product_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__M03_Coupo__coupo__66603565">
-          <End Role="M03_Coupon" Type="Self.M03_Coupon" Multiplicity="0..1" />
-          <End Role="M03_CouponOrder" Type="Self.M03_CouponOrder" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="M03_Coupon">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="M03_CouponOrder">
-              <PropertyRef Name="coupon_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__M03_Coupo__order__6754599E">
-          <End Role="M03_Order" Type="Self.M03_Order" Multiplicity="0..1" />
-          <End Role="M03_CouponOrder" Type="Self.M03_CouponOrder" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="M03_Order">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="M03_CouponOrder">
-              <PropertyRef Name="order_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__M03_Image__produ__3E52440B">
-          <End Role="M03_Product" Type="Self.M03_Product" Multiplicity="0..1" />
-          <End Role="M03_Image" Type="Self.M03_Image" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="M03_Product">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="M03_Image">
-              <PropertyRef Name="product_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__M03_Impor__impor__31EC6D26">
-          <End Role="M03_Import" Type="Self.M03_Import" Multiplicity="0..1" />
-          <End Role="M03_ImportDetail" Type="Self.M03_ImportDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="M03_Import">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="M03_ImportDetail">
-              <PropertyRef Name="import_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__M03_Impor__produ__32E0915F">
-          <End Role="M03_Product" Type="Self.M03_Product" Multiplicity="0..1" />
-          <End Role="M03_ImportDetail" Type="Self.M03_ImportDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="M03_Product">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="M03_ImportDetail">
-              <PropertyRef Name="product_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__M03_Impor__suppl__2F10007B">
-          <End Role="M03_Supplier" Type="Self.M03_Supplier" Multiplicity="0..1" />
-          <End Role="M03_Import" Type="Self.M03_Import" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="M03_Supplier">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="M03_Import">
-              <PropertyRef Name="supplier_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__M03_Menu__parent__35BCFE0A">
-          <End Role="M03_Menu" Type="Self.M03_Menu" Multiplicity="0..1" />
-          <End Role="M03_Menu1" Type="Self.M03_Menu" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="M03_Menu">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="M03_Menu1">
-              <PropertyRef Name="parent_menu_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__M03_Order__addre__5DCAEF64">
           <End Role="M03_Address" Type="Self.M03_Address" Multiplicity="0..1" />
           <End Role="M03_Order" Type="Self.M03_Order" Multiplicity="*" />
@@ -517,7 +386,171 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_Order__custo__5BE2A6F2">
+        <Association Name="FK_Address_Customer">
+          <End Role="M03_Customer" Type="Self.M03_Customer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="M03_Address" Type="Self.M03_Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M03_Customer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="M03_Address">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cart_Customer">
+          <End Role="M03_Customer" Type="Self.M03_Customer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="M03_Cart" Type="Self.M03_Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M03_Customer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="M03_Cart">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CartDetail_Cart">
+          <End Role="M03_Cart" Type="Self.M03_Cart" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="M03_CartDetail" Type="Self.M03_CartDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M03_Cart">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="M03_CartDetail">
+              <PropertyRef Name="cart_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CartDetail_Product">
+          <End Role="M03_Product" Type="Self.M03_Product" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="M03_CartDetail" Type="Self.M03_CartDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M03_Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="M03_CartDetail">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CouponOrder_Coupon">
+          <End Role="M03_Coupon" Type="Self.M03_Coupon" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="M03_CouponOrder" Type="Self.M03_CouponOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M03_Coupon">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="M03_CouponOrder">
+              <PropertyRef Name="coupon_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CouponOrder_Order">
+          <End Role="M03_Order" Type="Self.M03_Order" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="M03_CouponOrder" Type="Self.M03_CouponOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M03_Order">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="M03_CouponOrder">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Image_Product">
+          <End Role="M03_Product" Type="Self.M03_Product" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="M03_Image" Type="Self.M03_Image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M03_Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="M03_Image">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Import_Supplier">
+          <End Role="M03_Supplier" Type="Self.M03_Supplier" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="M03_Import" Type="Self.M03_Import" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M03_Supplier">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="M03_Import">
+              <PropertyRef Name="supplier_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImportDetail_Import">
+          <End Role="M03_Import" Type="Self.M03_Import" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="M03_ImportDetail" Type="Self.M03_ImportDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M03_Import">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="M03_ImportDetail">
+              <PropertyRef Name="import_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImportDetail_Product">
+          <End Role="M03_Product" Type="Self.M03_Product" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="M03_ImportDetail" Type="Self.M03_ImportDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M03_Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="M03_ImportDetail">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Menu_Parent">
+          <End Role="M03_Menu" Type="Self.M03_Menu" Multiplicity="0..1" />
+          <End Role="M03_Menu1" Type="Self.M03_Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M03_Menu">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="M03_Menu1">
+              <PropertyRef Name="parent_menu_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Address">
+          <End Role="M03_Address" Type="Self.M03_Address" Multiplicity="0..1" />
+          <End Role="M03_Order" Type="Self.M03_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M03_Address">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="M03_Order">
+              <PropertyRef Name="addresses_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Customer">
           <End Role="M03_Customer" Type="Self.M03_Customer" Multiplicity="0..1" />
           <End Role="M03_Order" Type="Self.M03_Order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -529,7 +562,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_Order__emplo__5CD6CB2B">
+        <Association Name="FK_Order_Employee">
           <End Role="M03_Employee" Type="Self.M03_Employee" Multiplicity="0..1" />
           <End Role="M03_Order" Type="Self.M03_Order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -541,7 +574,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_Order__order__60A75C0F">
+        <Association Name="FK_OrderDetail_Order">
           <End Role="M03_Order" Type="Self.M03_Order" Multiplicity="0..1" />
           <End Role="M03_OrderDetail" Type="Self.M03_OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -553,7 +586,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_Order__produ__619B8048">
+        <Association Name="FK_OrderDetail_Product">
           <End Role="M03_Product" Type="Self.M03_Product" Multiplicity="0..1" />
           <End Role="M03_OrderDetail" Type="Self.M03_OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -565,7 +598,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_Produ__attri__4316F928">
+        <Association Name="FK_ProductAttribute_attribute">
           <End Role="M03_Attribute" Type="Self.M03_Attribute" Multiplicity="0..1" />
           <End Role="M03_ProductAttribute" Type="Self.M03_ProductAttribute" Multiplicity="*" />
           <ReferentialConstraint>
@@ -577,31 +610,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_Produ__menu___38996AB5">
-          <End Role="M03_Menu" Type="Self.M03_Menu" Multiplicity="0..1" />
-          <End Role="M03_ProductMenu" Type="Self.M03_ProductMenu" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="M03_Menu">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="M03_ProductMenu">
-              <PropertyRef Name="menu_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__M03_Produ__produ__398D8EEE">
-          <End Role="M03_Product" Type="Self.M03_Product" Multiplicity="0..1" />
-          <End Role="M03_ProductMenu" Type="Self.M03_ProductMenu" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="M03_Product">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="M03_ProductMenu">
-              <PropertyRef Name="product_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__M03_Produ__produ__440B1D61">
+        <Association Name="FK_ProductAttribute_Product">
           <End Role="M03_Product" Type="Self.M03_Product" Multiplicity="0..1" />
           <End Role="M03_ProductAttribute" Type="Self.M03_ProductAttribute" Multiplicity="*" />
           <ReferentialConstraint>
@@ -613,7 +622,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_Ratin__custo__4AB81AF0">
+        <Association Name="FK_ProductMenu_Menu">
+          <End Role="M03_Menu" Type="Self.M03_Menu" Multiplicity="0..1" />
+          <End Role="M03_ProductMenu" Type="Self.M03_ProductMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M03_Menu">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="M03_ProductMenu">
+              <PropertyRef Name="menu_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductMenu_Product">
+          <End Role="M03_Product" Type="Self.M03_Product" Multiplicity="0..1" />
+          <End Role="M03_ProductMenu" Type="Self.M03_ProductMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M03_Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="M03_ProductMenu">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rating_Customer">
           <End Role="M03_Customer" Type="Self.M03_Customer" Multiplicity="0..1" />
           <End Role="M03_Rating" Type="Self.M03_Rating" Multiplicity="*" />
           <ReferentialConstraint>
@@ -625,7 +658,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_Ratin__produ__4BAC3F29">
+        <Association Name="FK_Rating_Product">
           <End Role="M03_Product" Type="Self.M03_Product" Multiplicity="0..1" />
           <End Role="M03_Rating" Type="Self.M03_Rating" Multiplicity="*" />
           <ReferentialConstraint>
@@ -637,19 +670,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_RoleS__emplo__571DF1D5">
-          <End Role="M03_Employee" Type="Self.M03_Employee" Multiplicity="0..1" />
-          <End Role="M03_RoleServiceEmployee" Type="Self.M03_RoleServiceEmployee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="M03_Employee">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="M03_RoleServiceEmployee">
-              <PropertyRef Name="employee_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__M03_RoleS__role___52593CB8">
+        <Association Name="FK_RoleService_Role">
           <End Role="M03_Role" Type="Self.M03_Role" Multiplicity="0..1" />
           <End Role="M03_RoleService" Type="Self.M03_RoleService" Multiplicity="*" />
           <ReferentialConstraint>
@@ -661,19 +682,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_RoleS__roles__5629CD9C">
-          <End Role="M03_RoleService" Type="Self.M03_RoleService" Multiplicity="0..1" />
-          <End Role="M03_RoleServiceEmployee" Type="Self.M03_RoleServiceEmployee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="M03_RoleService">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="M03_RoleServiceEmployee">
-              <PropertyRef Name="roleservice_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__M03_RoleS__servi__534D60F1">
+        <Association Name="FK_RoleService_Service">
           <End Role="M03_Service" Type="Self.M03_Service" Multiplicity="0..1" />
           <End Role="M03_RoleService" Type="Self.M03_RoleService" Multiplicity="*" />
           <ReferentialConstraint>
@@ -685,8 +694,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_WishL__custo__46E78A0C">
-          <End Role="M03_Customer" Type="Self.M03_Customer" Multiplicity="0..1" />
+        <Association Name="FK_RoleServiceEmployee_Employee">
+          <End Role="M03_Employee" Type="Self.M03_Employee" Multiplicity="0..1" />
+          <End Role="M03_RoleServiceEmployee" Type="Self.M03_RoleServiceEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M03_Employee">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="M03_RoleServiceEmployee">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleServiceEmployee_RoleService">
+          <End Role="M03_RoleService" Type="Self.M03_RoleService" Multiplicity="0..1" />
+          <End Role="M03_RoleServiceEmployee" Type="Self.M03_RoleServiceEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M03_RoleService">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="M03_RoleServiceEmployee">
+              <PropertyRef Name="roleservice_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wishlist_Customer">
+          <End Role="M03_Customer" Type="Self.M03_Customer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="M03_WishList" Type="Self.M03_WishList" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="M03_Customer">
@@ -697,8 +732,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_WishL__produ__47DBAE45">
-          <End Role="M03_Product" Type="Self.M03_Product" Multiplicity="0..1" />
+        <Association Name="FK_Wishlist_Product">
+          <End Role="M03_Product" Type="Self.M03_Product" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="M03_WishList" Type="Self.M03_WishList" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="M03_Product">
@@ -735,115 +772,119 @@
           <EntitySet Name="M03_Supplier" EntityType="Self.M03_Supplier" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M03_UserLog" EntityType="Self.M03_UserLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M03_WishList" EntityType="Self.M03_WishList" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__M03_Addre__custo__286302EC" Association="Self.FK__M03_Addre__custo__286302EC">
-            <End Role="M03_Customer" EntitySet="M03_Customer" />
-            <End Role="M03_Address" EntitySet="M03_Address" />
-          </AssociationSet>
-          <AssociationSet Name="FK__M03_Cart__custom__6A30C649" Association="Self.FK__M03_Cart__custom__6A30C649">
-            <End Role="M03_Customer" EntitySet="M03_Customer" />
-            <End Role="M03_Cart" EntitySet="M03_Cart" />
-          </AssociationSet>
-          <AssociationSet Name="FK__M03_CartD__cart___6D0D32F4" Association="Self.FK__M03_CartD__cart___6D0D32F4">
-            <End Role="M03_Cart" EntitySet="M03_Cart" />
-            <End Role="M03_CartDetail" EntitySet="M03_CartDetail" />
-          </AssociationSet>
-          <AssociationSet Name="FK__M03_CartD__produ__6E01572D" Association="Self.FK__M03_CartD__produ__6E01572D">
-            <End Role="M03_Product" EntitySet="M03_Product" />
-            <End Role="M03_CartDetail" EntitySet="M03_CartDetail" />
-          </AssociationSet>
-          <AssociationSet Name="FK__M03_Coupo__coupo__66603565" Association="Self.FK__M03_Coupo__coupo__66603565">
-            <End Role="M03_Coupon" EntitySet="M03_Coupon" />
-            <End Role="M03_CouponOrder" EntitySet="M03_CouponOrder" />
-          </AssociationSet>
-          <AssociationSet Name="FK__M03_Coupo__order__6754599E" Association="Self.FK__M03_Coupo__order__6754599E">
-            <End Role="M03_Order" EntitySet="M03_Order" />
-            <End Role="M03_CouponOrder" EntitySet="M03_CouponOrder" />
-          </AssociationSet>
-          <AssociationSet Name="FK__M03_Image__produ__3E52440B" Association="Self.FK__M03_Image__produ__3E52440B">
-            <End Role="M03_Product" EntitySet="M03_Product" />
-            <End Role="M03_Image" EntitySet="M03_Image" />
-          </AssociationSet>
-          <AssociationSet Name="FK__M03_Impor__impor__31EC6D26" Association="Self.FK__M03_Impor__impor__31EC6D26">
-            <End Role="M03_Import" EntitySet="M03_Import" />
-            <End Role="M03_ImportDetail" EntitySet="M03_ImportDetail" />
-          </AssociationSet>
-          <AssociationSet Name="FK__M03_Impor__produ__32E0915F" Association="Self.FK__M03_Impor__produ__32E0915F">
-            <End Role="M03_Product" EntitySet="M03_Product" />
-            <End Role="M03_ImportDetail" EntitySet="M03_ImportDetail" />
-          </AssociationSet>
-          <AssociationSet Name="FK__M03_Impor__suppl__2F10007B" Association="Self.FK__M03_Impor__suppl__2F10007B">
-            <End Role="M03_Supplier" EntitySet="M03_Supplier" />
-            <End Role="M03_Import" EntitySet="M03_Import" />
-          </AssociationSet>
-          <AssociationSet Name="FK__M03_Menu__parent__35BCFE0A" Association="Self.FK__M03_Menu__parent__35BCFE0A">
-            <End Role="M03_Menu" EntitySet="M03_Menu" />
-            <End Role="M03_Menu1" EntitySet="M03_Menu" />
-          </AssociationSet>
           <AssociationSet Name="FK__M03_Order__addre__5DCAEF64" Association="Self.FK__M03_Order__addre__5DCAEF64">
             <End Role="M03_Address" EntitySet="M03_Address" />
             <End Role="M03_Order" EntitySet="M03_Order" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_Order__custo__5BE2A6F2" Association="Self.FK__M03_Order__custo__5BE2A6F2">
+          <AssociationSet Name="FK_Address_Customer" Association="Self.FK_Address_Customer">
+            <End Role="M03_Customer" EntitySet="M03_Customer" />
+            <End Role="M03_Address" EntitySet="M03_Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cart_Customer" Association="Self.FK_Cart_Customer">
+            <End Role="M03_Customer" EntitySet="M03_Customer" />
+            <End Role="M03_Cart" EntitySet="M03_Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CartDetail_Cart" Association="Self.FK_CartDetail_Cart">
+            <End Role="M03_Cart" EntitySet="M03_Cart" />
+            <End Role="M03_CartDetail" EntitySet="M03_CartDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CartDetail_Product" Association="Self.FK_CartDetail_Product">
+            <End Role="M03_Product" EntitySet="M03_Product" />
+            <End Role="M03_CartDetail" EntitySet="M03_CartDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CouponOrder_Coupon" Association="Self.FK_CouponOrder_Coupon">
+            <End Role="M03_Coupon" EntitySet="M03_Coupon" />
+            <End Role="M03_CouponOrder" EntitySet="M03_CouponOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CouponOrder_Order" Association="Self.FK_CouponOrder_Order">
+            <End Role="M03_Order" EntitySet="M03_Order" />
+            <End Role="M03_CouponOrder" EntitySet="M03_CouponOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Image_Product" Association="Self.FK_Image_Product">
+            <End Role="M03_Product" EntitySet="M03_Product" />
+            <End Role="M03_Image" EntitySet="M03_Image" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Import_Supplier" Association="Self.FK_Import_Supplier">
+            <End Role="M03_Supplier" EntitySet="M03_Supplier" />
+            <End Role="M03_Import" EntitySet="M03_Import" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImportDetail_Import" Association="Self.FK_ImportDetail_Import">
+            <End Role="M03_Import" EntitySet="M03_Import" />
+            <End Role="M03_ImportDetail" EntitySet="M03_ImportDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImportDetail_Product" Association="Self.FK_ImportDetail_Product">
+            <End Role="M03_Product" EntitySet="M03_Product" />
+            <End Role="M03_ImportDetail" EntitySet="M03_ImportDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Menu_Parent" Association="Self.FK_Menu_Parent">
+            <End Role="M03_Menu" EntitySet="M03_Menu" />
+            <End Role="M03_Menu1" EntitySet="M03_Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Address" Association="Self.FK_Order_Address">
+            <End Role="M03_Address" EntitySet="M03_Address" />
+            <End Role="M03_Order" EntitySet="M03_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
             <End Role="M03_Customer" EntitySet="M03_Customer" />
             <End Role="M03_Order" EntitySet="M03_Order" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_Order__emplo__5CD6CB2B" Association="Self.FK__M03_Order__emplo__5CD6CB2B">
+          <AssociationSet Name="FK_Order_Employee" Association="Self.FK_Order_Employee">
             <End Role="M03_Employee" EntitySet="M03_Employee" />
             <End Role="M03_Order" EntitySet="M03_Order" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_Order__order__60A75C0F" Association="Self.FK__M03_Order__order__60A75C0F">
+          <AssociationSet Name="FK_OrderDetail_Order" Association="Self.FK_OrderDetail_Order">
             <End Role="M03_Order" EntitySet="M03_Order" />
             <End Role="M03_OrderDetail" EntitySet="M03_OrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_Order__produ__619B8048" Association="Self.FK__M03_Order__produ__619B8048">
+          <AssociationSet Name="FK_OrderDetail_Product" Association="Self.FK_OrderDetail_Product">
             <End Role="M03_Product" EntitySet="M03_Product" />
             <End Role="M03_OrderDetail" EntitySet="M03_OrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_Produ__attri__4316F928" Association="Self.FK__M03_Produ__attri__4316F928">
+          <AssociationSet Name="FK_ProductAttribute_attribute" Association="Self.FK_ProductAttribute_attribute">
             <End Role="M03_Attribute" EntitySet="M03_Attribute" />
             <End Role="M03_ProductAttribute" EntitySet="M03_ProductAttribute" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_Produ__menu___38996AB5" Association="Self.FK__M03_Produ__menu___38996AB5">
-            <End Role="M03_Menu" EntitySet="M03_Menu" />
-            <End Role="M03_ProductMenu" EntitySet="M03_ProductMenu" />
-          </AssociationSet>
-          <AssociationSet Name="FK__M03_Produ__produ__398D8EEE" Association="Self.FK__M03_Produ__produ__398D8EEE">
-            <End Role="M03_Product" EntitySet="M03_Product" />
-            <End Role="M03_ProductMenu" EntitySet="M03_ProductMenu" />
-          </AssociationSet>
-          <AssociationSet Name="FK__M03_Produ__produ__440B1D61" Association="Self.FK__M03_Produ__produ__440B1D61">
+          <AssociationSet Name="FK_ProductAttribute_Product" Association="Self.FK_ProductAttribute_Product">
             <End Role="M03_Product" EntitySet="M03_Product" />
             <End Role="M03_ProductAttribute" EntitySet="M03_ProductAttribute" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_Ratin__custo__4AB81AF0" Association="Self.FK__M03_Ratin__custo__4AB81AF0">
+          <AssociationSet Name="FK_ProductMenu_Menu" Association="Self.FK_ProductMenu_Menu">
+            <End Role="M03_Menu" EntitySet="M03_Menu" />
+            <End Role="M03_ProductMenu" EntitySet="M03_ProductMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductMenu_Product" Association="Self.FK_ProductMenu_Product">
+            <End Role="M03_Product" EntitySet="M03_Product" />
+            <End Role="M03_ProductMenu" EntitySet="M03_ProductMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rating_Customer" Association="Self.FK_Rating_Customer">
             <End Role="M03_Customer" EntitySet="M03_Customer" />
             <End Role="M03_Rating" EntitySet="M03_Rating" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_Ratin__produ__4BAC3F29" Association="Self.FK__M03_Ratin__produ__4BAC3F29">
+          <AssociationSet Name="FK_Rating_Product" Association="Self.FK_Rating_Product">
             <End Role="M03_Product" EntitySet="M03_Product" />
             <End Role="M03_Rating" EntitySet="M03_Rating" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_RoleS__emplo__571DF1D5" Association="Self.FK__M03_RoleS__emplo__571DF1D5">
-            <End Role="M03_Employee" EntitySet="M03_Employee" />
-            <End Role="M03_RoleServiceEmployee" EntitySet="M03_RoleServiceEmployee" />
-          </AssociationSet>
-          <AssociationSet Name="FK__M03_RoleS__role___52593CB8" Association="Self.FK__M03_RoleS__role___52593CB8">
+          <AssociationSet Name="FK_RoleService_Role" Association="Self.FK_RoleService_Role">
             <End Role="M03_Role" EntitySet="M03_Role" />
             <End Role="M03_RoleService" EntitySet="M03_RoleService" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_RoleS__roles__5629CD9C" Association="Self.FK__M03_RoleS__roles__5629CD9C">
-            <End Role="M03_RoleService" EntitySet="M03_RoleService" />
-            <End Role="M03_RoleServiceEmployee" EntitySet="M03_RoleServiceEmployee" />
-          </AssociationSet>
-          <AssociationSet Name="FK__M03_RoleS__servi__534D60F1" Association="Self.FK__M03_RoleS__servi__534D60F1">
+          <AssociationSet Name="FK_RoleService_Service" Association="Self.FK_RoleService_Service">
             <End Role="M03_Service" EntitySet="M03_Service" />
             <End Role="M03_RoleService" EntitySet="M03_RoleService" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_WishL__custo__46E78A0C" Association="Self.FK__M03_WishL__custo__46E78A0C">
+          <AssociationSet Name="FK_RoleServiceEmployee_Employee" Association="Self.FK_RoleServiceEmployee_Employee">
+            <End Role="M03_Employee" EntitySet="M03_Employee" />
+            <End Role="M03_RoleServiceEmployee" EntitySet="M03_RoleServiceEmployee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleServiceEmployee_RoleService" Association="Self.FK_RoleServiceEmployee_RoleService">
+            <End Role="M03_RoleService" EntitySet="M03_RoleService" />
+            <End Role="M03_RoleServiceEmployee" EntitySet="M03_RoleServiceEmployee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wishlist_Customer" Association="Self.FK_Wishlist_Customer">
             <End Role="M03_Customer" EntitySet="M03_Customer" />
             <End Role="M03_WishList" EntitySet="M03_WishList" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_WishL__produ__47DBAE45" Association="Self.FK__M03_WishL__produ__47DBAE45">
+          <AssociationSet Name="FK_Wishlist_Product" Association="Self.FK_Wishlist_Product">
             <End Role="M03_Product" EntitySet="M03_Product" />
             <End Role="M03_WishList" EntitySet="M03_WishList" />
           </AssociationSet>
@@ -870,8 +911,9 @@
           <Property Name="modify_time" Type="DateTime" Precision="3" />
           <Property Name="modify_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tenant_id" Type="Guid" />
-          <NavigationProperty Name="M03_Customer" Relationship="Self.FK__M03_Addre__custo__286302EC" FromRole="M03_Address" ToRole="M03_Customer" />
           <NavigationProperty Name="M03_Order" Relationship="Self.FK__M03_Order__addre__5DCAEF64" FromRole="M03_Address" ToRole="M03_Order" />
+          <NavigationProperty Name="M03_Customer" Relationship="Self.FK_Address_Customer" FromRole="M03_Address" ToRole="M03_Customer" />
+          <NavigationProperty Name="M03_Order1" Relationship="Self.FK_Order_Address" FromRole="M03_Address" ToRole="M03_Order" />
         </EntityType>
         <EntityType Name="M03_Attribute">
           <Key>
@@ -884,7 +926,7 @@
           <Property Name="modify_time" Type="DateTime" Precision="3" />
           <Property Name="modify_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tenant_id" Type="Guid" />
-          <NavigationProperty Name="M03_ProductAttribute" Relationship="Self.FK__M03_Produ__attri__4316F928" FromRole="M03_Attribute" ToRole="M03_ProductAttribute" />
+          <NavigationProperty Name="M03_ProductAttribute" Relationship="Self.FK_ProductAttribute_attribute" FromRole="M03_Attribute" ToRole="M03_ProductAttribute" />
         </EntityType>
         <EntityType Name="M03_Cart">
           <Key>
@@ -897,8 +939,8 @@
           <Property Name="modify_time" Type="DateTime" Precision="3" />
           <Property Name="modify_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tenant_id" Type="Guid" />
-          <NavigationProperty Name="M03_Customer" Relationship="Self.FK__M03_Cart__custom__6A30C649" FromRole="M03_Cart" ToRole="M03_Customer" />
-          <NavigationProperty Name="M03_CartDetail" Relationship="Self.FK__M03_CartD__cart___6D0D32F4" FromRole="M03_Cart" ToRole="M03_CartDetail" />
+          <NavigationProperty Name="M03_Customer" Relationship="Self.FK_Cart_Customer" FromRole="M03_Cart" ToRole="M03_Customer" />
+          <NavigationProperty Name="M03_CartDetail" Relationship="Self.FK_CartDetail_Cart" FromRole="M03_Cart" ToRole="M03_CartDetail" />
         </EntityType>
         <EntityType Name="M03_CartDetail">
           <Key>
@@ -914,8 +956,8 @@
           <Property Name="modify_time" Type="DateTime" Precision="3" />
           <Property Name="modify_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tenant_id" Type="Guid" />
-          <NavigationProperty Name="M03_Cart" Relationship="Self.FK__M03_CartD__cart___6D0D32F4" FromRole="M03_CartDetail" ToRole="M03_Cart" />
-          <NavigationProperty Name="M03_Product" Relationship="Self.FK__M03_CartD__produ__6E01572D" FromRole="M03_CartDetail" ToRole="M03_Product" />
+          <NavigationProperty Name="M03_Cart" Relationship="Self.FK_CartDetail_Cart" FromRole="M03_CartDetail" ToRole="M03_Cart" />
+          <NavigationProperty Name="M03_Product" Relationship="Self.FK_CartDetail_Product" FromRole="M03_CartDetail" ToRole="M03_Product" />
         </EntityType>
         <EntityType Name="M03_Coupon">
           <Key>
@@ -932,7 +974,7 @@
           <Property Name="modify_time" Type="DateTime" Precision="3" />
           <Property Name="modify_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tenant_id" Type="Guid" />
-          <NavigationProperty Name="M03_CouponOrder" Relationship="Self.FK__M03_Coupo__coupo__66603565" FromRole="M03_Coupon" ToRole="M03_CouponOrder" />
+          <NavigationProperty Name="M03_CouponOrder" Relationship="Self.FK_CouponOrder_Coupon" FromRole="M03_Coupon" ToRole="M03_CouponOrder" />
         </EntityType>
         <EntityType Name="M03_CouponOrder">
           <Key>
@@ -946,8 +988,8 @@
           <Property Name="modify_time" Type="DateTime" Precision="3" />
           <Property Name="modify_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tenant_id" Type="Guid" />
-          <NavigationProperty Name="M03_Coupon" Relationship="Self.FK__M03_Coupo__coupo__66603565" FromRole="M03_CouponOrder" ToRole="M03_Coupon" />
-          <NavigationProperty Name="M03_Order" Relationship="Self.FK__M03_Coupo__order__6754599E" FromRole="M03_CouponOrder" ToRole="M03_Order" />
+          <NavigationProperty Name="M03_Coupon" Relationship="Self.FK_CouponOrder_Coupon" FromRole="M03_CouponOrder" ToRole="M03_Coupon" />
+          <NavigationProperty Name="M03_Order" Relationship="Self.FK_CouponOrder_Order" FromRole="M03_CouponOrder" ToRole="M03_Order" />
         </EntityType>
         <EntityType Name="M03_Customer">
           <Key>
@@ -965,11 +1007,12 @@
           <Property Name="modify_time" Type="DateTime" Precision="3" />
           <Property Name="modify_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tenant_id" Type="Guid" />
-          <NavigationProperty Name="M03_Address" Relationship="Self.FK__M03_Addre__custo__286302EC" FromRole="M03_Customer" ToRole="M03_Address" />
-          <NavigationProperty Name="M03_Cart" Relationship="Self.FK__M03_Cart__custom__6A30C649" FromRole="M03_Customer" ToRole="M03_Cart" />
-          <NavigationProperty Name="M03_Order" Relationship="Self.FK__M03_Order__custo__5BE2A6F2" FromRole="M03_Customer" ToRole="M03_Order" />
-          <NavigationProperty Name="M03_Rating" Relationship="Self.FK__M03_Ratin__custo__4AB81AF0" FromRole="M03_Customer" ToRole="M03_Rating" />
-          <NavigationProperty Name="M03_WishList" Relationship="Self.FK__M03_WishL__custo__46E78A0C" FromRole="M03_Customer" ToRole="M03_WishList" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="M03_Address" Relationship="Self.FK_Address_Customer" FromRole="M03_Customer" ToRole="M03_Address" />
+          <NavigationProperty Name="M03_Cart" Relationship="Self.FK_Cart_Customer" FromRole="M03_Customer" ToRole="M03_Cart" />
+          <NavigationProperty Name="M03_Order" Relationship="Self.FK_Order_Customer" FromRole="M03_Customer" ToRole="M03_Order" />
+          <NavigationProperty Name="M03_Rating" Relationship="Self.FK_Rating_Customer" FromRole="M03_Customer" ToRole="M03_Rating" />
+          <NavigationProperty Name="M03_WishList" Relationship="Self.FK_Wishlist_Customer" FromRole="M03_Customer" ToRole="M03_WishList" />
         </EntityType>
         <EntityType Name="M03_Employee">
           <Key>
@@ -988,8 +1031,8 @@
           <Property Name="modify_time" Type="DateTime" Precision="3" />
           <Property Name="modify_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tenant_id" Type="Guid" />
-          <NavigationProperty Name="M03_Order" Relationship="Self.FK__M03_Order__emplo__5CD6CB2B" FromRole="M03_Employee" ToRole="M03_Order" />
-          <NavigationProperty Name="M03_RoleServiceEmployee" Relationship="Self.FK__M03_RoleS__emplo__571DF1D5" FromRole="M03_Employee" ToRole="M03_RoleServiceEmployee" />
+          <NavigationProperty Name="M03_Order" Relationship="Self.FK_Order_Employee" FromRole="M03_Employee" ToRole="M03_Order" />
+          <NavigationProperty Name="M03_RoleServiceEmployee" Relationship="Self.FK_RoleServiceEmployee_Employee" FromRole="M03_Employee" ToRole="M03_RoleServiceEmployee" />
         </EntityType>
         <EntityType Name="M03_Image">
           <Key>
@@ -1004,7 +1047,7 @@
           <Property Name="modify_time" Type="DateTime" Precision="3" />
           <Property Name="modify_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tenant_id" Type="Guid" />
-          <NavigationProperty Name="M03_Product" Relationship="Self.FK__M03_Image__produ__3E52440B" FromRole="M03_Image" ToRole="M03_Product" />
+          <NavigationProperty Name="M03_Product" Relationship="Self.FK_Image_Product" FromRole="M03_Image" ToRole="M03_Product" />
         </EntityType>
         <EntityType Name="M03_Import">
           <Key>
@@ -1019,8 +1062,8 @@
           <Property Name="modify_time" Type="DateTime" Precision="3" />
           <Property Name="modify_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tenant_id" Type="Guid" />
-          <NavigationProperty Name="M03_ImportDetail" Relationship="Self.FK__M03_Impor__impor__31EC6D26" FromRole="M03_Import" ToRole="M03_ImportDetail" />
-          <NavigationProperty Name="M03_Supplier" Relationship="Self.FK__M03_Impor__suppl__2F10007B" FromRole="M03_Import" ToRole="M03_Supplier" />
+          <NavigationProperty Name="M03_Supplier" Relationship="Self.FK_Import_Supplier" FromRole="M03_Import" ToRole="M03_Supplier" />
+          <NavigationProperty Name="M03_ImportDetail" Relationship="Self.FK_ImportDetail_Import" FromRole="M03_Import" ToRole="M03_ImportDetail" />
         </EntityType>
         <EntityType Name="M03_ImportDetail">
           <Key>
@@ -1036,8 +1079,8 @@
           <Property Name="modify_time" Type="DateTime" Precision="3" />
           <Property Name="modify_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tenant_id" Type="Guid" />
-          <NavigationProperty Name="M03_Import" Relationship="Self.FK__M03_Impor__impor__31EC6D26" FromRole="M03_ImportDetail" ToRole="M03_Import" />
-          <NavigationProperty Name="M03_Product" Relationship="Self.FK__M03_Impor__produ__32E0915F" FromRole="M03_ImportDetail" ToRole="M03_Product" />
+          <NavigationProperty Name="M03_Import" Relationship="Self.FK_ImportDetail_Import" FromRole="M03_ImportDetail" ToRole="M03_Import" />
+          <NavigationProperty Name="M03_Product" Relationship="Self.FK_ImportDetail_Product" FromRole="M03_ImportDetail" ToRole="M03_Product" />
         </EntityType>
         <EntityType Name="M03_Menu">
           <Key>
@@ -1052,9 +1095,9 @@
           <Property Name="modify_time" Type="DateTime" Precision="3" />
           <Property Name="modify_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tenant_id" Type="Guid" />
-          <NavigationProperty Name="M03_Menu1" Relationship="Self.FK__M03_Menu__parent__35BCFE0A" FromRole="M03_Menu" ToRole="M03_Menu1" />
-          <NavigationProperty Name="M03_Menu2" Relationship="Self.FK__M03_Menu__parent__35BCFE0A" FromRole="M03_Menu1" ToRole="M03_Menu" />
-          <NavigationProperty Name="M03_ProductMenu" Relationship="Self.FK__M03_Produ__menu___38996AB5" FromRole="M03_Menu" ToRole="M03_ProductMenu" />
+          <NavigationProperty Name="M03_Menu1" Relationship="Self.FK_Menu_Parent" FromRole="M03_Menu" ToRole="M03_Menu1" />
+          <NavigationProperty Name="M03_Menu2" Relationship="Self.FK_Menu_Parent" FromRole="M03_Menu1" ToRole="M03_Menu" />
+          <NavigationProperty Name="M03_ProductMenu" Relationship="Self.FK_ProductMenu_Menu" FromRole="M03_Menu" ToRole="M03_ProductMenu" />
         </EntityType>
         <EntityType Name="M03_Order">
           <Key>
@@ -1080,10 +1123,11 @@
           <Property Name="modify_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tenant_id" Type="Guid" />
           <NavigationProperty Name="M03_Address" Relationship="Self.FK__M03_Order__addre__5DCAEF64" FromRole="M03_Order" ToRole="M03_Address" />
-          <NavigationProperty Name="M03_CouponOrder" Relationship="Self.FK__M03_Coupo__order__6754599E" FromRole="M03_Order" ToRole="M03_CouponOrder" />
-          <NavigationProperty Name="M03_Customer" Relationship="Self.FK__M03_Order__custo__5BE2A6F2" FromRole="M03_Order" ToRole="M03_Customer" />
-          <NavigationProperty Name="M03_Employee" Relationship="Self.FK__M03_Order__emplo__5CD6CB2B" FromRole="M03_Order" ToRole="M03_Employee" />
-          <NavigationProperty Name="M03_OrderDetail" Relationship="Self.FK__M03_Order__order__60A75C0F" FromRole="M03_Order" ToRole="M03_OrderDetail" />
+          <NavigationProperty Name="M03_Address1" Relationship="Self.FK_Order_Address" FromRole="M03_Order" ToRole="M03_Address" />
+          <NavigationProperty Name="M03_CouponOrder" Relationship="Self.FK_CouponOrder_Order" FromRole="M03_Order" ToRole="M03_CouponOrder" />
+          <NavigationProperty Name="M03_Customer" Relationship="Self.FK_Order_Customer" FromRole="M03_Order" ToRole="M03_Customer" />
+          <NavigationProperty Name="M03_Employee" Relationship="Self.FK_Order_Employee" FromRole="M03_Order" ToRole="M03_Employee" />
+          <NavigationProperty Name="M03_OrderDetail" Relationship="Self.FK_OrderDetail_Order" FromRole="M03_Order" ToRole="M03_OrderDetail" />
         </EntityType>
         <EntityType Name="M03_OrderDetail">
           <Key>
@@ -1100,8 +1144,8 @@
           <Property Name="modify_time" Type="DateTime" Precision="3" />
           <Property Name="modify_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tenant_id" Type="Guid" />
-          <NavigationProperty Name="M03_Order" Relationship="Self.FK__M03_Order__order__60A75C0F" FromRole="M03_OrderDetail" ToRole="M03_Order" />
-          <NavigationProperty Name="M03_Product" Relationship="Self.FK__M03_Order__produ__619B8048" FromRole="M03_OrderDetail" ToRole="M03_Product" />
+          <NavigationProperty Name="M03_Order" Relationship="Self.FK_OrderDetail_Order" FromRole="M03_OrderDetail" ToRole="M03_Order" />
+          <NavigationProperty Name="M03_Product" Relationship="Self.FK_OrderDetail_Product" FromRole="M03_OrderDetail" ToRole="M03_Product" />
         </EntityType>
         <EntityType Name="M03_Product">
           <Key>
@@ -1116,14 +1160,14 @@
           <Property Name="modify_time" Type="DateTime" Precision="3" />
           <Property Name="modify_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tenant_id" Type="Guid" />
-          <NavigationProperty Name="M03_CartDetail" Relationship="Self.FK__M03_CartD__produ__6E01572D" FromRole="M03_Product" ToRole="M03_CartDetail" />
-          <NavigationProperty Name="M03_Image" Relationship="Self.FK__M03_Image__produ__3E52440B" FromRole="M03_Product" ToRole="M03_Image" />
-          <NavigationProperty Name="M03_ImportDetail" Relationship="Self.FK__M03_Impor__produ__32E0915F" FromRole="M03_Product" ToRole="M03_ImportDetail" />
-          <NavigationProperty Name="M03_OrderDetail" Relationship="Self.FK__M03_Order__produ__619B8048" FromRole="M03_Product" ToRole="M03_OrderDetail" />
-          <NavigationProperty Name="M03_ProductMenu" Relationship="Self.FK__M03_Produ__produ__398D8EEE" FromRole="M03_Product" ToRole="M03_ProductMenu" />
-          <NavigationProperty Name="M03_ProductAttribute" Relationship="Self.FK__M03_Produ__produ__440B1D61" FromRole="M03_Product" ToRole="M03_ProductAttribute" />
-          <NavigationProperty Name="M03_Rating" Relationship="Self.FK__M03_Ratin__produ__4BAC3F29" FromRole="M03_Product" ToRole="M03_Rating" />
-          <NavigationProperty Name="M03_WishList" Relationship="Self.FK__M03_WishL__produ__47DBAE45" FromRole="M03_Product" ToRole="M03_WishList" />
+          <NavigationProperty Name="M03_CartDetail" Relationship="Self.FK_CartDetail_Product" FromRole="M03_Product" ToRole="M03_CartDetail" />
+          <NavigationProperty Name="M03_Image" Relationship="Self.FK_Image_Product" FromRole="M03_Product" ToRole="M03_Image" />
+          <NavigationProperty Name="M03_ImportDetail" Relationship="Self.FK_ImportDetail_Product" FromRole="M03_Product" ToRole="M03_ImportDetail" />
+          <NavigationProperty Name="M03_OrderDetail" Relationship="Self.FK_OrderDetail_Product" FromRole="M03_Product" ToRole="M03_OrderDetail" />
+          <NavigationProperty Name="M03_ProductAttribute" Relationship="Self.FK_ProductAttribute_Product" FromRole="M03_Product" ToRole="M03_ProductAttribute" />
+          <NavigationProperty Name="M03_ProductMenu" Relationship="Self.FK_ProductMenu_Product" FromRole="M03_Product" ToRole="M03_ProductMenu" />
+          <NavigationProperty Name="M03_Rating" Relationship="Self.FK_Rating_Product" FromRole="M03_Product" ToRole="M03_Rating" />
+          <NavigationProperty Name="M03_WishList" Relationship="Self.FK_Wishlist_Product" FromRole="M03_Product" ToRole="M03_WishList" />
         </EntityType>
         <EntityType Name="M03_ProductAttribute">
           <Key>
@@ -1138,8 +1182,8 @@
           <Property Name="modify_time" Type="DateTime" Precision="3" />
           <Property Name="modify_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tenant_id" Type="Guid" />
-          <NavigationProperty Name="M03_Attribute" Relationship="Self.FK__M03_Produ__attri__4316F928" FromRole="M03_ProductAttribute" ToRole="M03_Attribute" />
-          <NavigationProperty Name="M03_Product" Relationship="Self.FK__M03_Produ__produ__440B1D61" FromRole="M03_ProductAttribute" ToRole="M03_Product" />
+          <NavigationProperty Name="M03_Attribute" Relationship="Self.FK_ProductAttribute_attribute" FromRole="M03_ProductAttribute" ToRole="M03_Attribute" />
+          <NavigationProperty Name="M03_Product" Relationship="Self.FK_ProductAttribute_Product" FromRole="M03_ProductAttribute" ToRole="M03_Product" />
         </EntityType>
         <EntityType Name="M03_ProductMenu">
           <Key>
@@ -1153,8 +1197,8 @@
           <Property Name="modify_time" Type="DateTime" Precision="3" />
           <Property Name="modify_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tenant_id" Type="Guid" />
-          <NavigationProperty Name="M03_Menu" Relationship="Self.FK__M03_Produ__menu___38996AB5" FromRole="M03_ProductMenu" ToRole="M03_Menu" />
-          <NavigationProperty Name="M03_Product" Relationship="Self.FK__M03_Produ__produ__398D8EEE" FromRole="M03_ProductMenu" ToRole="M03_Product" />
+          <NavigationProperty Name="M03_Menu" Relationship="Self.FK_ProductMenu_Menu" FromRole="M03_ProductMenu" ToRole="M03_Menu" />
+          <NavigationProperty Name="M03_Product" Relationship="Self.FK_ProductMenu_Product" FromRole="M03_ProductMenu" ToRole="M03_Product" />
         </EntityType>
         <EntityType Name="M03_Rating">
           <Key>
@@ -1170,8 +1214,8 @@
           <Property Name="modify_time" Type="DateTime" Precision="3" />
           <Property Name="modify_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tenant_id" Type="Guid" />
-          <NavigationProperty Name="M03_Customer" Relationship="Self.FK__M03_Ratin__custo__4AB81AF0" FromRole="M03_Rating" ToRole="M03_Customer" />
-          <NavigationProperty Name="M03_Product" Relationship="Self.FK__M03_Ratin__produ__4BAC3F29" FromRole="M03_Rating" ToRole="M03_Product" />
+          <NavigationProperty Name="M03_Customer" Relationship="Self.FK_Rating_Customer" FromRole="M03_Rating" ToRole="M03_Customer" />
+          <NavigationProperty Name="M03_Product" Relationship="Self.FK_Rating_Product" FromRole="M03_Rating" ToRole="M03_Product" />
         </EntityType>
         <EntityType Name="M03_Role">
           <Key>
@@ -1184,7 +1228,7 @@
           <Property Name="modify_time" Type="DateTime" Precision="3" />
           <Property Name="modify_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tenant_id" Type="Guid" />
-          <NavigationProperty Name="M03_RoleService" Relationship="Self.FK__M03_RoleS__role___52593CB8" FromRole="M03_Role" ToRole="M03_RoleService" />
+          <NavigationProperty Name="M03_RoleService" Relationship="Self.FK_RoleService_Role" FromRole="M03_Role" ToRole="M03_RoleService" />
         </EntityType>
         <EntityType Name="M03_RoleService">
           <Key>
@@ -1199,9 +1243,9 @@
           <Property Name="modify_time" Type="DateTime" Precision="3" />
           <Property Name="modify_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tenant_id" Type="Guid" />
-          <NavigationProperty Name="M03_Role" Relationship="Self.FK__M03_RoleS__role___52593CB8" FromRole="M03_RoleService" ToRole="M03_Role" />
-          <NavigationProperty Name="M03_RoleServiceEmployee" Relationship="Self.FK__M03_RoleS__roles__5629CD9C" FromRole="M03_RoleService" ToRole="M03_RoleServiceEmployee" />
-          <NavigationProperty Name="M03_Service" Relationship="Self.FK__M03_RoleS__servi__534D60F1" FromRole="M03_RoleService" ToRole="M03_Service" />
+          <NavigationProperty Name="M03_Role" Relationship="Self.FK_RoleService_Role" FromRole="M03_RoleService" ToRole="M03_Role" />
+          <NavigationProperty Name="M03_Service" Relationship="Self.FK_RoleService_Service" FromRole="M03_RoleService" ToRole="M03_Service" />
+          <NavigationProperty Name="M03_RoleServiceEmployee" Relationship="Self.FK_RoleServiceEmployee_RoleService" FromRole="M03_RoleService" ToRole="M03_RoleServiceEmployee" />
         </EntityType>
         <EntityType Name="M03_RoleServiceEmployee">
           <Key>
@@ -1215,8 +1259,8 @@
           <Property Name="modify_time" Type="DateTime" Precision="3" />
           <Property Name="modify_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tenant_id" Type="Guid" />
-          <NavigationProperty Name="M03_Employee" Relationship="Self.FK__M03_RoleS__emplo__571DF1D5" FromRole="M03_RoleServiceEmployee" ToRole="M03_Employee" />
-          <NavigationProperty Name="M03_RoleService" Relationship="Self.FK__M03_RoleS__roles__5629CD9C" FromRole="M03_RoleServiceEmployee" ToRole="M03_RoleService" />
+          <NavigationProperty Name="M03_Employee" Relationship="Self.FK_RoleServiceEmployee_Employee" FromRole="M03_RoleServiceEmployee" ToRole="M03_Employee" />
+          <NavigationProperty Name="M03_RoleService" Relationship="Self.FK_RoleServiceEmployee_RoleService" FromRole="M03_RoleServiceEmployee" ToRole="M03_RoleService" />
         </EntityType>
         <EntityType Name="M03_Service">
           <Key>
@@ -1229,7 +1273,7 @@
           <Property Name="modify_time" Type="DateTime" Precision="3" />
           <Property Name="modify_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tenant_id" Type="Guid" />
-          <NavigationProperty Name="M03_RoleService" Relationship="Self.FK__M03_RoleS__servi__534D60F1" FromRole="M03_Service" ToRole="M03_RoleService" />
+          <NavigationProperty Name="M03_RoleService" Relationship="Self.FK_RoleService_Service" FromRole="M03_Service" ToRole="M03_RoleService" />
         </EntityType>
         <EntityType Name="M03_Supplier">
           <Key>
@@ -1245,7 +1289,7 @@
           <Property Name="modify_time" Type="DateTime" Precision="3" />
           <Property Name="modify_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tenant_id" Type="Guid" />
-          <NavigationProperty Name="M03_Import" Relationship="Self.FK__M03_Impor__suppl__2F10007B" FromRole="M03_Supplier" ToRole="M03_Import" />
+          <NavigationProperty Name="M03_Import" Relationship="Self.FK_Import_Supplier" FromRole="M03_Supplier" ToRole="M03_Import" />
         </EntityType>
         <EntityType Name="M03_UserLog">
           <Key>
@@ -1274,21 +1318,9 @@
           <Property Name="modify_time" Type="DateTime" Precision="3" />
           <Property Name="modify_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tenant_id" Type="Guid" />
-          <NavigationProperty Name="M03_Customer" Relationship="Self.FK__M03_WishL__custo__46E78A0C" FromRole="M03_WishList" ToRole="M03_Customer" />
-          <NavigationProperty Name="M03_Product" Relationship="Self.FK__M03_WishL__produ__47DBAE45" FromRole="M03_WishList" ToRole="M03_Product" />
+          <NavigationProperty Name="M03_Customer" Relationship="Self.FK_Wishlist_Customer" FromRole="M03_WishList" ToRole="M03_Customer" />
+          <NavigationProperty Name="M03_Product" Relationship="Self.FK_Wishlist_Product" FromRole="M03_WishList" ToRole="M03_Product" />
         </EntityType>
-        <Association Name="FK__M03_Addre__custo__286302EC">
-          <End Role="M03_Customer" Type="Self.M03_Customer" Multiplicity="0..1" />
-          <End Role="M03_Address" Type="Self.M03_Address" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="M03_Customer">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="M03_Address">
-              <PropertyRef Name="customer_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__M03_Order__addre__5DCAEF64">
           <End Role="M03_Address" Type="Self.M03_Address" Multiplicity="0..1" />
           <End Role="M03_Order" Type="Self.M03_Order" Multiplicity="*" />
@@ -1301,7 +1333,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_Produ__attri__4316F928">
+        <Association Name="FK_Address_Customer">
+          <End Role="M03_Customer" Type="Self.M03_Customer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="M03_Address" Type="Self.M03_Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M03_Customer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="M03_Address">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Address">
+          <End Role="M03_Address" Type="Self.M03_Address" Multiplicity="0..1" />
+          <End Role="M03_Order" Type="Self.M03_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M03_Address">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="M03_Order">
+              <PropertyRef Name="addresses_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductAttribute_attribute">
           <End Role="M03_Attribute" Type="Self.M03_Attribute" Multiplicity="0..1" />
           <End Role="M03_ProductAttribute" Type="Self.M03_ProductAttribute" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1313,8 +1371,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_Cart__custom__6A30C649">
-          <End Role="M03_Customer" Type="Self.M03_Customer" Multiplicity="0..1" />
+        <Association Name="FK_Cart_Customer">
+          <End Role="M03_Customer" Type="Self.M03_Customer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="M03_Cart" Type="Self.M03_Cart" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="M03_Customer">
@@ -1325,8 +1385,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_CartD__cart___6D0D32F4">
-          <End Role="M03_Cart" Type="Self.M03_Cart" Multiplicity="0..1" />
+        <Association Name="FK_CartDetail_Cart">
+          <End Role="M03_Cart" Type="Self.M03_Cart" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="M03_CartDetail" Type="Self.M03_CartDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="M03_Cart">
@@ -1337,8 +1399,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_CartD__produ__6E01572D">
-          <End Role="M03_Product" Type="Self.M03_Product" Multiplicity="0..1" />
+        <Association Name="FK_CartDetail_Product">
+          <End Role="M03_Product" Type="Self.M03_Product" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="M03_CartDetail" Type="Self.M03_CartDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="M03_Product">
@@ -1349,8 +1413,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_Coupo__coupo__66603565">
-          <End Role="M03_Coupon" Type="Self.M03_Coupon" Multiplicity="0..1" />
+        <Association Name="FK_CouponOrder_Coupon">
+          <End Role="M03_Coupon" Type="Self.M03_Coupon" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="M03_CouponOrder" Type="Self.M03_CouponOrder" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="M03_Coupon">
@@ -1361,8 +1427,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_Coupo__order__6754599E">
-          <End Role="M03_Order" Type="Self.M03_Order" Multiplicity="0..1" />
+        <Association Name="FK_CouponOrder_Order">
+          <End Role="M03_Order" Type="Self.M03_Order" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="M03_CouponOrder" Type="Self.M03_CouponOrder" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="M03_Order">
@@ -1373,7 +1441,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_Order__custo__5BE2A6F2">
+        <Association Name="FK_Order_Customer">
           <End Role="M03_Customer" Type="Self.M03_Customer" Multiplicity="0..1" />
           <End Role="M03_Order" Type="Self.M03_Order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1385,7 +1453,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_Ratin__custo__4AB81AF0">
+        <Association Name="FK_Rating_Customer">
           <End Role="M03_Customer" Type="Self.M03_Customer" Multiplicity="0..1" />
           <End Role="M03_Rating" Type="Self.M03_Rating" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1397,8 +1465,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_WishL__custo__46E78A0C">
-          <End Role="M03_Customer" Type="Self.M03_Customer" Multiplicity="0..1" />
+        <Association Name="FK_Wishlist_Customer">
+          <End Role="M03_Customer" Type="Self.M03_Customer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="M03_WishList" Type="Self.M03_WishList" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="M03_Customer">
@@ -1409,7 +1479,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_Order__emplo__5CD6CB2B">
+        <Association Name="FK_Order_Employee">
           <End Role="M03_Employee" Type="Self.M03_Employee" Multiplicity="0..1" />
           <End Role="M03_Order" Type="Self.M03_Order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1421,7 +1491,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_RoleS__emplo__571DF1D5">
+        <Association Name="FK_RoleServiceEmployee_Employee">
           <End Role="M03_Employee" Type="Self.M03_Employee" Multiplicity="0..1" />
           <End Role="M03_RoleServiceEmployee" Type="Self.M03_RoleServiceEmployee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1433,8 +1503,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_Image__produ__3E52440B">
-          <End Role="M03_Product" Type="Self.M03_Product" Multiplicity="0..1" />
+        <Association Name="FK_Image_Product">
+          <End Role="M03_Product" Type="Self.M03_Product" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="M03_Image" Type="Self.M03_Image" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="M03_Product">
@@ -1445,20 +1517,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_Impor__impor__31EC6D26">
-          <End Role="M03_Import" Type="Self.M03_Import" Multiplicity="0..1" />
-          <End Role="M03_ImportDetail" Type="Self.M03_ImportDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="M03_Import">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="M03_ImportDetail">
-              <PropertyRef Name="import_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__M03_Impor__suppl__2F10007B">
-          <End Role="M03_Supplier" Type="Self.M03_Supplier" Multiplicity="0..1" />
+        <Association Name="FK_Import_Supplier">
+          <End Role="M03_Supplier" Type="Self.M03_Supplier" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="M03_Import" Type="Self.M03_Import" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="M03_Supplier">
@@ -1469,8 +1531,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_Impor__produ__32E0915F">
-          <End Role="M03_Product" Type="Self.M03_Product" Multiplicity="0..1" />
+        <Association Name="FK_ImportDetail_Import">
+          <End Role="M03_Import" Type="Self.M03_Import" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="M03_ImportDetail" Type="Self.M03_ImportDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M03_Import">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="M03_ImportDetail">
+              <PropertyRef Name="import_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImportDetail_Product">
+          <End Role="M03_Product" Type="Self.M03_Product" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="M03_ImportDetail" Type="Self.M03_ImportDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="M03_Product">
@@ -1481,7 +1559,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_Menu__parent__35BCFE0A">
+        <Association Name="FK_Menu_Parent">
           <End Role="M03_Menu" Type="Self.M03_Menu" Multiplicity="0..1" />
           <End Role="M03_Menu1" Type="Self.M03_Menu" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1493,7 +1571,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_Produ__menu___38996AB5">
+        <Association Name="FK_ProductMenu_Menu">
           <End Role="M03_Menu" Type="Self.M03_Menu" Multiplicity="0..1" />
           <End Role="M03_ProductMenu" Type="Self.M03_ProductMenu" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1505,7 +1583,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_Order__order__60A75C0F">
+        <Association Name="FK_OrderDetail_Order">
           <End Role="M03_Order" Type="Self.M03_Order" Multiplicity="0..1" />
           <End Role="M03_OrderDetail" Type="Self.M03_OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1517,7 +1595,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_Order__produ__619B8048">
+        <Association Name="FK_OrderDetail_Product">
           <End Role="M03_Product" Type="Self.M03_Product" Multiplicity="0..1" />
           <End Role="M03_OrderDetail" Type="Self.M03_OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1529,19 +1607,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_Produ__produ__398D8EEE">
-          <End Role="M03_Product" Type="Self.M03_Product" Multiplicity="0..1" />
-          <End Role="M03_ProductMenu" Type="Self.M03_ProductMenu" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="M03_Product">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="M03_ProductMenu">
-              <PropertyRef Name="product_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__M03_Produ__produ__440B1D61">
+        <Association Name="FK_ProductAttribute_Product">
           <End Role="M03_Product" Type="Self.M03_Product" Multiplicity="0..1" />
           <End Role="M03_ProductAttribute" Type="Self.M03_ProductAttribute" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1553,7 +1619,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_Ratin__produ__4BAC3F29">
+        <Association Name="FK_ProductMenu_Product">
+          <End Role="M03_Product" Type="Self.M03_Product" Multiplicity="0..1" />
+          <End Role="M03_ProductMenu" Type="Self.M03_ProductMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M03_Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="M03_ProductMenu">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rating_Product">
           <End Role="M03_Product" Type="Self.M03_Product" Multiplicity="0..1" />
           <End Role="M03_Rating" Type="Self.M03_Rating" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1565,8 +1643,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_WishL__produ__47DBAE45">
-          <End Role="M03_Product" Type="Self.M03_Product" Multiplicity="0..1" />
+        <Association Name="FK_Wishlist_Product">
+          <End Role="M03_Product" Type="Self.M03_Product" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="M03_WishList" Type="Self.M03_WishList" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="M03_Product">
@@ -1577,7 +1657,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_RoleS__role___52593CB8">
+        <Association Name="FK_RoleService_Role">
           <End Role="M03_Role" Type="Self.M03_Role" Multiplicity="0..1" />
           <End Role="M03_RoleService" Type="Self.M03_RoleService" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1589,19 +1669,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__M03_RoleS__roles__5629CD9C">
-          <End Role="M03_RoleService" Type="Self.M03_RoleService" Multiplicity="0..1" />
-          <End Role="M03_RoleServiceEmployee" Type="Self.M03_RoleServiceEmployee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="M03_RoleService">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="M03_RoleServiceEmployee">
-              <PropertyRef Name="roleservice_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__M03_RoleS__servi__534D60F1">
+        <Association Name="FK_RoleService_Service">
           <End Role="M03_Service" Type="Self.M03_Service" Multiplicity="0..1" />
           <End Role="M03_RoleService" Type="Self.M03_RoleService" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1610,6 +1678,18 @@
             </Principal>
             <Dependent Role="M03_RoleService">
               <PropertyRef Name="service_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleServiceEmployee_RoleService">
+          <End Role="M03_RoleService" Type="Self.M03_RoleService" Multiplicity="0..1" />
+          <End Role="M03_RoleServiceEmployee" Type="Self.M03_RoleServiceEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M03_RoleService">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="M03_RoleServiceEmployee">
+              <PropertyRef Name="roleservice_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1639,117 +1719,121 @@
           <EntitySet Name="M03_Supplier" EntityType="Self.M03_Supplier" />
           <EntitySet Name="M03_UserLog" EntityType="Self.M03_UserLog" />
           <EntitySet Name="M03_WishList" EntityType="Self.M03_WishList" />
-          <AssociationSet Name="FK__M03_Addre__custo__286302EC" Association="Self.FK__M03_Addre__custo__286302EC">
-            <End Role="M03_Customer" EntitySet="M03_Customer" />
-            <End Role="M03_Address" EntitySet="M03_Address" />
-          </AssociationSet>
           <AssociationSet Name="FK__M03_Order__addre__5DCAEF64" Association="Self.FK__M03_Order__addre__5DCAEF64">
             <End Role="M03_Address" EntitySet="M03_Address" />
             <End Role="M03_Order" EntitySet="M03_Order" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_Produ__attri__4316F928" Association="Self.FK__M03_Produ__attri__4316F928">
+          <AssociationSet Name="FK_Address_Customer" Association="Self.FK_Address_Customer">
+            <End Role="M03_Customer" EntitySet="M03_Customer" />
+            <End Role="M03_Address" EntitySet="M03_Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Address" Association="Self.FK_Order_Address">
+            <End Role="M03_Address" EntitySet="M03_Address" />
+            <End Role="M03_Order" EntitySet="M03_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductAttribute_attribute" Association="Self.FK_ProductAttribute_attribute">
             <End Role="M03_Attribute" EntitySet="M03_Attribute" />
             <End Role="M03_ProductAttribute" EntitySet="M03_ProductAttribute" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_Cart__custom__6A30C649" Association="Self.FK__M03_Cart__custom__6A30C649">
+          <AssociationSet Name="FK_Cart_Customer" Association="Self.FK_Cart_Customer">
             <End Role="M03_Customer" EntitySet="M03_Customer" />
             <End Role="M03_Cart" EntitySet="M03_Cart" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_CartD__cart___6D0D32F4" Association="Self.FK__M03_CartD__cart___6D0D32F4">
+          <AssociationSet Name="FK_CartDetail_Cart" Association="Self.FK_CartDetail_Cart">
             <End Role="M03_Cart" EntitySet="M03_Cart" />
             <End Role="M03_CartDetail" EntitySet="M03_CartDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_CartD__produ__6E01572D" Association="Self.FK__M03_CartD__produ__6E01572D">
+          <AssociationSet Name="FK_CartDetail_Product" Association="Self.FK_CartDetail_Product">
             <End Role="M03_Product" EntitySet="M03_Product" />
             <End Role="M03_CartDetail" EntitySet="M03_CartDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_Coupo__coupo__66603565" Association="Self.FK__M03_Coupo__coupo__66603565">
+          <AssociationSet Name="FK_CouponOrder_Coupon" Association="Self.FK_CouponOrder_Coupon">
             <End Role="M03_Coupon" EntitySet="M03_Coupon" />
             <End Role="M03_CouponOrder" EntitySet="M03_CouponOrder" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_Coupo__order__6754599E" Association="Self.FK__M03_Coupo__order__6754599E">
+          <AssociationSet Name="FK_CouponOrder_Order" Association="Self.FK_CouponOrder_Order">
             <End Role="M03_Order" EntitySet="M03_Order" />
             <End Role="M03_CouponOrder" EntitySet="M03_CouponOrder" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_Order__custo__5BE2A6F2" Association="Self.FK__M03_Order__custo__5BE2A6F2">
+          <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
             <End Role="M03_Customer" EntitySet="M03_Customer" />
             <End Role="M03_Order" EntitySet="M03_Order" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_Ratin__custo__4AB81AF0" Association="Self.FK__M03_Ratin__custo__4AB81AF0">
+          <AssociationSet Name="FK_Rating_Customer" Association="Self.FK_Rating_Customer">
             <End Role="M03_Customer" EntitySet="M03_Customer" />
             <End Role="M03_Rating" EntitySet="M03_Rating" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_WishL__custo__46E78A0C" Association="Self.FK__M03_WishL__custo__46E78A0C">
+          <AssociationSet Name="FK_Wishlist_Customer" Association="Self.FK_Wishlist_Customer">
             <End Role="M03_Customer" EntitySet="M03_Customer" />
             <End Role="M03_WishList" EntitySet="M03_WishList" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_Order__emplo__5CD6CB2B" Association="Self.FK__M03_Order__emplo__5CD6CB2B">
+          <AssociationSet Name="FK_Order_Employee" Association="Self.FK_Order_Employee">
             <End Role="M03_Employee" EntitySet="M03_Employee" />
             <End Role="M03_Order" EntitySet="M03_Order" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_RoleS__emplo__571DF1D5" Association="Self.FK__M03_RoleS__emplo__571DF1D5">
+          <AssociationSet Name="FK_RoleServiceEmployee_Employee" Association="Self.FK_RoleServiceEmployee_Employee">
             <End Role="M03_Employee" EntitySet="M03_Employee" />
             <End Role="M03_RoleServiceEmployee" EntitySet="M03_RoleServiceEmployee" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_Image__produ__3E52440B" Association="Self.FK__M03_Image__produ__3E52440B">
+          <AssociationSet Name="FK_Image_Product" Association="Self.FK_Image_Product">
             <End Role="M03_Product" EntitySet="M03_Product" />
             <End Role="M03_Image" EntitySet="M03_Image" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_Impor__impor__31EC6D26" Association="Self.FK__M03_Impor__impor__31EC6D26">
-            <End Role="M03_Import" EntitySet="M03_Import" />
-            <End Role="M03_ImportDetail" EntitySet="M03_ImportDetail" />
-          </AssociationSet>
-          <AssociationSet Name="FK__M03_Impor__suppl__2F10007B" Association="Self.FK__M03_Impor__suppl__2F10007B">
+          <AssociationSet Name="FK_Import_Supplier" Association="Self.FK_Import_Supplier">
             <End Role="M03_Supplier" EntitySet="M03_Supplier" />
             <End Role="M03_Import" EntitySet="M03_Import" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_Impor__produ__32E0915F" Association="Self.FK__M03_Impor__produ__32E0915F">
+          <AssociationSet Name="FK_ImportDetail_Import" Association="Self.FK_ImportDetail_Import">
+            <End Role="M03_Import" EntitySet="M03_Import" />
+            <End Role="M03_ImportDetail" EntitySet="M03_ImportDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImportDetail_Product" Association="Self.FK_ImportDetail_Product">
             <End Role="M03_Product" EntitySet="M03_Product" />
             <End Role="M03_ImportDetail" EntitySet="M03_ImportDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_Menu__parent__35BCFE0A" Association="Self.FK__M03_Menu__parent__35BCFE0A">
+          <AssociationSet Name="FK_Menu_Parent" Association="Self.FK_Menu_Parent">
             <End Role="M03_Menu" EntitySet="M03_Menu" />
             <End Role="M03_Menu1" EntitySet="M03_Menu" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_Produ__menu___38996AB5" Association="Self.FK__M03_Produ__menu___38996AB5">
+          <AssociationSet Name="FK_ProductMenu_Menu" Association="Self.FK_ProductMenu_Menu">
             <End Role="M03_Menu" EntitySet="M03_Menu" />
             <End Role="M03_ProductMenu" EntitySet="M03_ProductMenu" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_Order__order__60A75C0F" Association="Self.FK__M03_Order__order__60A75C0F">
+          <AssociationSet Name="FK_OrderDetail_Order" Association="Self.FK_OrderDetail_Order">
             <End Role="M03_Order" EntitySet="M03_Order" />
             <End Role="M03_OrderDetail" EntitySet="M03_OrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_Order__produ__619B8048" Association="Self.FK__M03_Order__produ__619B8048">
+          <AssociationSet Name="FK_OrderDetail_Product" Association="Self.FK_OrderDetail_Product">
             <End Role="M03_Product" EntitySet="M03_Product" />
             <End Role="M03_OrderDetail" EntitySet="M03_OrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_Produ__produ__398D8EEE" Association="Self.FK__M03_Produ__produ__398D8EEE">
-            <End Role="M03_Product" EntitySet="M03_Product" />
-            <End Role="M03_ProductMenu" EntitySet="M03_ProductMenu" />
-          </AssociationSet>
-          <AssociationSet Name="FK__M03_Produ__produ__440B1D61" Association="Self.FK__M03_Produ__produ__440B1D61">
+          <AssociationSet Name="FK_ProductAttribute_Product" Association="Self.FK_ProductAttribute_Product">
             <End Role="M03_Product" EntitySet="M03_Product" />
             <End Role="M03_ProductAttribute" EntitySet="M03_ProductAttribute" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_Ratin__produ__4BAC3F29" Association="Self.FK__M03_Ratin__produ__4BAC3F29">
+          <AssociationSet Name="FK_ProductMenu_Product" Association="Self.FK_ProductMenu_Product">
+            <End Role="M03_Product" EntitySet="M03_Product" />
+            <End Role="M03_ProductMenu" EntitySet="M03_ProductMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rating_Product" Association="Self.FK_Rating_Product">
             <End Role="M03_Product" EntitySet="M03_Product" />
             <End Role="M03_Rating" EntitySet="M03_Rating" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_WishL__produ__47DBAE45" Association="Self.FK__M03_WishL__produ__47DBAE45">
+          <AssociationSet Name="FK_Wishlist_Product" Association="Self.FK_Wishlist_Product">
             <End Role="M03_Product" EntitySet="M03_Product" />
             <End Role="M03_WishList" EntitySet="M03_WishList" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_RoleS__role___52593CB8" Association="Self.FK__M03_RoleS__role___52593CB8">
+          <AssociationSet Name="FK_RoleService_Role" Association="Self.FK_RoleService_Role">
             <End Role="M03_Role" EntitySet="M03_Role" />
             <End Role="M03_RoleService" EntitySet="M03_RoleService" />
           </AssociationSet>
-          <AssociationSet Name="FK__M03_RoleS__roles__5629CD9C" Association="Self.FK__M03_RoleS__roles__5629CD9C">
-            <End Role="M03_RoleService" EntitySet="M03_RoleService" />
-            <End Role="M03_RoleServiceEmployee" EntitySet="M03_RoleServiceEmployee" />
-          </AssociationSet>
-          <AssociationSet Name="FK__M03_RoleS__servi__534D60F1" Association="Self.FK__M03_RoleS__servi__534D60F1">
+          <AssociationSet Name="FK_RoleService_Service" Association="Self.FK_RoleService_Service">
             <End Role="M03_Service" EntitySet="M03_Service" />
             <End Role="M03_RoleService" EntitySet="M03_RoleService" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleServiceEmployee_RoleService" Association="Self.FK_RoleServiceEmployee_RoleService">
+            <End Role="M03_RoleService" EntitySet="M03_RoleService" />
+            <End Role="M03_RoleServiceEmployee" EntitySet="M03_RoleServiceEmployee" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -1865,6 +1949,7 @@
                 <ScalarProperty Name="modify_time" ColumnName="modify_time" />
                 <ScalarProperty Name="modify_by" ColumnName="modify_by" />
                 <ScalarProperty Name="tenant_id" ColumnName="tenant_id" />
+                <ScalarProperty Name="email" ColumnName="email" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
