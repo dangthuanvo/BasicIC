@@ -20,6 +20,10 @@ namespace Common
         public static readonly string KEY_SESSION_IS_SECRET_KEY = "KEY_SESSION_IS_SECRET_KEY";
         public static readonly string ERROR_MAPPING_MODEL = "Error mapping models";
         public static readonly string RECORD_NOT_FOUND = "Record not found";
+        public static readonly string CONF_MAX_ERROR_MESS = "MAX_ERROR_MESS";
+        public static readonly string CONF_MAX_DEGREE_PARALLELISM = "MAX_DEGREE_PARALLELISM";
+        public static readonly string CONF_KAFKA_BOOSTRAP_SERVER = "KAFKA_BOOSTRAP_SERVER";
+        public static readonly string CONF_KAFKA_GROUP_ID = "KAFKA_GROUP_ID";
         public static ModuleBuilder MODULE_BUILDER = AppDomain.CurrentDomain.DefineDynamicAssembly(new AssemblyName("Dynamic Assembly"), AssemblyBuilderAccess.Run).DefineDynamicModule("MainModule");
     }
 }

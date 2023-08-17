@@ -1,7 +1,7 @@
 ﻿using BasicIC.Interfaces;
 using System.Web.Configuration;
 
-namespace Settings.Config
+namespace BasicIC.Config
 {
     public class ConfigManager : IConfigManager
     {

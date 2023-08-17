@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
 using BasicIC.Interfaces;
+using BasicIC.KafkaComponents;
+using BasicIC.Models.Common;
+using BasicIC.Models.Main;
 using BasicIC.Models.Main.M03;
 using BasicIC.Services.Interfaces;
 using Common;
@@ -21,6 +24,7 @@ namespace BasicIC.Services.Implement
         private readonly IOrderDetailService _orderDetailService;
         private readonly ICartDetailService _cartDetailService;
         private readonly ISendEmailService _sendEmailService;
+        private readonly ICustomerService _customerService;
         private readonly BasicICRepository<M03_OrderDetail> _repoOrderDetail;
 
         public OrderService(BasicICRepository<M03_Order> repo,
@@ -29,13 +33,16 @@ namespace BasicIC.Services.Implement
             IOrderDetailService orderDetailService,
             ICartDetailService cartDetailService,
             ISendEmailService sendEmailService,
+            ICustomerService customerService,
             ILogger logger, IConfigManager config, IMapper mapper) : base(repo, config, logger, mapper)
         {
+
             _cartService = cartService;
             _orderDetailService = orderDetailService;
             _cartDetailService = cartDetailService;
             _repoOrderDetail = repoOrderDetail;
             _sendEmailService = sendEmailService;
+            _customerService = customerService;
         }
 
         public async Task<ResponseService<ListResult<OrderOrderDetailModel>>> GetAllByCustomer(CustomerModel param, M03_BasicEntities dbContext = null)
@@ -196,7 +203,10 @@ namespace BasicIC.Services.Implement
                     itemorder.total_price = itemcartdetail.cart_total_price;
                     await _orderDetailService.Create(itemorder);
                 }
-                await _sendEmailService.SendEmailAsync("20520314@gm.uit.edu.vn", "Xác nhận đơn hàng", "Tạo đơn hàng thành công");
+                CustomerModel customerModel = (await _customerService.GetById(new ItemModel(param1.customer_id))).data;
+                ProducerWrapper<EmailModel> _producer = new ProducerWrapper<EmailModel>();
+                await _producer.CreateMess(Topic.SEND_EMAIL, new EmailModel(customerModel.email, "THÔNG BÁO TẠO ĐƠN HÀNG THÀNH CÔNG", "Đơn hàng với id " + result.id + " đã được tạo thành công"), customerModel.tenant_id.ToString());
+
                 return new ResponseService<OrderModel>(_mapper.Map<M03_Order, OrderModel>(result));
             }
             catch (Exception ex)

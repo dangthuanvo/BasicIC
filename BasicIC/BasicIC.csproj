@@ -253,6 +253,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebAPIConfig.cs" />
+    <Compile Include="Common\CommonFunc.cs" />
     <Compile Include="Common\InternalServiceException.cs" />
     <Compile Include="Common\ResponseFail.cs" />
     <Compile Include="Common\SessionStore.cs" />
@@ -276,8 +277,18 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IConfigManager.cs" />
+    <Compile Include="KafkaComponents\ConsumerWrapper.cs" />
+    <Compile Include="KafkaComponents\HandleProducer.cs" />
+    <Compile Include="KafkaComponents\KafkaFunction.cs" />
+    <Compile Include="KafkaComponents\ProducerWrapper.cs" />
+    <Compile Include="KafkaComponents\Topic.cs" />
     <Compile Include="Models\Common\ItemModel.cs" />
+    <Compile Include="Models\Common\TopicError.cs" />
+    <Compile Include="Models\Kafka\KafkaModel.cs" />
     <Compile Include="Models\Main\BaseModel.cs" />
+    <Compile Include="Models\Main\ConsumerResultData.cs" />
+    <Compile Include="Models\Main\EmailModel.cs" />
+    <Compile Include="Models\Main\Log\LogModel.cs" />
     <Compile Include="Models\Main\M03\AddressModel.cs" />
     <Compile Include="Models\Main\M03\AttributeModel.cs" />
     <Compile Include="Models\Main\M03\CartDetailModel.cs" />
@@ -336,6 +347,7 @@
     <Compile Include="Services\Interfaces\ISendEmailService.cs" />
     <Compile Include="Services\Interfaces\IWishListService.cs" />
     <Compile Include="Services\Interfaces\ISupplierService.cs" />
+    <Compile Include="Services\Prototype\IPrototype.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

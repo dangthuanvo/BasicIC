@@ -16,13 +16,13 @@ namespace BasicIC.App_Start
     using Ninject.Web.Common.WebHost;
     using Repository.Interfaces;
     using Repository.Repositories;
-    using Settings.Config;
     using System;
     using System.Web;
 
     public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
+        private static IKernel kernel;
 
         /// <summary>
         /// Starts the application.
@@ -48,7 +48,7 @@ namespace BasicIC.App_Start
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
-            var kernel = new StandardKernel();
+            kernel = new StandardKernel();
             try
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
@@ -99,6 +99,10 @@ namespace BasicIC.App_Start
             kernel.Bind<IEmployeeService>().To<EmployeeService>();
             kernel.Bind<IAddressService>().To<AddressService>();
             kernel.Bind<ISendEmailService>().To<SendEmailService>();
+        }
+        public static T CreateInstanceDJ<T>()
+        {
+            return kernel.Get<T>();
         }
     }
 }
