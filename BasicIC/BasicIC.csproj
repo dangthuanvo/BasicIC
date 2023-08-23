@@ -254,6 +254,7 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebAPIConfig.cs" />
     <Compile Include="Common\CommonFunc.cs" />
+    <Compile Include="Common\ConsultClient.cs" />
     <Compile Include="Common\InternalServiceException.cs" />
     <Compile Include="Common\ResponseFail.cs" />
     <Compile Include="Common\SessionStore.cs" />

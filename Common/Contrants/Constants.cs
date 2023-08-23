@@ -24,6 +24,14 @@ namespace Common
         public static readonly string CONF_MAX_DEGREE_PARALLELISM = "MAX_DEGREE_PARALLELISM";
         public static readonly string CONF_KAFKA_BOOSTRAP_SERVER = "KAFKA_BOOSTRAP_SERVER";
         public static readonly string CONF_KAFKA_GROUP_ID = "KAFKA_GROUP_ID";
+        public static readonly string STATE_SOURCE_PRODUCTION = "production";
+        public static readonly string SERVICE_CONSULT_GOOD_HEALTH = "passing";
+        public static readonly string CONF_ADDRESS_DISCOVERY_SERVICE = "ADDRESS_DISCOVERY_SERVICE";
+        public static readonly string CONF_ADDRESS_SERVICE = "ADDRESS_SERVICE";
+        public static readonly string CONF_PORT_SERVICE = "PORT_SERVICE";
+        public static readonly string CONF_HEALTH_CHECK_SERVICE = "HEALTH_CHECK_SERVICE";
+        public static readonly string CONF_PROTOCOL_SERVICE = "PROTOCOL_SERVICE";
+        public static readonly string CONF_SOURCE_FABIO_SERVICE = "SOURCE_FABIO_SERVICE";
         public static ModuleBuilder MODULE_BUILDER = AppDomain.CurrentDomain.DefineDynamicAssembly(new AssemblyName("Dynamic Assembly"), AssemblyBuilderAccess.Run).DefineDynamicModule("MainModule");
     }
 }
