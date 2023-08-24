@@ -289,7 +289,6 @@
     <Compile Include="Models\Main\BaseModel.cs" />
     <Compile Include="Models\Main\ConsumerResultData.cs" />
     <Compile Include="Models\Main\EmailModel.cs" />
-    <Compile Include="Models\Main\Log\LogModel.cs" />
     <Compile Include="Models\Main\M03\AddressModel.cs" />
     <Compile Include="Models\Main\M03\AttributeModel.cs" />
     <Compile Include="Models\Main\M03\CartDetailModel.cs" />
@@ -390,6 +389,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\Main\Log\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
