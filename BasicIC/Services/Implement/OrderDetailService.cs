@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BasicIC.Interfaces;
+using BasicIC.Models.Common;
 using BasicIC.Models.Main.M03;
 using BasicIC.Services.Interfaces;
 using Common;
@@ -18,12 +19,15 @@ namespace BasicIC.Services.Implement
     public class OrderDetailService : BaseCRUDService<OrderDetailModel, M03_OrderDetail>, IOrderDetailService
     {
         private readonly ICartService _cartService;
+        private readonly IProductService _productService;
 
         public OrderDetailService(BasicICRepository<M03_OrderDetail> repo,
             ICartService cartService,
-            ILogger logger, IConfigManager config, IMapper mapper) : base(repo, config, logger, mapper)
+            IProductService productService,
+        ILogger logger, IConfigManager config, IMapper mapper) : base(repo, config, logger, mapper)
         {
             _cartService = cartService;
+            _productService = productService;
         }
 
         public async Task<ResponseService<bool>> DeleteByOrder(OrderModel param, M03_BasicEntities dbContext = null)
@@ -69,6 +73,12 @@ namespace BasicIC.Services.Implement
                 }
 
                 ListResult<OrderDetailModel> result = new ListResult<OrderDetailModel>(items, resultEntity.total);
+
+                foreach (var orderDetail in result.items)
+                {
+                    orderDetail.product_name = (await _productService.GetById(new ItemModel(orderDetail.product_id))).data.product_name;
+                    orderDetail.product_price = (await _productService.GetById(new ItemModel(orderDetail.product_id))).data.price;
+                }
 
                 return new ResponseService<ListResult<OrderDetailModel>>(result);
             }

@@ -23,26 +23,31 @@ namespace BasicIC.Services.Implement
         private readonly ICartService _cartService;
         private readonly IOrderDetailService _orderDetailService;
         private readonly ICartDetailService _cartDetailService;
-        private readonly ISendEmailService _sendEmailService;
+        private readonly IProductService _productService;
+        private readonly IAddressService _addressService;
+        //private readonly ISendEmailService _sendEmailService;
         private readonly ICustomerService _customerService;
         private readonly BasicICRepository<M03_OrderDetail> _repoOrderDetail;
 
         public OrderService(BasicICRepository<M03_Order> repo,
             ICartService cartService,
             BasicICRepository<M03_OrderDetail> repoOrderDetail,
+            IAddressService addressService,
             IOrderDetailService orderDetailService,
             ICartDetailService cartDetailService,
             ISendEmailService sendEmailService,
             ICustomerService customerService,
+            IProductService productService,
             ILogger logger, IConfigManager config, IMapper mapper) : base(repo, config, logger, mapper)
         {
-
+            _addressService = addressService;
             _cartService = cartService;
             _orderDetailService = orderDetailService;
             _cartDetailService = cartDetailService;
             _repoOrderDetail = repoOrderDetail;
-            _sendEmailService = sendEmailService;
+            //_sendEmailService = sendEmailService;
             _customerService = customerService;
+            _productService = productService;
         }
 
         public async Task<ResponseService<ListResult<OrderOrderDetailModel>>> GetAllByCustomer(CustomerModel param, M03_BasicEntities dbContext = null)
@@ -201,11 +206,16 @@ namespace BasicIC.Services.Implement
                     itemorder.product_id = itemcartdetail.product_id;
                     itemorder.quantity = itemcartdetail.quantity;
                     itemorder.total_price = itemcartdetail.cart_total_price;
+                    itemorder.product_price = (await _productService.GetById(new ItemModel(itemcartdetail.product_id))).data.price;
                     await _orderDetailService.Create(itemorder);
+                    param1.total_price += itemorder.quantity * itemorder.product_price;
                 }
+                param1.total_price += param1.shipping_fee;
+                var addressModel = (await _addressService.GetById(new ItemModel(param1.addresses_id))).data;
+                param1.shipping_address = addressModel.address_line1 + " " + addressModel.address_line2;
                 CustomerModel customerModel = (await _customerService.GetById(new ItemModel(param1.customer_id))).data;
                 ProducerWrapper<EmailModel> _producer = new ProducerWrapper<EmailModel>();
-                await _producer.CreateMess(Topic.SEND_EMAIL, new EmailModel(customerModel.email, "THÔNG BÁO TẠO ĐƠN HÀNG THÀNH CÔNG", "Đơn hàng với id " + result.id + " đã được tạo thành công"), customerModel.tenant_id.ToString());
+                await _producer.CreateMess(Topic.SEND_EMAIL, new EmailModel(param1.id.ToString(), customerModel.customer_name, customerModel.phone_number, param1.total_price, param1.shipping_address, param1.shipping_fee, (await _orderDetailService.GetByOrderID(param1)).data.items, customerModel.email, "THÔNG BÁO TẠO ĐƠN HÀNG THÀNH CÔNG"));
 
                 return new ResponseService<OrderModel>(_mapper.Map<M03_Order, OrderModel>(result));
             }

@@ -11,5 +11,7 @@ namespace BasicIC.Models.Main.M03
         public string password { get; set; }
         public string email { get; set; }
         public DateTime? last_login { get; set; }
+        public CustomerModel() { }
+        public CustomerModel(Guid id) { this.id = id; }
     }
 }
