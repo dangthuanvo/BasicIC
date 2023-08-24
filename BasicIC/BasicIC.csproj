@@ -286,6 +286,7 @@
     <Compile Include="Models\Common\ItemModel.cs" />
     <Compile Include="Models\Common\TopicError.cs" />
     <Compile Include="Models\Kafka\KafkaModel.cs" />
+    <Compile Include="Models\LogModel\LogModel.cs" />
     <Compile Include="Models\Main\BaseModel.cs" />
     <Compile Include="Models\Main\ConsumerResultData.cs" />
     <Compile Include="Models\Main\EmailModel.cs" />
@@ -389,8 +390,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\LogModel\" />
-    <Folder Include="Models\Log\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
