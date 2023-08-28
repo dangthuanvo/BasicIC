@@ -247,6 +247,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiControllers\Controllers\HomeController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
@@ -288,8 +289,10 @@
     <Compile Include="Models\Kafka\KafkaModel.cs" />
     <Compile Include="Models\LogModel\LogModel.cs" />
     <Compile Include="Models\Main\BaseModel.cs" />
+    <Compile Include="Models\Main\ConfirmAccountRequest.cs" />
     <Compile Include="Models\Main\ConsumerResultData.cs" />
-    <Compile Include="Models\Main\EmailModel.cs" />
+    <Compile Include="Models\Main\SendEmailModel.cs" />
+    <Compile Include="Models\Main\OrderConfirmEmailModel.cs" />
     <Compile Include="Models\Main\M03\AddressModel.cs" />
     <Compile Include="Models\Main\M03\AttributeModel.cs" />
     <Compile Include="Models\Main\M03\CartDetailModel.cs" />
@@ -317,8 +320,10 @@
     <Compile Include="Models\Main\M03\UserLogModel.cs" />
     <Compile Include="Models\Main\M03\WishListModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RestAPI\EmailAPI.cs" />
     <Compile Include="Services\Implement\AddressService.cs" />
     <Compile Include="Services\Implement\AttributeService.cs" />
+    <Compile Include="Services\Implement\AuthenticationService.cs" />
     <Compile Include="Services\Implement\BaseService.cs" />
     <Compile Include="Services\Implement\CartDetailService.cs" />
     <Compile Include="Services\Implement\CartService.cs" />
@@ -330,12 +335,12 @@
     <Compile Include="Services\Implement\OrderService.cs" />
     <Compile Include="Services\Implement\ProductAttributeService.cs" />
     <Compile Include="Services\Implement\ProductService.cs" />
-    <Compile Include="Services\Implement\SendEmailService.cs" />
     <Compile Include="Services\Implement\SupplierService.cs" />
     <Compile Include="Services\Implement\WishListService.cs" />
     <Compile Include="Services\Interfaces\IAddressService.cs" />
     <Compile Include="Services\Interfaces\GenericServices\IBaseCRUDServices.cs" />
     <Compile Include="Services\Interfaces\IAttributeService.cs" />
+    <Compile Include="Services\Interfaces\IAuthenticationService.cs" />
     <Compile Include="Services\Interfaces\ICartDetailService.cs" />
     <Compile Include="Services\Interfaces\ICartService.cs" />
     <Compile Include="Services\Interfaces\ICustomerService.cs" />

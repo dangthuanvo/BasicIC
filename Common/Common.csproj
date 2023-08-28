@@ -77,6 +77,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="APIHelper\RestfulAPI.cs" />
     <Compile Include="Commons\BaseResponse.cs" />
     <Compile Include="Commons\CommonFuncMain.cs" />
     <Compile Include="Commons\ErrorCodes.cs" />
@@ -84,7 +85,8 @@
     <Compile Include="Commons\ResponseMessage.cs" />
     <Compile Include="Commons\ResponseService.cs" />
     <Compile Include="Commons\RuntimeClassBuilder.cs" />
-    <Compile Include="Contrants\Constants.cs" />
+    <Compile Include="Constants\Constants.cs" />
+    <Compile Include="Constants\ConstantsPath.cs" />
     <Compile Include="CustomAttribute\OneOfAttribute.cs" />
     <Compile Include="CustomAttribute\OneOfIgnoreNullAttribute.cs" />
     <Compile Include="CustomAttribute\RequiredByFieldAttribute.cs" />

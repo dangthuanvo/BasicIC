@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BasicIC.Models.Main
 {
-    public class EmailModel
+    public class OrderConfirmEmailModel
     {
         public string order_id { get; set; }
         public string customer_name { get; set; }
@@ -15,7 +15,7 @@ namespace BasicIC.Models.Main
         public string to_email { get; set; }
         public string subject { get; set; }
 
-        public EmailModel(string order_id, string customer_name, string customer_phone_number, decimal total_price, string shipping_address, int shipping_fee, List<OrderDetailModel> orderDetailModel, string to_email, string subject)
+        public OrderConfirmEmailModel(string order_id, string customer_name, string customer_phone_number, decimal total_price, string shipping_address, int shipping_fee, List<OrderDetailModel> orderDetailModel, string to_email, string subject)
         {
             this.order_id = order_id;
             this.customer_name = customer_name;

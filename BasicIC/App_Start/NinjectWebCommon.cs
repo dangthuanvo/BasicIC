@@ -6,6 +6,7 @@ namespace BasicIC.App_Start
     using AutoMapper;
     using BasicIC.Config;
     using BasicIC.Interfaces;
+    using BasicIC.RestApi;
     using BasicIC.Services.Implement;
     using BasicIC.Services.Interfaces;
     using global::Common.Commons;
@@ -98,7 +99,8 @@ namespace BasicIC.App_Start
             kernel.Bind<IOrderDetailService>().To<OrderDetailService>();
             kernel.Bind<IEmployeeService>().To<EmployeeService>();
             kernel.Bind<IAddressService>().To<AddressService>();
-            kernel.Bind<ISendEmailService>().To<SendEmailService>();
+            kernel.Bind<IAuthenticationService>().To<AuthenticationService>();
+            kernel.Bind<BaseService>().To<EmailAPI>();
         }
         public static T CreateInstanceDJ<T>()
         {

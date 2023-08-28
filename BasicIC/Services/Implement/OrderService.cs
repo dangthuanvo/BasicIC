@@ -214,8 +214,8 @@ namespace BasicIC.Services.Implement
                 var addressModel = (await _addressService.GetById(new ItemModel(param1.addresses_id))).data;
                 param1.shipping_address = addressModel.address_line1 + " " + addressModel.address_line2;
                 CustomerModel customerModel = (await _customerService.GetById(new ItemModel(param1.customer_id))).data;
-                ProducerWrapper<EmailModel> _producer = new ProducerWrapper<EmailModel>();
-                await _producer.CreateMess(Topic.SEND_EMAIL, new EmailModel(param1.id.ToString(), customerModel.customer_name, customerModel.phone_number, param1.total_price, param1.shipping_address, param1.shipping_fee, (await _orderDetailService.GetByOrderID(param1)).data.items, customerModel.email, "THÔNG BÁO TẠO ĐƠN HÀNG THÀNH CÔNG"));
+                ProducerWrapper<OrderConfirmEmailModel> _producer = new ProducerWrapper<OrderConfirmEmailModel>();
+                await _producer.CreateMess(Topic.SEND_EMAIL, new OrderConfirmEmailModel(param1.id.ToString(), customerModel.customer_name, customerModel.phone_number, param1.total_price, param1.shipping_address, param1.shipping_fee, (await _orderDetailService.GetByOrderID(param1)).data.items, customerModel.email, "THÔNG BÁO TẠO ĐƠN HÀNG THÀNH CÔNG"));
 
                 return new ResponseService<OrderModel>(_mapper.Map<M03_Order, OrderModel>(result));
             }

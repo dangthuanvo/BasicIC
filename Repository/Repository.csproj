@@ -57,6 +57,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomeModel\ListResult.cs" />
+    <Compile Include="EF\DbSql.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbSql.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\DbSql.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbSql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\DbSql.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbSql.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EF\M01_ConfirmAccountRequest.cs">
+      <DependentUpon>DbSql.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\M03_Address.cs">
       <DependentUpon>M03_Basic.tt</DependentUpon>
     </Compile>
@@ -160,6 +178,13 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>M03_Basic.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <EntityDeploy Include="EF\DbSql.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DbSql.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EF\DbSql.edmx.diagram">
+      <DependentUpon>DbSql.edmx</DependentUpon>
+    </None>
     <None Include="EF\M03_Basic.edmx.diagram">
       <DependentUpon>M03_Basic.edmx</DependentUpon>
     </None>
@@ -175,6 +200,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="EF\DbSql.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DbSql.edmx</DependentUpon>
+      <LastGenOutput>DbSql.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EF\DbSql.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DbSql.edmx</DependentUpon>
+      <LastGenOutput>DbSql.cs</LastGenOutput>
+    </Content>
     <Content Include="EF\M03_Basic.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>M03_Basic.edmx</DependentUpon>
