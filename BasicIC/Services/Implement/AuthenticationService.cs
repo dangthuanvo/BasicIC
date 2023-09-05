@@ -36,7 +36,7 @@ namespace BasicIC.Services.Implement
 
                     bool sendMailSuccess = await _emailAPI.SendMail(mailModel);
                     if (sendMailSuccess == false)
-                        throw new Exception("Send mail Fail");
+                        throw new Exception("Send mail failed!");
 
                     await dbContext.SaveChangesAsync();
                     return new ResponseService<string>(true, "Confirmation success", m01_ConfirmAccountRequest.ToString());
