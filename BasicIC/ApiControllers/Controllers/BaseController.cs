@@ -4,7 +4,6 @@ using Common.Commons;
 using Common.Interfaces;
 using Common.Params.Base;
 using Settings.Common;
-using SocialConnection.Common;
 using System.Threading.Tasks;
 using System.Web.Http;
 

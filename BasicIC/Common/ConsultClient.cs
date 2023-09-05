@@ -1,5 +1,4 @@
 ﻿using BasicIC.App_Start;
-using BasicIC.Common;
 using BasicIC.Config;
 using BasicIC.KafkaComponents;
 using Common;
@@ -13,7 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace SocialConnection.Common
+namespace BasicIC.Common
 {
     public static class ConsultClient
     {
@@ -42,6 +41,7 @@ namespace SocialConnection.Common
                     client.Config.Address = new Uri(addressConsul);
                     var registration = new AgentServiceRegistration()
                     {
+
                         ID = $"{projectName}-{address}:{port}",
                         Name = projectName,
                         Address = address,

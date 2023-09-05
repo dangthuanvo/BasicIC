@@ -27,14 +27,17 @@ namespace BasicIC.Services.Implement
                         email = request.email
                     };
                     dbContext.Set<M01_ConfirmAccountRequest>().Add(m01_ConfirmAccountRequest);
+
                     // Send mail
                     SendMailModel mailModel = new SendMailModel();
-                    mailModel.to_mail = request.email;
+                    mailModel.toEmail = request.email;
                     mailModel.subject = "Confirm Account Email";
-                    mailModel.content = $"Click on the link below to confirm your account. <br />";
-                    var sendMailSuccess = await _emailAPI.SendMail(mailModel);
-                    if (!sendMailSuccess)
+                    mailModel.body = $"Click on the link below to confirm your account. <br />";
+
+                    bool sendMailSuccess = await _emailAPI.SendMail(mailModel);
+                    if (sendMailSuccess == false)
                         throw new Exception("Send mail Fail");
+
                     await dbContext.SaveChangesAsync();
                     return new ResponseService<string>(true, "Confirmation success", m01_ConfirmAccountRequest.ToString());
                 }

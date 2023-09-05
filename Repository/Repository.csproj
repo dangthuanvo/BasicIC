@@ -75,6 +75,30 @@
     <Compile Include="EF\M01_ConfirmAccountRequest.cs">
       <DependentUpon>DbSql.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\M02_Basic.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>M02_Basic.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\M02_Basic.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>M02_Basic.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\M02_Basic.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>M02_Basic.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EF\M02_CommonSetting.cs">
+      <DependentUpon>M02_Basic.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\M02_DefaultCommonSetting.cs">
+      <DependentUpon>M02_Basic.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\M02_EmailSettings.cs">
+      <DependentUpon>M02_Basic.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\M03_Address.cs">
       <DependentUpon>M03_Basic.tt</DependentUpon>
     </Compile>
@@ -185,6 +209,13 @@
     <None Include="EF\DbSql.edmx.diagram">
       <DependentUpon>DbSql.edmx</DependentUpon>
     </None>
+    <EntityDeploy Include="EF\M02_Basic.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>M02_Basic.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EF\M02_Basic.edmx.diagram">
+      <DependentUpon>M02_Basic.edmx</DependentUpon>
+    </None>
     <None Include="EF\M03_Basic.edmx.diagram">
       <DependentUpon>M03_Basic.edmx</DependentUpon>
     </None>
@@ -209,6 +240,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DbSql.edmx</DependentUpon>
       <LastGenOutput>DbSql.cs</LastGenOutput>
+    </Content>
+    <Content Include="EF\M02_Basic.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>M02_Basic.edmx</DependentUpon>
+      <LastGenOutput>M02_Basic.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EF\M02_Basic.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>M02_Basic.edmx</DependentUpon>
+      <LastGenOutput>M02_Basic.cs</LastGenOutput>
     </Content>
     <Content Include="EF\M03_Basic.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

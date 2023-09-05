@@ -11,6 +11,7 @@ namespace Common.ApiHelper
         public HttpClient client;
         private readonly string hostFabio = WebConfigurationManager.AppSettings["HOST_FABIO_SERVICE"];
 
+
         public RestfulApi() { }
 
         private void DefaultSetting()

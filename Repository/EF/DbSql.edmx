@@ -4,9 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="M01_BasicModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'M01_Basic.dbo.M01_ConfirmAccountRequest' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+    <Schema Namespace="M01_BasicModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="M01_ConfirmAccountRequest">
           <Key>
             <PropertyRef Name="id" />
@@ -15,15 +13,9 @@ warning 6002: The table/view 'M01_Basic.dbo.M01_ConfirmAccountRequest' does not 
           <Property Name="email" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="M01_BasicModelStoreContainer">
-          <EntitySet Name="M01_ConfirmAccountRequest" EntityType="Self.M01_ConfirmAccountRequest" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [M01_ConfirmAccountRequest].[id] AS [id], 
-    [M01_ConfirmAccountRequest].[email] AS [email]
-    FROM [dbo].[M01_ConfirmAccountRequest] AS [M01_ConfirmAccountRequest]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="M01_ConfirmAccountRequest" EntityType="Self.M01_ConfirmAccountRequest" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="M01_BasicModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
